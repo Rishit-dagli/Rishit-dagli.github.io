@@ -1,8 +1,10 @@
 ---
 title: "My first in-person KubeCon + CloudNativeCon"
 date: 2022-06-22
-canonical_url: 'https://www.cncf.io/blog/2022/06/20/my-first-in-person-kubecon-cloudnativecon/'
+# canonical_url: 'https://www.cncf.io/blog/2022/06/20/my-first-in-person-kubecon-cloudnativecon/'
 ---
+
+<link rel="canonical" href="https://www.cncf.io/blog/2022/06/20/my-first-in-person-kubecon-cloudnativecon/">
 
 <img src="/assets/my-first-in-person-kubecon-cloudnativecon/cover.jpg" width="100%" />
 
