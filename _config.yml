@@ -1,0 +1,11 @@
+title: Backup of my blogs
+author: Rishit Dagli
+email: rishit.dagli@gmail.com
+description: >
+  This page is a backup of all the blogs I have written. I write about Machine Learning, Open Source and Computer Science in general.
+# social links
+twitter_username: rishit_dagli # DO NOT include the @ character, or else the build will fail!
+github_username:  Rishit-dagli # DO NOT include the @ character, or else the build will fail!
+
+show_excerpts: true # set to false to remove excerpts on the homepage
+theme: minima
