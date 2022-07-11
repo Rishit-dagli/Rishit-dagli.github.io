@@ -9,3 +9,6 @@ github_username:  Rishit-dagli # DO NOT include the @ character, or else the bui
 
 show_excerpts: true # set to false to remove excerpts on the homepage
 theme: minima
+
+plugins:
+ - jekyll-seo-tag
