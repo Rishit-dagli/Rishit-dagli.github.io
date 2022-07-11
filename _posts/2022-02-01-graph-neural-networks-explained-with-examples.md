@@ -74,13 +74,13 @@ So essentially what we need to do _from the latent graph_ (features for each nod
 *   first figure out some way to aggregate all the vectors (like simply summing), and
 *   then create some function to get the predictions:
 
-$$\\vec{Z_G} = f(\\sum_i \\vec{h_i})$$
+$$\vec{Z_G} = f(\sum_i \vec{h_i})$$
 
 And now it is quite simple to show on a high level what we need to do from the latents to get our outputs.
 
 For node level outputs we would just have one node vector passed into our function and get the predictions for that node:
 
-$$\\vec{Z_i} = f(\\vec{h_i})$$
+$$\vec{Z_i} = f(\vec{h_i})$$
 
 ## The problem with variable sized inputs
 
