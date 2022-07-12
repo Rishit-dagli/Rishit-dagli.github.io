@@ -1,6 +1,7 @@
 ---
 title: "My first in-person KubeCon + CloudNativeCon"
 date: 2022-06-22
+excerpt: "This year I got a chance to attend my first in-person KubeCon + CloudNativeCon in Valencia, Spain under the generous Dan Kohn scholarship by CNCF and Linux Foundation. In this article, I give you some glimpses of my experiences KubeCon + CloudNativeCon Europe. These would be paired with some of my learnings from the conference which might help you too!"
 ---
 
 <link rel="canonical" href="https://www.cncf.io/blog/2022/06/20/my-first-in-person-kubecon-cloudnativecon/">
