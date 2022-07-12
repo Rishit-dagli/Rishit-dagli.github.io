@@ -1,6 +1,7 @@
 ---
 title: "What Are Graph Neural Networks? How GNNs Work, Explained with Examples"
 date: 2022-02-1
+excerpt: "In this article, I help you get started and understand how graph neural networks work while also trying to address the question why at each stage. Finally we will also take a look at implementing some of the methods we talk about in this article in code."
 ---
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/graph-neural-networks-explained-with-examples/">
