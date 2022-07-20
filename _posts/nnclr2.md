@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Self-supervised contrastive learning with NNCLR"
+date: 2021-09-13
+excerpt: "Implementation of NNCLR, a self-supervised learning method for computer vision."
+---
+
 # Self-supervised contrastive learning with NNCLR
 
 **Author:** [Rishit Dagli](https://twitter.com/rishit_dagli)<br>
