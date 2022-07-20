@@ -1,6 +1,6 @@
 ---
 title: "Image classification with Swin Transformers"
-date: 2021-09-13
+date: 2021-09-08
 excerpt: "Image classification using Swin Transformers, a general-purpose backbone for computer vision."
 ---
 
