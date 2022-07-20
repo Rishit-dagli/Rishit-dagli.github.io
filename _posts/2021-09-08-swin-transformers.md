@@ -89,7 +89,7 @@ plt.show()
     x_train shape: (50000, 32, 32, 3) - y_train shape: (50000, 100)
     x_test shape: (10000, 32, 32, 3) - y_test shape: (10000, 100)
 
-    ![](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_6_1.png)
+![](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_6_1.png)
 
 ## Configure the hyperparameters
 
