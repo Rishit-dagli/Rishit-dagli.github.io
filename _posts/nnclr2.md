@@ -1,19 +1,9 @@
----
-title: "Self-supervised contrastive learning with NNCLR"
-date: 2021-09-13
-excerpt: "Implementation of NNCLR, a self-supervised learning method for computer vision."
----
-
 # Self-supervised contrastive learning with NNCLR
 
 **Author:** [Rishit Dagli](https://twitter.com/rishit_dagli)<br>
 **Date created:** 2021/09/13<br>
 **Last modified:** 2021/09/13<br>
 **Description:** Implementation of NNCLR, a self-supervised learning method for computer vision.
-
-
-<img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico"/> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/nnclr.ipynb)  <span class="k-dot">•</span><img class="k-inline-icon" src="https://github.com/favicon.ico"/> [**GitHub source**](https://github.com/keras-team/keras-io/blob/master/examples/vision/nnclr.py)
-
 
 ## Introduction
 
@@ -74,44 +64,30 @@ be installed with this command:
 !pip install tensorflow-datasets
 ```
 
-<div class="k-default-codeblock">
-```
-Requirement already satisfied: tensorflow-datasets in /opt/conda/lib/python3.7/site-packages (4.3.0)
-Requirement already satisfied: requests>=2.19.0 in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (2.25.1)
-Requirement already satisfied: typing-extensions in /home/jupyter/.local/lib/python3.7/site-packages (from tensorflow-datasets) (3.7.4.3)
-Requirement already satisfied: tensorflow-metadata in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (1.2.0)
-Requirement already satisfied: absl-py in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (0.13.0)
-Requirement already satisfied: promise in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (2.3)
-Requirement already satisfied: six in /home/jupyter/.local/lib/python3.7/site-packages (from tensorflow-datasets) (1.15.0)
-Requirement already satisfied: termcolor in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (1.1.0)
-Requirement already satisfied: protobuf>=3.12.2 in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (3.16.0)
-Requirement already satisfied: tqdm in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (4.62.2)
-Requirement already satisfied: attrs>=18.1.0 in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (21.2.0)
-Requirement already satisfied: future in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (0.18.2)
-Requirement already satisfied: dill in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (0.3.4)
-Requirement already satisfied: importlib-resources in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (5.2.2)
-Requirement already satisfied: numpy in /opt/conda/lib/python3.7/site-packages (from tensorflow-datasets) (1.19.5)
-Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.7/site-packages (from requests>=2.19.0->tensorflow-datasets) (2021.5.30)
-Requirement already satisfied: chardet<5,>=3.0.2 in /opt/conda/lib/python3.7/site-packages (from requests>=2.19.0->tensorflow-datasets) (4.0.0)
-Requirement already satisfied: idna<3,>=2.5 in /opt/conda/lib/python3.7/site-packages (from requests>=2.19.0->tensorflow-datasets) (2.10)
-Requirement already satisfied: urllib3<1.27,>=1.21.1 in /opt/conda/lib/python3.7/site-packages (from requests>=2.19.0->tensorflow-datasets) (1.26.6)
-Requirement already satisfied: zipp>=3.1.0 in /opt/conda/lib/python3.7/site-packages (from importlib-resources->tensorflow-datasets) (3.5.0)
-Requirement already satisfied: googleapis-common-protos<2,>=1.52.0 in /opt/conda/lib/python3.7/site-packages (from tensorflow-metadata->tensorflow-datasets) (1.53.0)
-Collecting absl-py
-  Downloading absl_py-0.12.0-py3-none-any.whl (129 kB)
-[K     |████████████████████████████████| 129 kB 8.1 MB/s 
-[?25hInstalling collected packages: absl-py
-  Attempting uninstall: absl-py
-    Found existing installation: absl-py 0.13.0
-    Uninstalling absl-py-0.13.0:
-      Successfully uninstalled absl-py-0.13.0
-[31mERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: '_flagvalues.cpython-37.pyc'
-Consider using the `--user` option or check the permissions.
-[0m
+    Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+    Requirement already satisfied: tensorflow-datasets in /usr/local/lib/python3.7/dist-packages (4.0.1)
+    Requirement already satisfied: importlib-resources in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (5.8.0)
+    Requirement already satisfied: attrs>=18.1.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (21.4.0)
+    Requirement already satisfied: protobuf>=3.6.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (3.17.3)
+    Requirement already satisfied: numpy in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (1.21.6)
+    Requirement already satisfied: dm-tree in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (0.1.7)
+    Requirement already satisfied: requests>=2.19.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (2.23.0)
+    Requirement already satisfied: six in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (1.15.0)
+    Requirement already satisfied: tqdm in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (4.64.0)
+    Requirement already satisfied: dill in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (0.3.5.1)
+    Requirement already satisfied: promise in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (2.3)
+    Requirement already satisfied: tensorflow-metadata in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (1.9.0)
+    Requirement already satisfied: future in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (0.16.0)
+    Requirement already satisfied: termcolor in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (1.1.0)
+    Requirement already satisfied: absl-py in /usr/local/lib/python3.7/dist-packages (from tensorflow-datasets) (1.1.0)
+    Requirement already satisfied: idna<3,>=2.5 in /usr/local/lib/python3.7/dist-packages (from requests>=2.19.0->tensorflow-datasets) (2.10)
+    Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests>=2.19.0->tensorflow-datasets) (1.24.3)
+    Requirement already satisfied: chardet<4,>=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests>=2.19.0->tensorflow-datasets) (3.0.4)
+    Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests>=2.19.0->tensorflow-datasets) (2022.6.15)
+    Requirement already satisfied: zipp>=3.1.0 in /usr/local/lib/python3.7/dist-packages (from importlib-resources->tensorflow-datasets) (3.8.0)
+    Requirement already satisfied: googleapis-common-protos<2,>=1.52.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow-metadata->tensorflow-datasets) (1.56.3)
 
-```
-</div>
----
+
 ## Setup
 
 
@@ -123,7 +99,6 @@ from tensorflow import keras
 from tensorflow.keras import layers
 ```
 
----
 ## Hyperparameters
 
 A greater `queue_size` most likely means better performance as shown in the original
@@ -157,7 +132,6 @@ num_epochs = 25
 steps_per_epoch = 200
 ```
 
----
 ## Load the Dataset
 
 We load the [STL-10](http://ai.stanford.edu/~acoates/stl10/) dataset from
@@ -202,48 +176,62 @@ def prepare_dataset():
 batch_size, train_dataset, labeled_train_dataset, test_dataset = prepare_dataset()
 ```
 
-<div class="k-default-codeblock">
-```
-[1mDownloading and preparing dataset 2.46 GiB (download: 2.46 GiB, generated: 1.86 GiB, total: 4.32 GiB) to /home/jupyter/tensorflow_datasets/stl10/1.0.0...[0m
+    [1mDownloading and preparing dataset stl10/1.0.0 (download: 2.46 GiB, generated: 1.86 GiB, total: 4.32 GiB) to /root/tensorflow_datasets/stl10/1.0.0...[0m
 
-Dl Completed...: 0 url [00:00, ? url/s]
 
-Dl Size...: 0 MiB [00:00, ? MiB/s]
 
-Extraction completed...: 0 file [00:00, ? file/s]
+    Dl Completed...: 0 url [00:00, ? url/s]
 
-Generating splits...:   0%|          | 0/3 [00:00<?, ? splits/s]
 
-Generating train examples...:   0%|          | 0/5000 [00:00<?, ? examples/s]
 
-2021-09-18 06:28:15.807796: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:15.924117: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:15.924804: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:15.927672: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2021-09-18 06:28:15.928626: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:15.929321: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:15.930011: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:17.910528: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:17.911198: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:17.911790: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-09-18 06:28:17.912414: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 14684 MB memory:  -> device: 0, name: Tesla V100-SXM2-16GB, pci bus id: 0000:00:04.0, compute capability: 7.0
+    Dl Size...: 0 MiB [00:00, ? MiB/s]
 
-Shuffling stl10-train.tfrecord...:   0%|          | 0/5000 [00:00<?, ? examples/s]
 
-Generating test examples...:   0%|          | 0/8000 [00:00<?, ? examples/s]
 
-Shuffling stl10-test.tfrecord...:   0%|          | 0/8000 [00:00<?, ? examples/s]
+    Extraction completed...: 0 file [00:00, ? file/s]
 
-Generating unlabelled examples...:   0%|          | 0/100000 [00:00<?, ? examples/s]
 
-Shuffling stl10-unlabelled.tfrecord...:   0%|          | 0/100000 [00:00<?, ? examples/s]
+    
+    
+    
 
-[1mDataset stl10 downloaded and prepared to /home/jupyter/tensorflow_datasets/stl10/1.0.0. Subsequent calls will reuse this data.[0m
 
-```
-</div>
----
+
+    0 examples [00:00, ? examples/s]
+
+
+    Shuffling and writing examples to /root/tensorflow_datasets/stl10/1.0.0.incomplete2KYZ3P/stl10-train.tfrecord
+
+
+
+      0%|          | 0/5000 [00:00<?, ? examples/s]
+
+
+
+    0 examples [00:00, ? examples/s]
+
+
+    Shuffling and writing examples to /root/tensorflow_datasets/stl10/1.0.0.incomplete2KYZ3P/stl10-test.tfrecord
+
+
+
+      0%|          | 0/8000 [00:00<?, ? examples/s]
+
+
+
+    0 examples [00:00, ? examples/s]
+
+
+    Shuffling and writing examples to /root/tensorflow_datasets/stl10/1.0.0.incomplete2KYZ3P/stl10-unlabelled.tfrecord
+
+
+
+      0%|          | 0/100000 [00:00<?, ? examples/s]
+
+
+    [1mDataset stl10 downloaded and prepared to /root/tensorflow_datasets/stl10/1.0.0. Subsequent calls will reuse this data.[0m
+
+
 ## Augmentations
 
 Other self-supervised techniques like [SimCLR](https://arxiv.org/abs/2002.05709),
@@ -378,7 +366,6 @@ def encoder():
 
 ```
 
----
 ## The NNCLR model for contrastive pre-training
 
 We train an encoder on unlabeled images with a contrastive loss. A nonlinear projection
@@ -586,7 +573,6 @@ class NNCLR(keras.Model):
 
 ```
 
----
 ## Pre-train NNCLR
 
 We train the network using a `temperature` of 0.1 as suggested in the paper and
@@ -623,66 +609,9 @@ pretrain_history = model.fit(
 )
 ```
 
-<div class="k-default-codeblock">
-```
-Epoch 1/25
+    Epoch 1/25
+     12/200 [>.............................] - ETA: 51:14 - c_loss: 5.6489 - c_acc: 0.1673 - r_acc: 0.3491 - p_loss: 2.3440 - p_acc: 0.1186
 
-2021-09-18 06:33:53.688856: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
-2021-09-18 06:34:01.908683: I tensorflow/stream_executor/cuda/cuda_dnn.cc:369] Loaded cuDNN version 8005
-
-200/200 [==============================] - 46s 125ms/step - c_loss: 3.2890 - c_acc: 0.4006 - r_acc: 0.4409 - p_loss: 2.2239 - p_acc: 0.1201 - val_p_loss: 2.1178 - val_p_acc: 0.2426
-Epoch 2/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 2.1876 - c_acc: 0.6887 - r_acc: 0.4467 - p_loss: 2.0128 - p_acc: 0.2492 - val_p_loss: 1.9811 - val_p_acc: 0.2966
-Epoch 3/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.9057 - c_acc: 0.7590 - r_acc: 0.4452 - p_loss: 1.9197 - p_acc: 0.2945 - val_p_loss: 1.8854 - val_p_acc: 0.3194
-Epoch 4/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.7300 - c_acc: 0.8085 - r_acc: 0.4469 - p_loss: 1.8433 - p_acc: 0.3213 - val_p_loss: 1.7860 - val_p_acc: 0.3347
-Epoch 5/25
-200/200 [==============================] - 26s 121ms/step - c_loss: 1.6209 - c_acc: 0.8359 - r_acc: 0.4469 - p_loss: 1.7898 - p_acc: 0.3388 - val_p_loss: 1.7563 - val_p_acc: 0.3499
-Epoch 6/25
-200/200 [==============================] - 26s 122ms/step - c_loss: 1.5700 - c_acc: 0.8521 - r_acc: 0.4458 - p_loss: 1.7577 - p_acc: 0.3573 - val_p_loss: 1.7041 - val_p_acc: 0.3596
-Epoch 7/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.5209 - c_acc: 0.8662 - r_acc: 0.4476 - p_loss: 1.7131 - p_acc: 0.3763 - val_p_loss: 1.6810 - val_p_acc: 0.3746
-Epoch 8/25
-200/200 [==============================] - 26s 122ms/step - c_loss: 1.4823 - c_acc: 0.8751 - r_acc: 0.4454 - p_loss: 1.6869 - p_acc: 0.3775 - val_p_loss: 1.7017 - val_p_acc: 0.3710
-Epoch 9/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.4497 - c_acc: 0.8845 - r_acc: 0.4453 - p_loss: 1.6572 - p_acc: 0.3748 - val_p_loss: 1.6328 - val_p_acc: 0.3785
-Epoch 10/25
-200/200 [==============================] - 26s 122ms/step - c_loss: 1.4338 - c_acc: 0.8903 - r_acc: 0.4455 - p_loss: 1.6426 - p_acc: 0.3898 - val_p_loss: 1.5942 - val_p_acc: 0.3850
-Epoch 11/25
-200/200 [==============================] - 26s 122ms/step - c_loss: 1.4239 - c_acc: 0.8967 - r_acc: 0.4457 - p_loss: 1.6179 - p_acc: 0.3865 - val_p_loss: 1.5616 - val_p_acc: 0.3841
-Epoch 12/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.3998 - c_acc: 0.9000 - r_acc: 0.4474 - p_loss: 1.5955 - p_acc: 0.4014 - val_p_loss: 1.6176 - val_p_acc: 0.4001
-Epoch 13/25
-200/200 [==============================] - 26s 123ms/step - c_loss: 1.3943 - c_acc: 0.9052 - r_acc: 0.4467 - p_loss: 1.5810 - p_acc: 0.4076 - val_p_loss: 1.6018 - val_p_acc: 0.3904
-Epoch 14/25
-200/200 [==============================] - 26s 122ms/step - c_loss: 1.3778 - c_acc: 0.9084 - r_acc: 0.4506 - p_loss: 1.5622 - p_acc: 0.4237 - val_p_loss: 1.5296 - val_p_acc: 0.3910
-Epoch 15/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.3654 - c_acc: 0.9094 - r_acc: 0.4499 - p_loss: 1.5616 - p_acc: 0.4218 - val_p_loss: 1.5490 - val_p_acc: 0.4060
-Epoch 16/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.3615 - c_acc: 0.9127 - r_acc: 0.4500 - p_loss: 1.5478 - p_acc: 0.4083 - val_p_loss: 1.5626 - val_p_acc: 0.4047
-Epoch 17/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.3519 - c_acc: 0.9153 - r_acc: 0.4503 - p_loss: 1.5442 - p_acc: 0.4276 - val_p_loss: 1.6472 - val_p_acc: 0.3979
-Epoch 18/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.3518 - c_acc: 0.9163 - r_acc: 0.4523 - p_loss: 1.5314 - p_acc: 0.4202 - val_p_loss: 1.6003 - val_p_acc: 0.4103
-Epoch 19/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.3362 - c_acc: 0.9199 - r_acc: 0.4518 - p_loss: 1.5273 - p_acc: 0.4245 - val_p_loss: 1.5676 - val_p_acc: 0.4075
-Epoch 20/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.3266 - c_acc: 0.9205 - r_acc: 0.4536 - p_loss: 1.5180 - p_acc: 0.4340 - val_p_loss: 1.5902 - val_p_acc: 0.3995
-Epoch 21/25
-200/200 [==============================] - 27s 124ms/step - c_loss: 1.3315 - c_acc: 0.9211 - r_acc: 0.4567 - p_loss: 1.5148 - p_acc: 0.4359 - val_p_loss: 1.5301 - val_p_acc: 0.4092
-Epoch 22/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.3216 - c_acc: 0.9207 - r_acc: 0.4579 - p_loss: 1.5201 - p_acc: 0.4270 - val_p_loss: 1.6063 - val_p_acc: 0.4123
-Epoch 23/25
-200/200 [==============================] - 26s 123ms/step - c_loss: 1.3207 - c_acc: 0.9229 - r_acc: 0.4578 - p_loss: 1.5120 - p_acc: 0.4308 - val_p_loss: 1.6611 - val_p_acc: 0.4157
-Epoch 24/25
-200/200 [==============================] - 27s 125ms/step - c_loss: 1.3081 - c_acc: 0.9243 - r_acc: 0.4586 - p_loss: 1.5267 - p_acc: 0.4325 - val_p_loss: 1.6015 - val_p_acc: 0.4111
-Epoch 25/25
-200/200 [==============================] - 27s 123ms/step - c_loss: 1.2987 - c_acc: 0.9282 - r_acc: 0.4599 - p_loss: 1.5115 - p_acc: 0.4404 - val_p_loss: 1.6434 - val_p_acc: 0.4123
-
-```
-</div>
----
 ## Evaluate our model
 
 A popular way to evaluate a SSL method in computer vision or for that fact any other
@@ -715,61 +644,6 @@ finetuning_history = finetuning_model.fit(
 )
 ```
 
-<div class="k-default-codeblock">
-```
-Epoch 1/25
-200/200 [==============================] - 4s 14ms/step - loss: 1.9094 - acc: 0.2770 - val_loss: 1.6228 - val_acc: 0.3735
-Epoch 2/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.5537 - acc: 0.4138 - val_loss: 1.4663 - val_acc: 0.4455
-Epoch 3/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.4502 - acc: 0.4590 - val_loss: 1.4110 - val_acc: 0.4683
-Epoch 4/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.3705 - acc: 0.4968 - val_loss: 1.3402 - val_acc: 0.4979
-Epoch 5/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.2894 - acc: 0.5238 - val_loss: 1.2905 - val_acc: 0.5319
-Epoch 6/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.2331 - acc: 0.5508 - val_loss: 1.2726 - val_acc: 0.5285
-Epoch 7/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.1543 - acc: 0.5728 - val_loss: 1.2200 - val_acc: 0.5585
-Epoch 8/25
-200/200 [==============================] - 4s 14ms/step - loss: 1.0924 - acc: 0.6034 - val_loss: 1.3213 - val_acc: 0.5213
-Epoch 9/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.0575 - acc: 0.6136 - val_loss: 1.2674 - val_acc: 0.5474
-Epoch 10/25
-200/200 [==============================] - 4s 13ms/step - loss: 1.0196 - acc: 0.6336 - val_loss: 1.2162 - val_acc: 0.5621
-Epoch 11/25
-200/200 [==============================] - 4s 15ms/step - loss: 0.9818 - acc: 0.6322 - val_loss: 1.2032 - val_acc: 0.5746
-Epoch 12/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.9608 - acc: 0.6510 - val_loss: 1.2000 - val_acc: 0.5695
-Epoch 13/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.9295 - acc: 0.6598 - val_loss: 1.1348 - val_acc: 0.5890
-Epoch 14/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.9131 - acc: 0.6804 - val_loss: 1.1133 - val_acc: 0.6089
-Epoch 15/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.8418 - acc: 0.6982 - val_loss: 1.1153 - val_acc: 0.6051
-Epoch 16/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.8300 - acc: 0.6998 - val_loss: 1.1734 - val_acc: 0.6026
-Epoch 17/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.8190 - acc: 0.7016 - val_loss: 1.1410 - val_acc: 0.6225
-Epoch 18/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.7935 - acc: 0.7176 - val_loss: 1.2120 - val_acc: 0.5961
-Epoch 19/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.7528 - acc: 0.7306 - val_loss: 1.1974 - val_acc: 0.6037
-Epoch 20/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.7735 - acc: 0.7274 - val_loss: 1.1211 - val_acc: 0.6245
-Epoch 21/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.7384 - acc: 0.7400 - val_loss: 1.2980 - val_acc: 0.5853
-Epoch 22/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.7198 - acc: 0.7438 - val_loss: 1.1106 - val_acc: 0.6205
-Epoch 23/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.6972 - acc: 0.7532 - val_loss: 1.1848 - val_acc: 0.6208
-Epoch 24/25
-200/200 [==============================] - 4s 14ms/step - loss: 0.7054 - acc: 0.7418 - val_loss: 1.1773 - val_acc: 0.6143
-Epoch 25/25
-200/200 [==============================] - 4s 13ms/step - loss: 0.6698 - acc: 0.7614 - val_loss: 1.2016 - val_acc: 0.6033
-
-```
-</div>
 Self supervised learning is particularly helpful when you do only have access to very
 limited labeled training data but you can manage to build a large corpus of unlabeled
 data as shown by previous methods like [SEER](https://arxiv.org/abs/2103.01988),
