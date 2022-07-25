@@ -65,7 +65,7 @@ We're talking about this idea since it allows us to also calculate the median fo
 
 As an example here, I show two very common skewed distributions and how the idea of equal areas we just discussed helps us find their medians. If we tried eyeballing our median, this is what we'd get since we want the areas on either side to be equal.
 
-{% include image.html url="/assets/skewness-and-kurtosis-in-statistics-explained/eyeballing-median.png" description="Eyeballing the median for skewed curves" %}
+{% include image.html url="/assets/skewness-and-kurtosis-in-statistics-explained/eyballing-median.png" description="Eyeballing the median for skewed curves" %}
 
 You can also calculate the mean through these density curves. Maybe you've tried calculating the mean yourself already, but notice that if you use the general formula to calculate the mean:
 
