@@ -4,8 +4,6 @@ name: Broken Link Check
 
 on:
   push:
-  repository_dispatch:
-    types: [check-link]
 
 jobs:
   markdown-link-check:
