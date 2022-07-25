@@ -23,7 +23,7 @@ on Laurence Moroney's [Horses or Humans
 Dataset](https://www.tensorflow.org/datasets/catalog/horses_or_humans). Gradient
 Centralization can both speedup training process and improve the final generalization
 performance of DNNs. It operates directly on gradients by centralizing the gradient
-vectors to have zero mean. Gradient Centralization morever improves the Lipschitzness of
+vectors to have zero mean. Gradient Centralization moreover improves the Lipschitzness of
 the loss function and its gradient so that the training process becomes more efficient
 and stable.
 
@@ -161,7 +161,7 @@ We will now
 subclass the `RMSProp` optimizer class modifying the
 `tf.keras.optimizers.Optimizer.get_gradients()` method where we now implement Gradient
 Centralization. On a high level the idea is that let us say we obtain our gradients
-through back propogation for a Dense or Convolution layer we then compute the mean of the
+through back propagation for a Dense or Convolution layer we then compute the mean of the
 column vectors of the weight matrix, and then remove the mean from each column vector.
 
 The experiments in [this paper](https://arxiv.org/abs/2004.01461) on various

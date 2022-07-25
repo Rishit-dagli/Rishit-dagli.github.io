@@ -97,7 +97,7 @@ Let's put this in terms of an example: you have a convolution with the filter co
 
 This does make us wonder if we can draw some inspiration from convolutional neural networks.
 
-Another really interesting way of solving the problem of variable input sizes that takes inspiration from Physics comes from the paper [Learning to Simulate Complex Physics with Graph Networks](https://arxiv.org/abs/2002.09405) by DeeepMind (2020).
+Another really interesting way of solving the problem of variable input sizes that takes inspiration from Physics comes from the paper [Learning to Simulate Complex Physics with Graph Networks](https://arxiv.org/abs/2002.09405) by DeepMind (2020).
 
 Let's start off by taking some particles \\(i\\) and each of those particles have a certain location \\(\\vec{r_i}\\) and some velocity \\(\\vec{v_i}\\). Let's say that these particles have springs in between them to help us understand any interactions.
 
