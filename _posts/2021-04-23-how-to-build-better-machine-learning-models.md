@@ -217,10 +217,10 @@ Iterating back on what we discussed, "simpler models are less likely to overfit 
 
 To do so we will add to our loss function a term that can penalize our model if it has large weights. Often L₁ and L₂ regularizations are used, the difference being:
 
-*   L1 - The penalty added is \\(\propto\\) to |weight coefficients|
-*   L2 - The penalty added is \\(\propto\\) to |weight coefficients|\\(^2\\)
+- L1 - The penalty added is \\(\propto\\) to |weight coefficients|
+- L2 - The penalty added is \\(\propto\\) to |weight coefficients|\\(^2\\)
 
-where |x| represents absolute values.
+where \\(\mid x \mid\\) represents absolute values.
 
 Do you notice the difference between L1 and L2, the square term? Due to this, L1 might push weights to be equal to zero whereas L2 would have weights tending to zero but not zero.
 
