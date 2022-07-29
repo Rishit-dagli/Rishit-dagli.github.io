@@ -169,6 +169,7 @@ I often use Gradient Check when implementing backpropagation to help me debug it
 As of now, you can use this expression in standard terms to get a vector which we will call \\(d \theta [approx]\\):
 
 for i in range(1, n+1):
+
 $$d \theta^{[i]} _{approx.} = \frac{J(\theta_1, \theta_2 ... \theta_i + \epsilon ... \theta_n) - J(\theta_1, \theta_2 ... \theta_i - \epsilon ... \theta_n)}{2 \cdot \epsilon}$$
 
 In case you are looking for the reasoning behind this, you can find more about it in [this article](https://towardsdatascience.com/debugging-your-neural-nets-and-checking-your-gradients-f4d7f55da167) I wrote.
