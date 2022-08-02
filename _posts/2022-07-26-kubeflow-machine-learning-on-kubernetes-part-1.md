@@ -1,7 +1,7 @@
 ---
 title: "Kubeflow: Machine Learning on Kubernetes - Part 1"
 date: 2022-07-26
-excerpt: "Developing and deploying machine learning systems could be a pain with multiple things you need to manage. In this article, I introduce you and help you get started with Kubeflow while also understanding how Kubeflow works. This is the first article in the Kubeflow series and I will try to help you answer the question "Why and When Kubeflow?""
+excerpt: "Developing and deploying machine learning systems could be a pain with multiple things you need to manage. In this article, I introduce you and help you get started with Kubeflow while also understanding how Kubeflow works. This is the first article in the Kubeflow series and I will try to help you answer the question Why and When Kubeflow?"
 ---
 
 {% include image.html url="/assets/kubeflow-machine-learning-on-kubernetes-part-1/cover.png" description="" %}
@@ -88,7 +88,7 @@ In this article, we will take a high-level view at the core Kubeflow components:
 
 - **Kubeflow Pipelines**: KFP is the component of Kubeflow I have personally used the most and also how I first discovered Kubeflow. KFP allows you to easily manage, create and deploy end-to-end scalable machine learning workflows. Think of this as an orchestrator for machine learning pipelines making experimentation and deployments pretty easy.
 
-- **Katib**: Allows you to work with automated machine learning tasks, hyperparameter tuning, and neural architecture search and supports various machine learning frameworks including PyTorch, TensorFlow, MXNet, and XGBoost. Hyperparameters are important parameters that cannot be directly estimated from the data or could be learned from the data. Finding the right values for hyperparameters is much dependent on previous experience and experimentation which is made easy with Katib. A rather detailed article by me about this can be found at [^Dagli2021]. Neural Architecture Search allows you to automate the process of designing a neural network [^Elsken2019][^Stanley2002]. Katib supports a ton of AutoML algorithms to help you do the search efficiently including but not limited to Hyperband [^Li2017], Random Search, Differentiable architecture se1.arch [^Liu2018] and more.
+- **Katib**: Allows you to work with automated machine learning tasks, hyperparameter tuning, and neural architecture search and supports various machine learning frameworks including PyTorch, TensorFlow, MXNet, and XGBoost. Hyperparameters are important parameters that cannot be directly estimated from the data or could be learned from the data. Finding the right values for hyperparameters is much dependent on previous experience and experimentation which is made easy with Katib. A rather detailed article by me about this can be found at [^Dagli2021]. Neural Architecture Search allows you to automate the process of designing a neural network [^Elsken2019] [^Stanley2002]. Katib supports a ton of AutoML algorithms to help you do the search efficiently including but not limited to Hyperband [^Li2017], Random Search, Differentiable architecture search [^Liu2018] and more.
 
 - **Training Operators**: These allow you to train your machine learning models in a distributed fashion in Kubeflow. At the moment, training operators support TensorFlow, PyTorch, MXNet, and XGBoost jobs which are essentially Kubernetes custom resources, a way to extend the Kubernetes API. The training operator also contains the Message Passing Interface Operator to make it particularly easy to work with all reduce style distributed training jobs, an AllReduce operation synchronizes neural network parameters between separate training processes after each step of the optimization, it does so by aggregating tensors across all the devices, adding them up, and then makes them available on each device. Though you can also use the `tf.distribute` or the `torch.distributed` APIs, these are of course framework-specific [^Gibiansky2017][^Sergeev2018]. Finally, the training operator also includes supporting a job to run multiple pods with the [Volcano scheduler](https://github.com/volcano-sh/volcano).
 
@@ -132,22 +132,22 @@ You can also find me on Twitter [@rishit_dagli](https://twitter.com/rishit_dagli
 
 ## References
 
-[^Sculley2015] Sculley, D., Holt, G., Golovin, D., Davydov, E., Phillips, T., Ebner, D., Chaudhary, V., Young, M., Crespo, J.F., & Dennison, D. (2015). Hidden Technical Debt in Machine Learning Systems. In Advances in Neural Information Processing Systems. Curran Associates, Inc..
+[^Sculley2015]: Sculley, D., Holt, G., Golovin, D., Davydov, E., Phillips, T., Ebner, D., Chaudhary, V., Young, M., Crespo, J.F., & Dennison, D. (2015). Hidden Technical Debt in Machine Learning Systems. In Advances in Neural Information Processing Systems. Curran Associates, Inc..
 
-[^IntroToKF] An Introduction to Kubeflow. https://www.kubeflow.org/docs/started/introduction/#history.
+[^IntroToKF]: An Introduction to Kubeflow. https://www.kubeflow.org/docs/started/introduction/#history.
 
-[^Dagli2021] The Art of Hyperparameter Tuning in Deep Neural Nets by Example. https://medium.com/towards-data-science/the-art-of-hyperparameter-tuning-in-deep-neural-nets-by-example-685cb5429a38.
+[^Dagli2021]: The Art of Hyperparameter Tuning in Deep Neural Nets by Example. https://medium.com/towards-data-science/the-art-of-hyperparameter-tuning-in-deep-neural-nets-by-example-685cb5429a38.
 
-[^Elsken2019] Elsken, T., Metzen, J. H., & Hutter, F. (2019). Neural architecture search: A survey. The Journal of Machine Learning Research, 20(1), 1997-2017.
+[^Elsken2019]: Elsken, T., Metzen, J. H., & Hutter, F. (2019). Neural architecture search: A survey. The Journal of Machine Learning Research, 20(1), 1997-2017.
 
-[^Stanley2002] Stanley, K., & Miikkulainen, R. (2002). Evolving neural networks through augmenting topologies. Evolutionary computation, 10(2), 99–127.
+[^Stanley2002]: Stanley, K., & Miikkulainen, R. (2002). Evolving neural networks through augmenting topologies. Evolutionary computation, 10(2), 99–127.
 
-[^Gibiansky2017] Gibiansky, A. (2017). Bringing HPC techniques to deep learning. Baidu Research, Tech. Rep.
+[^Gibiansky2017]: Gibiansky, A. (2017). Bringing HPC techniques to deep learning. Baidu Research, Tech. Rep.
 
-[^Sergeev2018] Sergeev, A., & Del Balso, M. (2018). Horovod: fast and easy distributed deep learning in TensorFlow. arXiv preprint arXiv:1802.05799.
+[^Sergeev2018]: Sergeev, A., & Del Balso, M. (2018). Horovod: fast and easy distributed deep learning in TensorFlow. arXiv preprint arXiv:1802.05799.
 
-[^Li2017] Li, L., Jamieson, K., DeSalvo, G., Rostamizadeh, A., & Talwalkar, A. (2017). Hyperband: A novel bandit-based approach to hyperparameter optimization. The Journal of Machine Learning Research, 18(1), 6765-6816.
+[^Li2017]: Li, L., Jamieson, K., DeSalvo, G., Rostamizadeh, A., & Talwalkar, A. (2017). Hyperband: A novel bandit-based approach to hyperparameter optimization. The Journal of Machine Learning Research, 18(1), 6765-6816.
 
-[^Liu2018] Liu, H., Simonyan, K., & Yang, Y. (2018). Darts: Differentiable architecture search. arXiv preprint arXiv:1806.09055.
+[^Liu2018]: Liu, H., Simonyan, K., & Yang, Y. (2018). Darts: Differentiable architecture search. arXiv preprint arXiv:1806.09055.
 
-[^Breck2017] Breck, E., Cai, S., Nielsen, E., Salib, M., & Sculley, D. (2017, December). The ML test score: A rubric for ML production readiness and technical debt reduction. In 2017 IEEE International Conference on Big Data (Big Data) (pp. 1123-1132). IEEE.
+[^Breck2017]: Breck, E., Cai, S., Nielsen, E., Salib, M., & Sculley, D. (2017, December). The ML test score: A rubric for ML production readiness and technical debt reduction. In 2017 IEEE International Conference on Big Data (Big Data) (pp. 1123-1132). IEEE.
