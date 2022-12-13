@@ -53,14 +53,14 @@ Let us now create a notebook server setting the image to `kubeflownotebookswg/ju
 
 ### Run an example notebook
 
-Let us first try tunning a simple TensorFlow example in the Notebook server, you can of course run any notebook you want.
+Let us first try running a simple TensorFlow example in the Notebook server, you can of course run any notebook you want.
 
 ```sh
 git clone https://github.com/kubesimplify/kubeflow-series
 cd kubeflow-series/2
 ```
 
-If you are wondering why does a new machine have Git installed, that is because the default Kubeflow images contain a lot of utilities you would require pre-installed. Now you can try tunning the `tensorflow-example.ipynb` which contains some simple model training code for TensorFlow 2 using Keras.
+If you are wondering why does a new machine have Git installed, that is because the default Kubeflow images contain a lot of utilities you would require pre-installed. Now you can try running the `tensorflow-example.ipynb` which contains some simple model training code for TensorFlow 2 using Keras.
 
 You could in fact also make use of Jupyter Lab Extensions and we will talk about extensions like KALE and Elyra in later articles.
 
