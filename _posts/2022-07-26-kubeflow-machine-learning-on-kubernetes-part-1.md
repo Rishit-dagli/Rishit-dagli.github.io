@@ -42,7 +42,7 @@ To deploy Kubeflow in a `kind` cluster you could also use this convenience scrip
 wget -O - https://raw.githubusercontent.com/kubesimplify/kubeflow-series/main/kubeflow-machine-learning-on-kubeflow/scripts/kubeflow-kind.sh | bash
 ```
 
-You might notice that the creation of some resources fails which is expected since for example the creation of `CustomResources` would be possible only after `CustomResourceDefintions` are up. This creates quite a few resources in your cluster. You should ensure all the pods are ready before trying to connect to Kubeflow. You can check this by running:
+You might notice that the creation of some resources fails which is expected since for example the creation of `CustomResources` would be possible only after `CustomResourceDefinitions` are up. This creates quite a few resources in your cluster. You should ensure all the pods are ready before trying to connect to Kubeflow. You can check this by running:
 
 ```sh
 kubectl get pods -n cert-manager
@@ -94,7 +94,7 @@ In this article, we will take a high-level view at the core Kubeflow components:
 
 - **Multi Tenancy**: Kubeflow is built in a manner to allow multiple people to easily collaborate on a project. Multi tenancy is built around user namespaces and user access is defined through RBAC (role-based access control) policies which already exist in Kubernetes. You could easily restrict each user to only worry about and interact with the Kubeflow components in their configuration.
 
-These are the core components of Kubeflow however Kubeflow could also be paired with some more add-ons that allow you to extend the capabilities of Kubeflow including but not limited to KServe for model serving, Feature Store for feature storage, management, and serving, kale to orchestrate machine learning workflows and more.
+These are the core components of Kubeflow however Kubeflow could also be paired with some more addons that allow you to extend the capabilities of Kubeflow including but not limited to KServe for model serving, Feature Store for feature storage, management, and serving, kale to orchestrate machine learning workflows and more.
 
 ## A high-level overview of how Kubeflow works?
 
