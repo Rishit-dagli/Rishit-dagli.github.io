@@ -271,7 +271,7 @@ compiler.compile(multiply_pipeline, 'multiply-pipeline.zip')
 
 Building pipeline stages directly from Python provides a great way to do much with Kubeflow Pipeline. It does limit our implementation to Python, though. With Kubeflow Pipelines we can orchestrate the execution of container images thus allowing us to use any tool or language for your pipeline. For Kubeflow Pipelines to run your component, your component must be packaged as a Docker container image and published to a container registry that your Kubernetes cluster can access. This does not involve doing any changes to your container image for Kubeflow pipelines.
 
-We can do this by using `kfp.dsl.ConatinerOp`, here is some simple code to load the Python image and then run some commands on the container image:
+We can do this by using `kfp.dsl.ContainerOp`, here is some simple code to load the Python image and then run some commands on the container image:
 
 ```py
 import kfp
