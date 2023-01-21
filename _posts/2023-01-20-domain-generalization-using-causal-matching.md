@@ -42,7 +42,7 @@ For a finite number of domains $$m$$, as the number of examples in each domain $
         
 1. The set of representations that satisfy the condition $$\sum_{\Omega(j,k)=1; d\neq d'} dist(\phi(x_j^{(d)}), \phi(x_k^{(d')})) =0$$ contains the optimal $$\phi(x)=X_C$$ that minimizes the domain generalization loss.
         
-2. Assuming that $$P(X_a|O, D)<1$$ for every high-level feature $$X_a$$ that is directly caused by domain, and for P-admissible loss functions whose minimization is conditional expectation (e.g., $$\ell_2$$ or cross-entropy), %the true function $$f^*$$ is one of the optimal solutions, a loss-minimizing classifier for the  following loss is the true function $$f^*$$, for some value of $$\lambda$$ provided that $$f^* \in F_c\subseteq F$$.
+2. Assuming that $$P(X_a \mid O, D)<1$$ for every high-level feature $$X_a$$ that is directly caused by domain, and for P-admissible loss functions whose minimization is conditional expectation (e.g., $$\ell_2$$ or cross-entropy), the true function $$f^*$$ is one of the optimal solutions, a loss-minimizing classifier for the  following loss is the true function $$f^*$$, for some value of $$\lambda$$ provided that $$f^* \in F_c\subseteq F$$.
 
 $$
 f_{perfectmatch} = \arg \min_{h, \phi} \sum_{d=1}^{m} L_d(h(\phi(X)), Y) + \lambda \sum_{\Omega(j,k)=1; d\neq d'} dist(\phi(x_j^{(d)}), \phi(x_k^{(d')}))
