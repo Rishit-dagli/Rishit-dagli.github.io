@@ -58,18 +58,19 @@ However, this might not always be true. You can theoretically generate data such
 
 Found this work by Jiles et al. [^jiles2022re] that showed some disrepancies in evaluation.
 
-### Soundness:
+### Soundness
 
 4 excellent
 
-### Contribution:
+### Contribution
 
 4 excellent
 
-### Overall:
+### Overall
+
 7: Accept: Technically solid paper, with high impact on at least one sub-area of AI or moderate-to-high impact on more than one area of AI, with good-to-excellent evaluation, resources, reproducibility, and no unaddressed ethical considerations.\
 
-### Confidence:
+### Confidence
 
 4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.
 
