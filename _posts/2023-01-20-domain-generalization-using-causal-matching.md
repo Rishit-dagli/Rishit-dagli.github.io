@@ -10,7 +10,7 @@ So, I thought I would share my reviews of the papers I read as a blog series. Th
 
 ## Review
 
-Here, I review the paper Domain Generalization using Causal Matching [^review].
+Here, I review the paper Domain Generalization using Causal Matching [^review]. I believe for anyone to benefit or follow along the blog, it might be best to first read the paper themselves and then read the review.
 
 ### Summary
 
