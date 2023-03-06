@@ -46,7 +46,7 @@ $$
 m(\epsilon, \delta) = O \left( \frac{d^2}{\epsilon^2} \right)
 $$
 
-## Binary Classification (with adv. pertubations)
+## Binary Classification (with adv. perturbations)
 
 For the example of binary classification, we have $$Z = X \times \{ 0, 1 \}$$ and $$h$$ is some model which maps from $$h: X \to \{ 0, 1 \}$$.
 
@@ -66,7 +66,7 @@ $$
 
 For the example of binary classification, we have $$Z = X \times \{ 0, 1 \}$$ and $$h$$ is some model which maps from $$h: X \to \{ 0, 1 \}$$.
 
-We also have $$l^U(h,x,y) =$$ adversarial pertubations and then we will have the $$L^U$$ be $$L^U(D_Z,h) = E_{(x,y) \sim D_Z} l^U(h,x,y)$$.
+We also have $$l^U(h,x,y) =$$ adversarial perturbations and then we will have the $$L^U$$ be $$L^U(D_Z,h) = E_{(x,y) \sim D_Z} l^U(h,x,y)$$.
 
 Now, $$A_{Z,H}$$ probably approximately correct learns $$H$$ with $$m(\epsilon)$$ samples if for all $$D_Z$$ and for all $$\epsilon \in ( 0,1 )$$. Now if $$S \sim D_Z^{m(\epsilon)}$$ then:
 
