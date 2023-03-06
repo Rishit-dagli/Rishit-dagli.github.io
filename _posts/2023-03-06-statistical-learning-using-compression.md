@@ -258,8 +258,7 @@ Here “Sample compression" does not make sense as there are no “labels”.
 
 ## Compression Framework
 
-We have $$F$$ which is a class of distributions (e.g. Gaussians) and we have. If A sends $$t$$ points from $$m$$ points and B approximates $$D$$
-then we say $$F$$ admits $$(t,m)$$-compression.
+We have $$F$$ which is a class of distributions (e.g. Gaussians) and we have. If A sends $$t$$ points from $$m$$ points and B approximates $$D$$ then we say $$F$$ admits $$(t,m)$$-compression.
 
 Theorem:
 
