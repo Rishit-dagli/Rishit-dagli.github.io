@@ -4,7 +4,7 @@ date: 2021-06-01
 excerpt: "In this article, we introduce our project “Plant AI” which won the Microsoft Green Hackathon and walk you through our motivation behind building this project, how it could be helpful to the community, the process of building this project, and finally our future plans with this project."
 ---
 
-{% include image.html url="/assets/plant-ai-student-ambassador-green-a-thon-activity-report/cover.png" description="" %}
+{% include cover.html url="/assets/plant-ai-student-ambassador-green-a-thon-activity-report/cover.png" description="" %}
 
 <link rel="canonical" href="https://techcommunity.microsoft.com/t5/green-tech-blog/plant-ai-student-ambassador-green-a-thon-activity-report/ba-p/2348875">
 

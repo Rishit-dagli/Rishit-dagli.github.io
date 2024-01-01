@@ -4,7 +4,7 @@ date: 2021-06-16
 excerpt: "In this article, I'll explain two important concepts in statistics: skewness and kurtosis. And don't worry – you won't need to know very much math to understand these concepts and learn how to apply them."
 ---
 
-{% include image.html url="/assets/skewness-and-kurtosis-in-statistics-explained/cover.png" description="" %}
+{% include cover.html url="/assets/skewness-and-kurtosis-in-statistics-explained/cover.png" description="" %}
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/skewness-and-kurtosis-in-statistics-explained/">
 

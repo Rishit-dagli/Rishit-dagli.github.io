@@ -4,7 +4,7 @@ date: 2021-01-22
 excerpt: "If you have worked on building Deep Neural Networks earlier you might know that building neural nets can involve setting a lot of different hyperparameters. In this article, I will share with you some tips and guidelines you can use to better organize your hyperparameter tuning process which should make it a lot more efficient for you to stumble upon a good setting for the hyperparameters."
 ---
 
-{% include image.html url="/assets/the-art-of-hyperparameter-tuning-in-deep-neural-nets-by-example/cover.png" description="" %}
+{% include cover.html url="/assets/the-art-of-hyperparameter-tuning-in-deep-neural-nets-by-example/cover.png" description="" %}
 
 <link rel="canonical" href="https://towardsdatascience.com/the-art-of-hyperparameter-tuning-in-deep-neural-nets-by-example-685cb5429a38">
 

@@ -6,7 +6,7 @@ excerpt: "When you're starting a new project, you might have to add multiple lin
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/github-super-linter/">
 
-{% include image.html url="/assets/github-super-linter/cover.png" description="" %}
+{% include cover.html url="/assets/github-super-linter/cover.png" description="" %}
 
 When you're starting a new project, you might have to add multiple linting tools to beautify your code and prevent simple errors.
 

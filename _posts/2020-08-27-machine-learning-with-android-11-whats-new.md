@@ -6,7 +6,7 @@ excerpt: "This blog demonstrates how you can get started with on-device ML with 
 
 <link rel="canonical" href="https://proandroiddev.com/machine-learning-with-android-11-whats-new-1a8d084c7398">
 
-{% include image.html url="/assets/machine-learning-with-android-11-whats-new/cover.png" description="" %}
+{% include cover.html url="/assets/machine-learning-with-android-11-whats-new/cover.png" description="" %}
 
 This blog demonstrates how you can get started with on-device ML with tools or plugins specifically launched with [Android 11](https://developer.android.com/11). If you have earlier worked with ML in Android, you will explore easier ways to integrate your ML applications with your Android apps. If you have not worked with ML in Android earlier, this could be a starting point for you to do so and start super powering your Android app with Machine Learning. In this blog, I majorly demonstrate the two biggest updates with Android 11: [ML Model Binding Plugin](https://developer.android.com/studio/preview/features#tensor-flow-lite-models) and the [new ML Kit](https://g.co/mlkit). All of the example apps code as we discuss below is present in [this GitHub repo](https://github.com/Rishit-dagli/ML-with-Android-11).
 

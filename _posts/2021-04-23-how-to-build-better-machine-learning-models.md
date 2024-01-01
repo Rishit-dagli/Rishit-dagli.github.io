@@ -4,7 +4,7 @@ date: 2021-04-23
 excerpt: "If you have built Deep Neural Networks before, you might know that it can involve a lot of experimentation. In this article, I will share with you some useful tips and guidelines that you can use to better build better deep learning models. These tricks should make it a lot easier for you to develop a good network."
 ---
 
-{% include image.html url="/assets/how-to-build-better-machine-learning-models/cover.png" description="" %}
+{% include cover.html url="/assets/how-to-build-better-machine-learning-models/cover.png" description="" %}
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/how-to-build-better-machine-learning-models/">
 

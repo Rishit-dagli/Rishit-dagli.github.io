@@ -6,7 +6,7 @@ excerpt: "Kubeflow Pipelines is a great way to build and deploy end-to-end scala
 
 <link rel="canonical" href="https://blog.kubesimplify.com/kubeflow-pipelines-orchestrating-machine-learning-workflows-part-3">
 
-{% include image.html url="/assets/kubeflow-pipelines-orchestrating-machine-learning-workflows-part-3/cover.png" description="" %}
+{% include cover.html url="/assets/kubeflow-pipelines-orchestrating-machine-learning-workflows-part-3/cover.png" description="" %}
 
 Kubeflow Pipelines is a great way to build and deploy end-to-end scalable and portable Machine Learning workloads. In this article, we take a look at how to use Kubeflow Pipelines for your own tasks and how Kubeflow Pipelines works under the hood.
 
