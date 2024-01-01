@@ -6,7 +6,7 @@ excerpt: "What if you could monitor your Colab, Kaggle, or AzureML Machine Learn
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/how-to-monitor-ml-projects-on-mobile-devices/">
 
-{% include image.html url="/assets/how-to-monitor-ml-projects-on-mobile-devices/cover.png" description="" %}
+{% include cover.html url="/assets/how-to-monitor-ml-projects-on-mobile-devices/cover.png" description="" %}
 
 What if you could monitor your Colab, Kaggle, or AzureML Machine Learning projects on your mobile phone? You'd be able to check in on your models on the fly – even while taking a walk🚶.
 

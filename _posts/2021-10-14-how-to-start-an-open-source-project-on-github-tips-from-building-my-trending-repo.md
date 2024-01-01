@@ -4,7 +4,7 @@ date: 2021-10-14
 excerpt: "Quite recently I ended up on the coveted GitHub Trending page. I was the #2 trending developer on all of GitHub – and for Python as well, which was a pleasant surprise for me. I will be sharing some tips in this article which you should be able to apply to all kinds of projects."
 ---
 
-{% include image.html url="/assets/how-to-start-an-open-source-project-on-github-tips-from-building-my-trending-repo/cover.png" description="" %}
+{% include cover.html url="/assets/how-to-start-an-open-source-project-on-github-tips-from-building-my-trending-repo/cover.png" description="" %}
 
 <link rel="canonical" href="https://www.freecodecamp.org/news/graph-neural-networks-explained-with-examples/">
 

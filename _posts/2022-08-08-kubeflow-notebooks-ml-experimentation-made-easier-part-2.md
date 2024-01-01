@@ -6,7 +6,7 @@ excerpt: "Machine learning is a very iterative process with a ton of experimenta
 
 <link rel="canonical" href="https://kubesimplify.com/kubeflow-notebooks-ml-experimentation-made-easier-part-2">
 
-{% include image.html url="/assets/kubeflow-notebooks-ml-experimentation-made-easier-part-2/cover.png" description="" %}
+{% include cover.html url="/assets/kubeflow-notebooks-ml-experimentation-made-easier-part-2/cover.png" description="" %}
 
 Machine learning is a very iterative process with a ton of experimentation you might need to do. In this article, I introduce you to Kubeflow Notebooks, a way to run development environments inside your Kubernetes cluster, as well as how you could extend the default capabilities of Kubeflow Notebooks for your own use cases and how it works under the hood.
 

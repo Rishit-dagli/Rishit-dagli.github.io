@@ -8,7 +8,7 @@ The ferromagnetic Potts model is a canonical example of a Markov random field fr
 
 ## The Ferromagnetic Potts Model
 
-{% include image.html url="/assets/ferromagnetic-potts/sample-graph.png" description="A sample graph" %}
+{% include cover.html url="/assets/ferromagnetic-potts/sample-graph.png" description="A sample graph" %}
 
 We start by defining some basic notation:
 

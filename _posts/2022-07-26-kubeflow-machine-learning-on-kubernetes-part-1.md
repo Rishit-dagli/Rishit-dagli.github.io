@@ -4,7 +4,7 @@ date: 2022-07-26
 excerpt: "Developing and deploying machine learning systems could be a pain with multiple things you need to manage. In this article, I introduce you and help you get started with Kubeflow while also understanding how Kubeflow works. This is the first article in the Kubeflow series and I will try to help you answer the question Why and When Kubeflow?"
 ---
 
-{% include image.html url="/assets/kubeflow-machine-learning-on-kubernetes-part-1/cover.png" description="" %}
+{% include cover.html url="/assets/kubeflow-machine-learning-on-kubernetes-part-1/cover.png" description="" %}
 
 <link rel="canonical" href="https://kubesimplify.com/kubeflow-machine-learning-on-kubernetes-part-1">
 
