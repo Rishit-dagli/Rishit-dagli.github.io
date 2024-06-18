@@ -1,6 +1,7 @@
 from manim import *
 import numpy as np
 
+
 class MeanEscapeTime(ThreeDScene):
     def construct(self):
         # Set the axes
@@ -10,8 +11,8 @@ class MeanEscapeTime(ThreeDScene):
         # Define the surfaces based on the provided sketch
         # 'a1' and 'a2' are the minima, 'b' is the saddle point
         def combined_valley(u, v):
-            steep_minima = -np.exp(-0.5 * ((u + 1)**2 + (v + 1)**2))
-            flat_minima = -np.exp(-0.1 * ((u - 1)**2 + (v - 1)**2))
+            steep_minima = -np.exp(-0.5 * ((u + 1) ** 2 + (v + 1) ** 2))
+            flat_minima = -np.exp(-0.1 * ((u - 1) ** 2 + (v - 1) ** 2))
             saddle_point_height = 0.1  # Height of the saddle point, adjust as needed
             saddle = saddle_point_height * (u**2 - v**2)
             return np.array([u, v, steep_minima + flat_minima + saddle])
@@ -27,7 +28,9 @@ class MeanEscapeTime(ThreeDScene):
 
         # Create the ball and its start position at 'a1' which is a steep minima
         ball = Sphere(radius=0.1, color=RED)
-        ball_start_pos = np.array([-1, -1, combined_valley(-1, -1)[2]])  # Position at 'a1'
+        ball_start_pos = np.array(
+            [-1, -1, combined_valley(-1, -1)[2]]
+        )  # Position at 'a1'
         ball.move_to(ball_start_pos)
 
         # Define the path from 'a1' to 'a2' via 'b'
@@ -36,7 +39,7 @@ class MeanEscapeTime(ThreeDScene):
         path_points = [
             ball_start_pos,
             np.array([0, 0, combined_valley(0, 0)[2]]),  # Saddle point 'b'
-            np.array([1, 1, combined_valley(1, 1)[2]])   # Flat minima 'a2'
+            np.array([1, 1, combined_valley(1, 1)[2]]),  # Flat minima 'a2'
         ]
         path_to_flat.set_points_smoothly(path_points)
 
