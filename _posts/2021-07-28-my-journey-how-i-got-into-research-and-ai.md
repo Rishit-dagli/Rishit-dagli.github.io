@@ -2,6 +2,7 @@
 title: "My Journey – How I got into research and AI"
 date: 2021-07-28
 excerpt: "Hello 👋. In this article, I will share my journey about how I got into Artificial Intelligence (AI) and related research as a high school student and consequently, a couple of things I have learned that might help you as well. However, do note that this blog is not one about getting started with AI or research."
+published: false
 ---
 
 <link rel="canonical" href="https://raisingamathematician.wordpress.com/2021/07/28/student-diaries-my-journey-how-i-got-into-research-and-ai/">
