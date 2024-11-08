@@ -82,7 +82,7 @@ Thus, we have:
 
 $$\frac{\partial R}{\partial t} = \Delta R + 2|\text{Ric}|^2$$
 
-From this, we can derive a useful inequality. Since we can decompose Ric into its traceless part and trace part:
+From this, we can derive a useful inequality. Since we can decompose \\(\text{Ric}\\) into its traceless part and trace part:
 
 $$\text{Ric} = \underbrace{\stackrel{\circ}{\text{Ric}}}_{\text{traceless part}} + \overbrace{\frac{R}{n}g}^{\text{trace part}}$$
 
@@ -92,36 +92,33 @@ $$|\text{Ric}|^2 = |\stackrel{\circ}{\text{Ric}}|^2 + \frac{R^2}{n}$$
 
 Therefore:
 
-$$\frac{\partial R}{\partial t} \geq \underbrace{\Delta R}_{\text{spreads curvature}} + \overbrace{\frac{2}{n}R^2}^{\text{amplifies curvature}}$$" %}
+$$\frac{\partial R}{\partial t} \geq \underbrace{\Delta R}_{\text{spreads curvature}} + \overbrace{\frac{2}{n}R^2}^{\text{amplifies curvature}}\tag{7}$$" %}
 
-I like to think of Theorem (1) in a stochastic manner. The \\(\Delta R\\) term is like a diffusion term that spreads out curvature and the \\(\lvert\text{Ric}\rvert^2\\) term is always positive, which tends to increase the scalar curvature.
-
-A very useful conclusion which becomes somewhat more straightforward when you think of the stochastic interpretation is to understand what happens we start with positive Ricci curvature, it becomes singular in finite time. Since the Ricci curvature is positive, the scalar curvature \\(R\\) is also positive. From the evolution equation above:
-
-$$\frac{\partial R}{\partial t} \geq \Delta R + \frac{2}{3}R^2$$
+I like to think of Theorem (1) in a stochastic manner. The \\(\Delta R\\) term is like a diffusion term that spreads out curvature and the \\(\lvert\text{Ric}\rvert^2\\) term is always positive, which tends to increase the scalar curvature. A very useful conclusion which becomes somewhat more straightforward when you think of the stochastic interpretation is to understand what happens we start with positive Ricci curvature, it becomes singular in finite time. Since the Ricci curvature is positive, the scalar curvature \\(R\\) is also positive.
 
 <div style="padding: 0.75em; border: 1px solid black;" markdown="1">
 **Aside (Some bits of maximum principle):**
 
 The main idea is to see if we can track the extremes of solutions and constrain them.
 
-Let \\((M,g(t))\\) be a closed manifold with a time-dependent Riemannian metric. If \\(u: M \times \left[\right.0,T\left.\right) \to \mathbb{R}\\) satisfies:
+Let \\((M,g(t))\\) be a closed manifold with a time-dependent Riemannian metric. Suppose \\(u: M \times \left[\right.0,T\left.\right) \to \mathbb{R}\\) satisfies:
 
 $$\frac{\partial u}{\partial t} \leq \Delta_{g(t)}u + \langle X(t), \nabla u \rangle + F(u)$$
 
-where, $$u(x,0) \leq C \text{ for all } x \in M$$
-
-and if \\(\phi(t)\\) solves the ODE:
+where \(F: \mathbb{R} \to \mathbb{R}\) is locally Lipschitz, and there exists some constant \(C\) such that the initial condition satisfies, \\(u(x, 0) \leq \forall x \in M\\) and if \\(\phi(t)\\) solves the ODE:
 
 $$\frac{d\phi}{dt} = F(\phi)\quad \text{and} \quad\phi(0) = C$$
+
+for all \(x \in M\) and \(t \in [0,T)\) for which \(\phi(t)\) exists.
 
 Then,
 
 $$u(x,t) \leq \phi(t)$$
 
-We already know that,
+Given we already know From Equation (6) that,
 
 $$\frac{\partial R}{\partial t} = \Delta R + 2|\text{Ric}|^2 \geq \Delta R + \frac{2}{n}R^2$$
+
 </div>
 
 Using the maximum principle, we can show that if \\(R\\) starts positive, it must blow up in finite time, forcing the space to collapse. To do so, let us make some substitutions:
