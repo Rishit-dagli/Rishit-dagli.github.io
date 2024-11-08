@@ -127,7 +127,7 @@ $$\frac{\partial R}{\partial t} = \Delta R + 2|\text{Ric}|^2 \geq \Delta R + \fr
 Using the maximum principle, we can show that if \\(R\\) starts positive, it must blow up in finite time, forcing the space to collapse. To do so, let us make some substitutions:
 
 - \\(\Delta R\\) is the Laplacian term
-- (\\(X(t)=0\\))
+- \\(X(t)=0\\)
 - \\(F(R) = \frac{2}{n}R^2\\) is our reaction term
 
 Then the ODE is:
