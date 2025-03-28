@@ -1,5 +1,5 @@
 ---
-title: "A Collection of 3D Reconstruction Scenes and Trained Splats"
+title: "A Collection of 3D Reconstruction Datasets and Trained Splats"
 date: 2025-03-28
 excerpt: "A dataset of 3D reconstruction scenes."
 image: /assets/nerf-gs-datasets/cover.jpg
@@ -13,7 +13,7 @@ image: /assets/nerf-gs-datasets/cover.jpg
   </a>
 </div>
 
-The data required for training NeRFs and Gaussian Splats is often much smaller than what used to be required for doing 3D reconstruction. There are quite quite a few formats for the per-scene datasets for training these methods. I often had problems on training such radiance fields on multiple datasets while working on any training, thus I share a collection of 3D reconstruction scenes gathered from various sources, each accompanied by a pre-trained Gaussian Splat model.
+The data required for training NeRFs and Gaussian Splats is often much smaller than what used to be required for doing 3D reconstruction. There are quite quite a few formats for the per-scene datasets for training these methods. I often had problems on training such radiance fields on multiple datasets while working on any training, thus I share a collection of 3D reconstruction scenes gathered from various sources, each accompanied by a trained Gaussian Splat.
 
 There are 77 scenes in this collection. Each scene in the dataset usually includes:
 
