@@ -1,0 +1,43 @@
+{% assign post_date = include.date | default: page.date %}
+{% assign post_title = include.title | default: page.title %}
+{% assign post_author = include.author | default: site.author | default: "Rishit Dagli" %}
+{% assign post_url = include.url | default: page.url | prepend: site.url %}
+
+{% assign year = post_date | date: "%Y" %}
+{% assign month = post_date | date: "%m" %}
+{% assign day = post_date | date: "%d" %}
+{% assign citation_key = year | append: post_author | split: " " | first | append: post_title | split: " " | first | downcase %}
+
+<h2 id="citation">Citation</h2>
+
+<div style="position: relative;">
+  <pre><code id="citationCode">@online{ {{ citation_key }},
+  author = { {{post_author}} },
+  title = { {{post_title}} },
+  year = { {{year}} },
+  month = { {{month}} },
+  day = { {{day}} },
+  url = { {{post_url}} },
+  note = { Accessed: {{ "now" | date: "%Y-%m-%d" }} }
+}</code></pre>
+  <button class="button is-small is-dark" onclick="copyCitation()" style="position: absolute; top: 10px; right: 10px;">
+    <span class="icon">
+      <i class="fas fa-copy"></i>
+    </span>
+  </button>
+</div>
+
+<script>
+  function copyCitation() {
+    var citationCode = document.getElementById("citationCode").innerText;
+    navigator.clipboard.writeText(citationCode);
+    
+    // Optional: Show a brief "Copied!" message
+    const button = document.querySelector('button[onclick="copyCitation()"]');
+    const originalHTML = button.innerHTML;
+    button.innerHTML = '<span class="icon"><i class="fas fa-check"></i></span>';
+    setTimeout(() => {
+      button.innerHTML = originalHTML;
+    }, 2000);
+  }
+</script>
