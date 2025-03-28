@@ -15,10 +15,12 @@ image: /assets/nerf-gs-datasets/cover.jpg
 
 The data required for training NeRFs and Gaussian Splats is often much smaller than what used to be required for doing 3D reconstruction. There are quite quite a few formats for the per-scene datasets for training these methods. I often had problems on training such radiance fields on multiple datasets while working on any training, thus I share a collection of 3D reconstruction scenes gathered from various sources, each accompanied by a pre-trained Gaussian Splat model.
 
-Each scene in the dataset usually includes:
+There are 77 scenes in this collection. Each scene in the dataset usually includes:
 
 - Multi-view image sequences with camera parameters
 - Calibration information
 - A pre-trained Gaussian Splat model optimized for the scene
+
+All the datasets in the collection are taken from various different sources and have different licenses.
 
 {% include bibtex.html %}
