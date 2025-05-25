@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="wrapper">
+    <div class="footer-content">
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author | escape }}. All rights reserved.</p>
+      <p class="footer-tagline">{{ site.tagline | escape }}</p>
+      <div class="social-links">
+        {% if site.twitter_username %}
+        <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+        {% endif %}
+        {% if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+        {% endif %}
+        {% if site.email %}
+        <a href="mailto:{{ site.email }}">
+          <i class="fas fa-envelope"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer> 

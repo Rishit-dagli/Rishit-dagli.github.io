@@ -9,34 +9,40 @@ layout: default
 
   {{ content }}
 
-
   {% if site.paginate %}
     {% assign posts = paginator.posts %}
   {% else %}
     {% assign posts = site.posts %}
   {% endif %}
 
-
   {%- if posts.size > 0 -%}
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
-    <ul class="post-list">
+    
+    <div class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
-      <li>
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
+      <article class="post">
+        <h2 class="post-title">
+          <a href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>
-        </h3>
+        </h2>
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+          {%- if post.author -%}
+            • <span class="post-author">{{ post.author }}</span>
+          {%- endif -%}
+        </div>
         {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 50 }}
+          </div>
         {%- endif -%}
-      </li>
+      </article>
       {%- endfor -%}
-    </ul>
+    </div>
 
     {% if site.paginate %}
       <div class="pager">
@@ -58,12 +64,11 @@ layout: default
   
     <p class="feed-subscribe">
       <a href="https://feedrabbit.com/?url=https://rishit-dagli.github.io/feed.xml">
-        <svg class="svg-icon orange">
+        <svg class="svg-icon orange" width="16" height="16">
           <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use>
-        </svg><span>Subscribe</span>
+        </svg><span>Subscribe to RSS</span>
       </a>
     </p>
-    <!-- <p class="feed-subscribe"><svg class="svg-icon orange"><use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use></svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p> -->
   {%- endif -%}
 
 </div>

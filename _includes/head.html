@@ -1,0 +1,23 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  
+  <!-- SIGGRAPH-inspired CSS -->
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  
+  <!-- Theme toggle script (loads early to prevent flash) -->
+  <script src="{{ "/assets/js/theme-toggle.js" | relative_url }}"></script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | relative_url }}">
+  
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+  
+  <!-- SEO -->
+  {% seo %}
+</head> 
