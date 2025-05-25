@@ -7,6 +7,17 @@ layout: default
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
+  <!-- Hero images as single figure -->
+  <figure class="hero-figure-container">
+    <div class="hero-images">
+      <img src="{{ "/assets/0.jpg" | relative_url }}" alt="Image 1">
+      <img src="{{ "/assets/1.jpg" | relative_url }}" alt="Image 2">
+      <img src="{{ "/assets/2.jpg" | relative_url }}" alt="Image 3">
+      <img src="{{ "/assets/3.jpg" | relative_url }}" alt="Image 4">
+    </div>
+    <figcaption>Some captures from my research and projects</figcaption>
+  </figure>
+
   <p class="welcome-message">Welcome to my blog. I'm interested broadly in learning algorithms: vision, graphics, and machine learning.</p>
 
   {{ content }}
