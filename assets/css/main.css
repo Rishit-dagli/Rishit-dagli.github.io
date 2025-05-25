@@ -261,6 +261,8 @@ pre code {
   color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition);
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
 }
 
 .nav-links a:hover {
@@ -299,6 +301,18 @@ pre code {
 main {
   min-height: calc(100vh - 200px);
   padding: 3rem 0;
+}
+
+/* Welcome message */
+.welcome-message {
+  font-family: var(--body-font);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 auto 3rem;
+  max-width: 600px;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 /* Blog post styles */
@@ -354,6 +368,75 @@ article img {
   border-radius: 8px;
   margin: 2rem 0;
   box-shadow: 0 4px 16px var(--shadow);
+}
+
+/* Figure and caption styles - SIGGRAPH paper style */
+figure {
+  margin: 2rem 0;
+  text-align: center;
+  counter-increment: figure-counter;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 0 0 0.5rem 0;
+  box-shadow: 0 4px 16px var(--shadow);
+  display: block;
+}
+
+figcaption {
+  font-family: var(--header-font);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Automatic figure numbering */
+article {
+  counter-reset: figure-counter;
+}
+
+figcaption::before {
+  content: "Figure " counter(figure-counter) ": ";
+  font-weight: 600;
+}
+
+/* For custom figure numbering, use class .no-auto-number */
+figure.no-auto-number {
+  counter-increment: none;
+}
+
+figure.no-auto-number figcaption::before {
+  content: none;
+}
+
+/* Inline figures (side-by-side) */
+.figure-row {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  align-items: flex-start;
+}
+
+.figure-row figure {
+  flex: 1;
+  margin: 0;
+}
+
+/* Figure references in text */
+.fig-ref {
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.fig-ref:hover {
+  text-decoration: underline;
 }
 
 /* Blockquotes */
@@ -656,6 +739,16 @@ th {
   .nav-next {
     text-align: left;
     align-items: flex-start;
+  }
+  
+  /* Figure responsive styles */
+  .figure-row {
+    flex-direction: column;
+  }
+  
+  figcaption {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
   }
 }
 
