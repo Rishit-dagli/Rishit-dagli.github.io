@@ -1,7 +1,8 @@
 ---
 title: "The Conductor of Two Naturals is the largest number which cannot be written as mb+nc"
 date: 2021-11-04
-excerpt: "This article presents a short but non-obvious and interesting theorem in Number Theory that I originally discovered while working on a problem."
+excerpt: "What's the largest number that absolutely refuses to be written as mb+nc?"
+tags: [number-theory]
 ---
 
 <link rel="canonical" href="https://figshare.com/articles/preprint/A_Short_but_Interesting_Number_Theory_Theorem_pdf/16903252">
@@ -139,6 +140,8 @@ Contradiction.
 ## Data availability
 
 Data sharing not applicable to this article as no datasets were generated or analysed during the current study.
+
+{% include bibtex.html %}
 
 ## References
 

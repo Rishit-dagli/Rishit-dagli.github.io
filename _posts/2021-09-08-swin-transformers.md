@@ -1,7 +1,8 @@
 ---
-title: "Image classification with Swin Transformers"
+title: "Implementing Swin Transformers"
 date: 2021-09-08
-excerpt: "Image classification using Swin Transformers, a general-purpose backbone for computer vision."
+excerpt: "Implementing Swin Transformers, a general-purpose backbone for computer vision."
+tags: [computer-vision, transformers, code-implementation, machine-learning]
 ---
 
 <link rel="canonical" href="https://keras.io/examples/vision/swin_transformers/">

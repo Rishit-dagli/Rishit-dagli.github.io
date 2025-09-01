@@ -1,7 +1,8 @@
 ---
 title: "Gradient Centralization for Better Training Performance"
 date: 2021-06-18
-excerpt: "Implement Gradient Centralization to improve training performance of DNNs."
+excerpt: "Gradient Centralization transforms DNN training performance by bringing gradients to zero mean, this helps with training stability and performance."
+tags: [optimization, machine-learning, learning-algorithms, training, code-implementation]
 ---
 
 <link rel="canonical" href="https://keras.io/examples/vision/nnclr/">
@@ -114,7 +115,7 @@ def prepare(ds, shuffle=False, augment=False):
             num_parallel_calls=AUTOTUNE,
         )
 
-    # Use buffered prefecting
+    # Use buffered prefetching
     return ds.prefetch(buffer_size=AUTOTUNE)
 
 ```
@@ -169,7 +170,7 @@ applications, including general image classification, fine-grained image classif
 detection and segmentation and Person ReID demonstrate that GC can consistently improve
 the performance of DNN learning.
 
-Also, for simplicity at the moment we are not implementing gradient cliiping functionality,
+Also, for simplicity at the moment we are not implementing gradient clipping functionality,
 however this quite easy to implement.
 
 At the moment we are just creating a subclass for the `RMSProp` optimizer
@@ -422,3 +423,9 @@ performance, generalization, training time as well as more efficient.
 
 Many thanks to [Ali Mustufa Shaikh](https://github.com/ialimustufa) for reviewing this
 implementation.
+
+{% include bibtex.html %}
+
+## References
+
+[^yong2020gradient]: Yong, H., Huang, J., Hua, X., & Zhang, L. (2020). Gradient centralization: A new optimization technique for deep neural networks. In Proceedings of the European Conference on Computer Vision (ECCV) (pp. 635-652).

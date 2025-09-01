@@ -1,10 +1,11 @@
 ---
-title: "Compression techniques in Statistical Learning"
+title: "Compression Unlocks Statistical Learning Secrets"
 date: 2023-03-06
-excerpt: "Characterizing the sample complexity of different machine learning tasks is one of the central questions in statistical learning theory. This blog reviews the less conventional approach of using compression schemes for proving sample complexity upper bounds, with specific applications in learning under adversarial perturbations and learning Gaussian mixture models."
+excerpt: "Characterizing the sample complexity of different machine learning tasks is an important question in learning theory. This article reviews the less conventional approach of using compression schemes for proving sample complexity upper bounds, with specific applications in learning under adversarial perturbations and learning Gaussian mixture models."
+tags: [statistical-learning, compression, machine-learning]
 ---
 
-Characterizing the sample complexity of different machine learning tasks is one of the central questions in statistical learning theory. For example, the classic Vapnik-Chervonenkis theory [^devroye1996vapnik] characterizes the sample complexity of binary classification. Despite this early progress, the sample complexity of many important learning tasks including density estimation and learning under adversarial perturbations are not yet resolved. This blog reviews the less conventional approach of using compression schemes for proving sample complexity upper bounds. I mainly started looking into this class of techniques because of the paper "Adversarially Robust Learning with Tolerance" [^ashtiani23a].
+Characterizing the sample complexity of different machine learning tasks is one of the central questions in learning theory. For example, the classic Vapnik-Chervonenkis theory [^devroye1996vapnik] characterizes the sample complexity of binary classification. Despite this early progress, the sample complexity of many important learning tasks including density estimation and learning under adversarial perturbations are not yet resolved. This article reviews the less conventional approach of using compression schemes for proving sample complexity upper bounds. I mainly started looking into this class of techniques because of the paper "Adversarially Robust Learning with Tolerance" [^ashtiani23a].
 
 ## Standard Notation
 
@@ -292,6 +293,8 @@ $$\frac{\sigma_{max}}{\sigma_{min}}$$ can be large which is a technical challeng
 - Target compression is quite general
     - Reduces the problem to learning from finite classes
     - Does it characterize learning?
+
+{% include bibtex.html %}
 
 ## References
 

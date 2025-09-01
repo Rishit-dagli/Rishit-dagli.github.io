@@ -1,10 +1,12 @@
 ---
-title: "The Ferromagnetic Potts Model"
+title: "#BIS-Hard but Not Impossible: Ferromagnetic Potts Model on Expanders"
 date: 2023-03-07
-excerpt: "The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all 1-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlines some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs."
+excerpt: "How do you efficiently sample from a distribution that's algorithmically #BIS-hard? The ferromagnetic Potts model is a canonical Markov random field where monochromatic edges win the popularity contest. This article is about how polymer methods and extremal graph theory crack the sampling puzzle on d-regular weakly expanding graphs."
+image: /assets/ferromagnetic-potts/sample-graph.png
+tags: [statistical-physics, learning-algorithms, graph-theory]
 ---
 
-The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all $$1$$-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlinea some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs. This is achieved by a significantly sharper analysis of standard "polymer methods" using extremal graph theory and applications of Karger's algorithm to count cuts that may be of independent interest. I will give an introduction to all the topics that are relevant to the results. This article is mostly about what I learned from the paper "Algorithms for the ferromagnetic Potts model on expanders" [^carlson2022algorithms]
+The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all $$1$$-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlines some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs. This is achieved by a significantly sharper analysis of standard "polymer methods" using extremal graph theory and applications of Karger's algorithm to count cuts that may be of independent interest. This article is mostly about a rabbit hole I went down while reading the paper *Algorithms for the ferromagnetic Potts model on expanders* [^carlson2022algorithms].
 
 ## The Ferromagnetic Potts Model
 
@@ -44,7 +46,7 @@ $$
 We add the normalizing factor here:
 
 $$
-\text{Nomalizing factor } = \sum_{\chi}exp(\beta m(\chi))
+\text{Normalizing factor } = \sum_{\chi}exp(\beta m(\chi))
 $$
 
 Now we can also say,
@@ -118,7 +120,7 @@ Theorem: For each $$\epsilon > 0$$ and there is a $$d=d(\epsilon)$$ and $$q = q(
 
 The main result shown was that 
 
-Theorem: For each $$\epsilon > 0$$, and $$d$$ large enough, there is an FPTAS for $$Z_G(q, \beta)$$ where $$G$$ for the class of $$d$$-regular triangle-free $$1$$-expander grpahs providing the following conditions hold:
+Theorem: For each $$\epsilon > 0$$, and $$d$$ large enough, there is an FPTAS for $$Z_G(q, \beta)$$ where $$G$$ for the class of $$d$$-regular triangle-free $$1$$-expander graphs providing the following conditions hold:
 
 - \\(q \geq poly(d)\\)
 - \\(\beta \notin (2 \pm \epsilon)\frac{ln(q)}{d}\\)
@@ -200,7 +202,7 @@ Theorem: At most $$d^{O(1+1/\eta)b/d}$$ connected subsets in an $$\eta$$ expande
 
 Another question to ask is how many $$q$$-colorings of an $$\eta$$-expander induce at most $$k$$ non-monochromatic edges?
 
-Easiest way is to make $$k$$ non-monochrimatic edges is to color all but $$k/d$$ randomly chosen vertices with the same color. Now, $$k$$ small $$\implies$$ these vertices likely form an independent set. we now color these $$k/d$$ vertices arbitrarily. There are:
+Easiest way is to make $$k$$ non-monochromatic edges is to color all but $$k/d$$ randomly chosen vertices with the same color. Now, $$k$$ small $$\implies$$ these vertices likely form an independent set. we now color these $$k/d$$ vertices arbitrarily. There are:
 
 $$
 {n \choose k/d} q^{k/d+1}
@@ -211,6 +213,8 @@ ways.
 Theorem: For $$\eta$$-expanders and $$q \geq poly(d)$$ there are at most $$n^4 q^{O(k/d)}$$ possible colourings.
 
 Now we also know the maximum value of $$Z_G(q,\beta)$$ over all graphs $$G$$ with $$n$$ vertices, $$m$$ edges, and max degree $$d$$. This will always be attained when $$G$$ is a disjoint union of $$K_{d+1}$$ and $$K_1$$
+
+{% include bibtex.html %}
 
 ## References
 

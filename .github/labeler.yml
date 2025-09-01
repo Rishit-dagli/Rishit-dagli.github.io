@@ -1,6 +1,0 @@
----
-article:
-  - any: ['_posts/*']
-
-actions:
-  - any: ['.github/workflows/*']

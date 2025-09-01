@@ -4,40 +4,102 @@
 {% assign post_url = include.url | default: page.url | prepend: site.url %}
 
 {% assign year = post_date | date: "%Y" %}
-{% assign month = post_date | date: "%m" %}
+{% assign month_name = post_date | date: "%B" %}
+{% assign month_num = post_date | date: "%m" %}
 {% assign day = post_date | date: "%d" %}
-{% assign citation_key = year | append: post_author | split: " " | first | append: post_title | split: " " | first | downcase %}
+{% assign clean_title = post_title | remove: "**" | remove: "*" %}
+{% assign author_last = post_author | split: " " | last %}
+{% assign citation_key = author_last | downcase | append: year | append: clean_title | split: " " | first | downcase %}
 
 <h2 id="citation">Citation</h2>
 
-<div style="position: relative;">
-  <pre><code id="citationCode">@online{ {{ citation_key }},
-  author = { {{post_author}} },
-  title = { {{post_title}} },
-  year = { {{year}} },
-  month = { {{month}} },
-  day = { {{day}} },
-  url = { {{post_url}} },
-  note = { Accessed: {{ "now" | date: "%Y-%m-%d" }} }
+<p>Please cite this work as:</p>
+
+<pre tabindex="0"><code>{{ post_author }}. "{{ clean_title }}". Rishit Dagli's Blog ({{ month_name }} {{ year }}). {{ post_url }}</code></pre>
+
+<p>Or use the BibTex citation:</p>
+
+<pre tabindex="0"><code id="citationCode">@article{ {{ citation_key }},
+  title = { {{ clean_title }} },
+  author = { {{ post_author }} },
+  journal = {rishit-dagli.github.io},
+  year = { {{ year }} },
+  month = { {{ month_name }} },
+  url = "{{ post_url }}"
 }</code></pre>
-  <button class="button is-small is-dark" onclick="copyCitation()" style="position: absolute; top: 10px; right: 10px;">
-    <span class="icon">
-      <i class="fas fa-copy"></i>
-    </span>
-  </button>
-</div>
+
+<style>
+pre {
+  position: relative;
+}
+
+.copy-code {
+  display: none;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  color: rgba(255,255,255,.8);
+  background: rgba(78,78,78,.8);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+pre:hover .copy-code {
+  display: block;
+}
+
+.copy-code:hover {
+  background: rgba(78,78,78,1);
+}
+</style>
 
 <script>
-  function copyCitation() {
-    var citationCode = document.getElementById("citationCode").innerText;
-    navigator.clipboard.writeText(citationCode);
+document.addEventListener('DOMContentLoaded', function() {
+  const codeBlocks = document.querySelectorAll('pre code');
+  
+  codeBlocks.forEach(function(codeBlock) {
+    const pre = codeBlock.parentNode;
     
-    // Optional: Show a brief "Copied!" message
-    const button = document.querySelector('button[onclick="copyCitation()"]');
-    const originalHTML = button.innerHTML;
-    button.innerHTML = '<span class="icon"><i class="fas fa-check"></i></span>';
-    setTimeout(() => {
-      button.innerHTML = originalHTML;
-    }, 2000);
-  }
+    // Create copy button
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-code';
+    copyButton.innerText = 'copy';
+    
+    // Copy functionality
+    copyButton.addEventListener('click', function() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(codeBlock.textContent).then(function() {
+          copyButton.innerText = 'copied!';
+          setTimeout(() => {
+            copyButton.innerText = 'copy';
+          }, 2000);
+        });
+      } else {
+        // Fallback for older browsers
+        const range = document.createRange();
+        range.selectNodeContents(codeBlock);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        try {
+          document.execCommand('copy');
+          copyButton.innerText = 'copied!';
+          setTimeout(() => {
+            copyButton.innerText = 'copy';
+          }, 2000);
+        } catch (err) {
+          console.error('Copy failed:', err);
+        }
+        selection.removeAllRanges();
+      }
+    });
+    
+    pre.appendChild(copyButton);
+  });
+});
 </script>
