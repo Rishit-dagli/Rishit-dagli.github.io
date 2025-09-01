@@ -25,16 +25,16 @@ permalink: /search/
   width: 100%;
   padding: 12px 16px;
   font-size: 16px;
-  border: 2px solid var(--border, #eee);
+  border: 2px solid var(--border-color);
   border-radius: 8px;
-  background: var(--theme, #fff);
-  color: var(--primary, #1e1e1e);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 #searchInput:focus {
-  border-color: var(--secondary, #6c6c6c);
+  border-color: var(--accent-primary);
 }
 
 #searchResults {
@@ -44,15 +44,15 @@ permalink: /search/
 .search-result {
   padding: 16px;
   margin: 10px 0;
-  background: var(--entry, #fff);
-  border: 1px solid var(--border, #eee);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: transform 0.1s ease;
 }
 
 .search-result:hover {
   transform: scale(0.98);
-  background: var(--code-bg, #f5f5f5);
+  background: var(--code-bg);
 }
 
 .search-result h3 {
@@ -61,16 +61,16 @@ permalink: /search/
 }
 
 .search-result h3 a {
-  color: var(--primary, #1e1e1e);
+  color: var(--text-primary);
   text-decoration: none;
 }
 
 .search-result h3 a:hover {
-  color: var(--secondary, #6c6c6c);
+  color: var(--accent-primary);
 }
 
 .search-result .excerpt {
-  color: var(--secondary, #6c6c6c);
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 8px;
@@ -81,7 +81,7 @@ permalink: /search/
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  color: var(--tertiary, #888);
+  color: var(--text-secondary);
 }
 
 .search-result .tags {
@@ -90,16 +90,17 @@ permalink: /search/
 }
 
 .search-result .tag {
-  background: var(--tertiary, #d6d6d6);
-  color: var(--primary, #1e1e1e);
+  background: var(--code-bg);
+  color: var(--text-primary);
   padding: 2px 6px;
   border-radius: 12px;
   font-size: 11px;
+  border: 1px solid var(--border-color);
 }
 
 .no-results {
   text-align: center;
-  color: var(--secondary, #6c6c6c);
+  color: var(--text-secondary);
   font-style: italic;
   margin: 40px 0;
 }
