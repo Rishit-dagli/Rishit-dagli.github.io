@@ -9,9 +9,7 @@ tags: [number-theory]
 
 This note presents a simple yet non‑obvious number‑theoretic result I discovered while working on a related problem: for natural numbers $$b,c,m,n\in\mathbb N$$, the quantity $$bc-b-c$$ is the largest integer that cannot be written as $$mb+nc$$. I first prove the statement and then show a direct application that considerably simplifies an Olympiad‑style problem.
 
-## Introduction and Statement of Result
-
-I arrived at the following theorem while studying conductors of natural numbers. By the “conductor” of two natural numbers we mean the product of the numbers minus their sum. In symbols,
+By the “conductor” of two natural numbers we mean the product of the numbers minus their sum. In symbols,
 
 $$
 \operatorname{Conductor}(x, y) = xy - x - y
