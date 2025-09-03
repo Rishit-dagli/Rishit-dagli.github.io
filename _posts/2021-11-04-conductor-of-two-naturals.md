@@ -7,7 +7,7 @@ tags: [number-theory]
 
 <link rel="canonical" href="https://figshare.com/articles/preprint/A_Short_but_Interesting_Number_Theory_Theorem_pdf/16903252">
 
-This note presents a simple yet non‑obvious number‑theoretic result I discovered while working on a related problem: for natural numbers $$b,c,m,n\in\mathbb N$$, the quantity $$bc-b-c$$ is the largest integer that cannot be written as $$mb+nc$$. I first prove the statement and then show a direct application that considerably simplifies an Olympiad‑style problem.
+This note presents a simple yet non‑obvious number‑theory result I discovered while working on a related problem: for natural numbers $$b,c,m,n\in\mathbb N$$, the quantity $$bc-b-c$$ is the largest integer that cannot be written as $$mb+nc$$. I first prove the statement and then show a direct application that considerably simplifies an Olympiad‑style problem.
 
 By the “conductor” of two natural numbers we mean the product of the numbers minus their sum. In symbols,
 
@@ -21,8 +21,6 @@ The theorem below turns the original task into a short argument, and the same id
 
 {% include theorem.html name="Conductor of Two Naturals" content="The conductor of two natural numbers, $$bc - b - c$$, is the largest number which cannot be written as $$mb + nc$$, given all $$b, c, m$$ and $$n \in \mathbb{N}$$." %}
 
-## Proof
-
 {% include proof.html proof="Without loss of generality let us assume $$b < c$$.
 
 $$
@@ -33,17 +31,17 @@ is an exhaustive set of residues modulo $$b$$.
 
 Let us take some $$r$$ for which
 
-$$
-\tag{1}
+\begin{equation}
 r > (b-1)c - b
-$$
+\label{eq:r-bound}
+\end{equation}
 
 then
 
-$$
-\tag{2}
+\begin{equation}
 r \equiv nc \pmod b
-$$
+\label{eq:r-equiv}
+\end{equation}
 
 for some $$n$$ such that $$0 \leq n \leq (b-1)$$.
 
@@ -53,17 +51,17 @@ We are yet to prove that $$bc-b-c$$ itself cannot be written in this form.
 
 Assume towards contradiction that
 
-$$
-\tag{3}
+\begin{equation}
 bc-b-c = mb+nc
-$$
+\label{eq:contradiction}
+\end{equation}
 
 This implies $$n \geq b-1$$, and thus
 
-$$
-\tag{4}
+\begin{equation}
 mb+nc \geq nc \geq (b-1)\cdot c > bc-b-c
-$$
+\label{eq:final-contradiction}
+\end{equation}
 
 which is a contradiction." %}
 
@@ -78,7 +76,6 @@ Let $$a,b$$ and $$c$$ be positive integers, no two of which have a common diviso
 Using the theorem, we use the same starting argument:
 
 $$
-\tag{5}
 0,\ bc,\ 2bc,\ 3bc,\ 4bc,\ \ldots,\ (a-2)bc,\ (a-1)bc
 $$
 
@@ -86,63 +83,61 @@ is an exhaustive set of residues modulo $$a$$.
 
 Given
 
-$$
-\tag{6}
+\begin{equation}
 N > 2abc - ab - bc - ca
-$$
+\label{eq:N-bound}
+\end{equation}
 
 we may take
 
-$$
-\tag{7}
+\begin{equation}
 xbc \equiv N \pmod a,\quad 0 \leq x < a
-$$
+\label{eq:x-equiv}
+\end{equation}
 
 Then
 
-$$
 \begin{align}
-\tag{8}
 N - xbc &> 2abc - ab - bc - ca - (a-1)bc \\
 &= abc - ab - ca \\
 &= a\big( bc - b - c \big)
+\label{eq:N-minus-xbc}
 \end{align}
-$$
 
 So
 
-$$
-\tag{9}
+\begin{equation}
 N - xbc = ka \quad \text{with} \quad k > bc - b - c
-$$
+\label{eq:k-definition}
+\end{equation}
 
 Hence we can find non-negative $$y, z$$ so that
 
-$$
-\tag{10}
+\begin{equation}
 k = zb + yc
-$$
+\label{eq:k-form}
+\end{equation}
 
 Therefore
 
-$$
-\tag{11}
+\begin{equation}
 N = xbc + yca + zab
-$$
+\label{eq:N-final}
+\end{equation}
 
 Finally, we show that for $$N = 2abc - ab - bc - ca$$ we cannot find non-negative $$x, y, z$$ such that $$N = xbc + yca + zab$$. Indeed,
 
-$$
-\tag{12}
+\begin{equation}
 N \equiv -bc \pmod a
-$$
+\label{eq:N-mod}
+\end{equation}
 
 so we must have $$x \equiv -1 \pmod a$$ and hence $$x \geq a-1$$. Similarly, $$y \geq b-1$$ and $$z \geq c-1$$. Thus
 
-$$
-\tag{13}
+\begin{equation}
 xbc + yca + zab \geq 3abc - ab - bc - ca > N
-$$
+\label{eq:usage-contradiction}
+\end{equation}
 
 which is a contradiction.
 
