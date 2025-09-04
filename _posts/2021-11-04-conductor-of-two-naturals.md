@@ -7,7 +7,7 @@ tags: [number-theory]
 
 <link rel="canonical" href="https://figshare.com/articles/preprint/A_Short_but_Interesting_Number_Theory_Theorem_pdf/16903252">
 
-This note presents a simple yet non‑obvious number‑theory result I discovered while working on a related problem: for natural numbers $$b,c,m,n\in\mathbb N$$, the quantity $$bc-b-c$$ is the largest integer that cannot be written as $$mb+nc$$.[^assumptions] I first prove the statement and then show a direct application that considerably simplifies an Olympiad‑style problem.
+This note presents a simple, classical number‑theory result: for natural numbers $$b,c,m,n\in\mathbb N$$ with $$\gcd(b,c)=1$$, the quantity $$bc-b-c$$ is the largest integer that cannot be written as $$mb+nc$$.[^assumptions] I’ll first prove the statement and then show a short application that turns an Olympiad‑style problem into a few lines.
 
 By the “conductor” of two natural numbers we mean the product of the numbers minus their sum. In symbols,
 
@@ -19,9 +19,9 @@ The theorem below turns the original task into a short argument, and the same id
 
 ## Main Theorem
 
-{% include theorem.html name="Conductor of Two Naturals" content="The conductor of two natural numbers, $$bc - b - c$$, is the largest number which cannot be written as $$mb + nc$$, given all $$b, c, m$$ and $$n \in \mathbb{N}$$." %}
+{% include theorem.html name="Conductor of Two Naturals" content="Let $$b,c\in\mathbb{N}$$ with $$\gcd(b,c)=1$$. The conductor $$bc - b - c$$ is the largest number that cannot be written as $$mb + nc$$ for non‑negative integers $$m,n$$." %}
 
-{% include proof.html proof="Without loss of generality let us assume $$b < c$$.
+{% include proof.html proof="Without loss of generality assume $$b < c$$ and $$\gcd(b,c)=1$$.
 
 $$
 0,\ c,\ 2c,\ 3c,\ 4c,\ \ldots,\ (b-2)c,\ (b-1)c
@@ -29,37 +29,33 @@ $$
 
 is an exhaustive set of residues modulo $$b$$.[^residues-mod-b]
 
-Let us take some $$r$$ for which
+Take any integer $$r$$ with
 
 \begin{equation}
 r > (b-1)c - b
 \label{eq:r-bound}
 \end{equation}
 
-then
+Then there exists $$n\in\{0,\ldots,b-1\}$$ such that
 
 \begin{equation}
-r \equiv nc \pmod b
+r \equiv nc \pmod b.
 \label{eq:r-equiv}
 \end{equation}
 
-for some $$n$$ such that $$0 \leq n \leq (b-1)$$.
+Setting $$m := (r-nc)/b \ge 0$$ gives $$r = mb+nc$$. Hence any integer strictly larger than $$bc-b-c$$ can be written as $$mb+nc$$.
 
-Now it is obvious that any number larger than $$bc-b-c$$ cannot be written as $$mb+nc$$.
-
-We are yet to prove that $$bc-b-c$$ itself cannot be written in this form.
-
-Assume towards contradiction that
+It remains to show that $$bc-b-c$$ itself is not representable. Assume, for a contradiction, that
 
 \begin{equation}
-bc-b-c = mb+nc
+bc-b-c = mb+nc.
 \label{eq:contradiction}
 \end{equation}
 
-This implies $$n \geq b-1$$, and thus
+Reducing (\ref{eq:contradiction}) modulo $$b$$ and using $$\gcd(b,c)=1$$ yields $$nc \equiv -c\pmod b\Rightarrow n\equiv -1\pmod b$$, so $$n\ge b-1$$. Therefore
 
 \begin{equation}
-mb+nc \geq nc \geq (b-1)\cdot c > bc-b-c
+mb+nc \ge nc \ge (b-1)\cdot c > bc-b-c,
 \label{eq:final-contradiction}
 \end{equation}
 
