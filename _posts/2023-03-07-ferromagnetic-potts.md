@@ -131,10 +131,9 @@ and sample by first drawing a random-cluster configuration and then giving each 
 
 At low temperature (large $$\beta$$), it is helpful to visualize a typical configuration as
 
-\begin{equation}
- \text{coloring} = \underbrace{\text{ground state}}_{\text{one dominant color}} + \underbrace{\text{defects}}_{\text{small regions}}.
-\label{eq:polymer-picture}
-\end{equation}
+$$
+\mathrm{coloring} = \underbrace{\text{ground state}}_{\text{one dominant color}} + \underbrace{\text{defects}}_{\text{small regions}}.
+$$
 
 Let the defect graph $$G$$ encode these regions as polymers. Then for a reference color (say “red”), one writes
 
