@@ -1,218 +1,170 @@
 ---
-title: "#BIS-Hard but Not Impossible: Ferromagnetic Potts Model on Expanders"
-date: 2023-03-07
-excerpt: "How do you efficiently sample from a distribution that's algorithmically #BIS-hard? The ferromagnetic Potts model is a canonical Markov random field where monochromatic edges win the popularity contest. This article is about how polymer methods and extremal graph theory crack the sampling puzzle on d-regular weakly expanding graphs."
-image: /assets/ferromagnetic-potts/sample-graph.png
-tags: [statistical-physics, learning-algorithms, graph-theory]
+ title: "#BIS-Hard but Not Impossible: Ferromagnetic Potts Model on Expanders"
+ date: 2023-03-07
+ excerpt: "How do you efficiently sample from a distribution that's algorithmically #BIS-hard? The ferromagnetic Potts model is a canonical Markov random field where monochromatic edges win the popularity contest. This article is about how polymer methods and extremal graph theory crack the sampling puzzle on d-regular weakly expanding graphs."
+ image: /assets/ferromagnetic-potts/sample-graph.png
+ tags: [statistical-physics, learning-algorithms, graph-theory]
 ---
 
 The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all $$1$$-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlines some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs. This is achieved by a significantly sharper analysis of standard "polymer methods" using extremal graph theory and applications of Karger's algorithm to count cuts that may be of independent interest. This article is mostly about a rabbit hole I went down while reading the paper *Algorithms for the ferromagnetic Potts model on expanders* [^carlson2022algorithms].
 
 ## The Ferromagnetic Potts Model
 
-{% include cover.html url="/assets/ferromagnetic-potts/sample-graph.png" description="A sample graph" %}
+Let’s pin down notation (and keep it light):
 
-We start by defining some basic notation:
+- $$G=(V,E)$$: finite graph
+- $$q\in \mathbb{N}$$: number of colors; a coloring is $$\chi: V\to [q]$$
+- $$m(\chi)$$: number of monochromatic edges under $$\chi$$
+- $$\beta\in \mathbb{R}$$: inverse temperature
 
-- \\(G\\): finite graph on vertices $$V$$
-- \\(q \in \mathbb{N}\\), we are interested in $$q$$-colourings of the vertices in $$G$$
-- \\(m(\chi)\\): number of monochromatic edges induced by a colouring $$\chi$$
-- Distribution on colourings given by $$p(\chi) \propto exp(\beta \cdot m(\chi))$$
-- \\(\beta \in \mathbb{R}\\): parameter, inverse temperature
+Define the Potts distribution
 
-Notice that for $$\beta < 0$$ it means that we take the antiferromagnetic case. Here we talk more about when $$\beta > 0$$ meaning it is ferromagnetic.
+\begin{equation}
+ p(\chi) \propto \exp\big(\beta\, m(\chi)\big),
+\label{eq:potts-def}
+\end{equation}
 
-This could have quite some applications:
+so for $$\beta>0$$ (ferromagnetic) matching edges are favored, and for $$\beta<0$$ (antiferromagnetic) they are discouraged. The normalized form is
 
-- Modelling: Social networks, physics, chemistry, etc
-- Markov Random field: Probabilistic Inference
-- Connection to UGC [^coulson_et_al]
-- and more.
+\begin{equation}
+ p(\chi) 
+ = \frac{\exp\big(\beta\, m(\chi)\big)}{\underbrace{\sum_{\chi'} \exp(\beta\, m(\chi'))}_{\text{partition function}~Z_G(q,\beta)}}.
+\label{eq:potts-p}
+\end{equation}
+
+When $$\beta=0$$ this is the uniform distribution over all $$q$$-colorings; as $$\beta\to -\infty$$ it concentrates on proper colorings.
 
 ## The Problem
 
-we know $$p(\chi) \propto exp(\beta \cdot m(\chi))$$
+We want to sample (approximately) from $$p(\chi)$$ in time polynomial in the graph size and the accuracy parameter.
 
-Now for $$\beta = 0$$ it means that we are doing a uniform $$q$$-coloring of $$V$$
+A standard reduction says: it is enough to approximate $$Z_G(q,\beta)$$, since we can then turn partition-function approximations into samplers.
 
-For $$\beta = -\infty$$ we do a uniform proper coloring of $$G$$
+**Goal (approximate sampling).** Given $$G$$ and $$\beta$$, sample from a law $$q$$ such that the total variation distance is small:
 
-What we need to do is given $$G$$ and $$\beta$$, efficiently sample a coloring from this distribution.
+\begin{equation}
+ \lVert p-q \rVert_{\mathrm{TVD}} \le \epsilon, \qquad \lVert p-q \rVert_{\mathrm{TVD}} := \frac{1}{2}\sum_{\chi} \big|p(\chi)-q(\chi)\big|.
+\label{eq:tvd}
+\end{equation}
 
-$$
-p(\chi) = \frac{exp(\beta m(\chi))}{\sum_{\chi}exp(\beta m(\chi))}
-$$
+A Fully Polynomial Almost Uniform Sampler (FPAUS) produces an $$\epsilon$$-approximate sample in $$\mathrm{poly}(\mid G\mid,1/\epsilon)$$ time. A Fully Polynomial Time Approximation Scheme (FPTAS) returns a $$(1\pm\epsilon)$$-approximation to $$Z$$ in similar time. Conveniently, in these settings one typically has
 
-We add the normalizing factor here:
-
-$$
-\text{Normalizing factor } = \sum_{\chi}exp(\beta m(\chi))
-$$
-
-Now we can also say,
-
-$$
-\sum_{\chi}exp(\beta m(\chi)) =: Z_G(q,\beta)
-$$
-
-A partition function of the model/distribution is very important for this POV. Our problem is that given $$G$$ and $$\beta$$ we want to efficiently sample a color distribution.
-
-We give 2 facts:
-
-- It is enough to compute $$Z_G(q,\beta)$$
-- #P-hard
-
-We now modify the problem as: Given $$G$$ and $$\beta$$, efficiently sample \textbf{approximately} a colouring from this distribution.
-
-$$\epsilon$$ approximation will have us sample a law from $$q$$ such that $$\mid \mid p-q\mid \mid _{TVD} \leq \epsilon$$, thus
-
-$$
-\mid \mid p-q\mid \mid _{TVD} := \frac{1}{2} \sum_{\chi} \mid p(\chi) - q(\chi)\mid 
-$$
-
-We modify our original problem template to now be: Given $$G$$ and $$\beta$$, efficiently sample $$\epsilon$$-\textbf{approximately} a colouring from this distribution.
-
-Fully Polynomial Almost Uniform Sampler can allow us to sample $$\epsilon$$-approximately in $$poly(G,\frac{1}{\epsilon})$$ time.
-
-Instead Fully Polynomial Time Approximation Scheme: $$1 \pm \epsilon$$-factor approximation in $$poly(G,\frac{1}{\epsilon})$$ time.
-
-We can also show for a fact that $$FPTAS \iff FPAUS$$.
+\begin{equation}
+ \text{FPTAS} \iff \text{FPAUS}.
+\label{eq:fptas-fpaus}
+\end{equation}
 
 ## Antiferromagnetic Potts model
 
-The Antiferromagnetic Potts model:
+For $$\beta<0$$, the same definition applies,
 
-$$
-p(\chi) \propto exp{\beta \cdot m(\chi)}
-$$
+\begin{equation}
+ p(\chi) \propto \exp\big(\beta\, m(\chi)\big), \qquad \beta<0.
+\label{eq:anti}
+\end{equation}
 
-where $$\beta < 0$$
+The algorithmic target is an FPTAS for $$Z_G(q,\beta)$$, which is equivalent (in the sense above) to an FPAUS for the distribution. Prior work shows there is a threshold $$\beta_c$$ with two regimes:
 
-Given $$G$$ and $$\beta < 0$$, we want to be able to give an FPAUS for this distribution. It is then equivalent to instead work on the problem: given $$G$$ and $$\beta < 0$$, give an FPTAS for its partition function $$Z_G(q, \beta)$$.
+- For $$\beta < \beta_c$$, an FPTAS exists
+- For $$\beta > \beta_c$$, no FPTAS unless $$\mathrm{NP} = \mathrm{RP}$$
 
-From some previous work, we know that there exists a $$\beta_c$$ such that:
+This is where #BIS-hardness (counting independent sets in bipartite graphs) enters: approximating the Potts partition function is at least as hard as that, and without bipartiteness the problem is NP-hard.
 
-
-- for $$\beta < \beta_c$$, FPTAS exists 
-- For $$\beta < \beta_c$$, no FPTAS unless $$NP = RP$$
-
-
-We can say that this is #BIS-hard (bipartite independent sets). Thus, doing this is at least as hard as an FPTAS for the number of independent sets in bipartite graphs. If our graph has no bipartiteness then this becomes a NP-hard problem.
-
-For now, let's consider the problem given a bipartite graph $$G$$, design an FPTAS for the number of individual sets in $$G$$. This accurately captures the difficulty of: the number of proper $$q$$-colorings of a bipartite graph for $$q \geq 3$$, the number of stable matchings, the number of antichains in posets.
+To make things concrete, one proxy problem is: given a bipartite graph $$G$$, design an FPTAS for the number of independent sets in $$G$$. This already captures the complexity of counting proper $$q$$-colorings for $$q\ge 3$$, the number of stable matchings, and the number of antichains in posets.
 
 ## Main Results
 
-For our purposes we assume that $$G$$ is always a $$d$$-regular graph on $$n$$ vertices. Now for a set $$S \subset V$$, we define it's edge boundary as:
+Assume throughout that $$G$$ is $$d$$-regular on $$n$$ vertices. For a subset $$S\subseteq V$$, define its edge boundary
 
-$$
-\triangledown(S) := \# (uv \in G \mid  u \in S, v \notin S)
-$$
+\begin{equation}
+ \nabla(S) := \\# \{\,uv\in E ~:\; u\in S, v\notin S\,\}.
+\label{eq:edge-boundary}
+\end{equation}
 
-Now, $$G$$ is an $$\eta$$ expander if for every $$S \subset V$$ of size at most $$n/2$$, we have $$\mid \triangledown(S)\mid  \geq \eta\mid S\mid $$. For example we can take a discrete cube $$Q_d$$ with vertices $$\{0,1\}^d$$, $$uv$$ is an edge if $$u$$ and $$v$$ differ in exactly 1 coordinate.
+The graph $$G$$ is an $$\eta$$-expander if every $$S\subseteq V$$ of size at most $$n/2$$ satisfies
 
-Using a simplification of the Harper's Theorem we can say that $$Q_d$$ is a $$1$$-expander [^frankl1981short].
+\begin{equation}
+ |\nabla(S)| \ge \eta\,|S|.
+\label{eq:expander}
+\end{equation}
 
-Theorem: For each $$\epsilon > 0$$ and there is a $$d=d(\epsilon)$$ and $$q = q(\epsilon)$$ such that there is an FPTAS for $$Z_G(q, \beta)$$ where $$G$$ is a $$d$$-regular $$2$$-expander providing the following conditions hold:
+**Theorem (informal).** For each $$\epsilon>0$$ there exist functions $$d(\epsilon)$$ and $$q(\epsilon)$$ such that there is an FPTAS for $$Z_G(q,\beta)$$ whenever $$G$$ is a $$d$$-regular 2-expander and the following conditions hold: $$q=\mathrm{poly}(d)$$ and $$\beta \notin (2\pm\epsilon)\, \tfrac{\ln q}{d}.$$
 
-- \\(q=poly(d)\\)
-- \\(\beta \notin (2 \pm \epsilon)\frac{ln(q)}{d}\\)
+A sharper result proved in the referenced work is:
 
-The main result shown was that 
+**Theorem (main).** For each $$\epsilon>0$$ and sufficiently large $$d$$, there is an FPTAS for $$Z_G(q,\beta)$$ for the class of $$d$$-regular triangle-free 1-expanders, provided $$q\ge \mathrm{poly}(d)$$ and $$\beta \notin (2\pm\epsilon)\, \tfrac{\ln q}{d}.$$
 
-Theorem: For each $$\epsilon > 0$$, and $$d$$ large enough, there is an FPTAS for $$Z_G(q, \beta)$$ where $$G$$ for the class of $$d$$-regular triangle-free $$1$$-expander graphs providing the following conditions hold:
-
-- \\(q \geq poly(d)\\)
-- \\(\beta \notin (2 \pm \epsilon)\frac{ln(q)}{d}\\)
-
-This was previously known for:
-
-- Stronger expansion and $$d = q^{\Omega(d)}$$
-- Higher temperature and $$q = d^{\Omega(d)}$$
-
-Something to note here is that $$q \geq poly(d)$$ should not be a necessary condition.
-
-As well as as in the case $$\beta \leq (1-\epsilon) \beta_0$$ does not require expansion or even that $$q \geq poly(d)$$.
+Previously, similar statements required stronger expansion with $$d = q^{\Omega(d)}$$ or higher temperature with $$q = d^{\Omega(d)}$$. It is plausible that the condition $$q\ge \mathrm{poly}(d)$$ is not actually necessary.
 
 ## Potts Distribution
 
-We first write the order-disorder threshold of the ferromagnetic Potts model
+The order-disorder threshold for the ferromagnetic model is
 
-$$
-\beta_0 := ln\left(\frac{q-2}{(q-1)^{1-2/d} - 1}\right)
-$$
+\begin{equation}
+ \beta_0 := \ln\!\left(\frac{q-2}{(q-1)^{1-2/d} - 1}\right) = 2\, \frac{\ln q}{d}\,\Big(1+O\!\big(\tfrac{1}{q}\big)\Big).
+\label{eq:beta0}
+\end{equation}
 
-$$
-\beta_0 = 2 \frac{\ln q}{d} \left(1+O \left( \frac{1}{q} \right)\right)
-$$
-
-We want to be able to know more about how the Potts distribution looks for $$\beta < (1-\epsilon)\beta_0$$ and for $$\beta > (1+\epsilon)\beta_0$$
-
-{% include image.html url="/assets/ferromagnetic-potts/potts-model.jpg" description="Rough picture of the Potts Model" %}
+We care about the regimes $$\beta < (1-\epsilon)\beta_0$$ and $$\beta > (1+\epsilon)\beta_0$$.
 
 ## Results
 
-Another result we have is:
+**Theorem (typical color class sizes).** Let $$\epsilon>0$$, $$d$$ large enough, $$q\ge \mathrm{poly}(d)$$, and let $$G$$ be a $$d$$-regular 2-expander on $$n$$ vertices. Then:
 
-Theorem: For each $$\epsilon>0$$, let $$d$$ be large enough $$q \geq poly(d)$$, and $$G$$ be a $$d$$-regular $$2$$-expander graph on $$n$$ vertices then,
+- If $$\beta < (1-\epsilon)\beta_0$$, every color class has size $$\tfrac{n}{q}\,(1\pm o(1))$$ with high probability
+- If $$\beta > (1+\epsilon)\beta_0$$, there is a color class of size $$n - o(n)$$ with high probability
 
-- For $$\beta < (1-\epsilon) \beta_0$$, every colour class has size $$n/q (1 \pm o(1))$$ with high probability
-- For $$\beta > (1+\epsilon) \beta_0$$, every colour class has size $$n-o(n)$$ with high probability
+## Strategy (why it works)
 
-The strategy we have, to prove the theorem for $$\beta < (1-\epsilon) \beta_0$$:
+- Pass to the random cluster model: a distribution on edge subsets
 
+\begin{equation}
+ p(A) \propto q^{k(A)}\, \big(e^{\beta}-1\big)^{|A|}, \qquad Z_G^{\mathrm{RC}}(q,\beta) = Z_G^{\mathrm{Potts}}(q,\beta),
+\label{eq:rc}
+\end{equation}
 
-- Pass to the Random Cluster Model
-- Distribution on subsets of edges: $$p(A) \propto q^{k(A)} (e^{\beta}-1)^{\mid A\mid }$$
-- \\(Z_G^{RC}(q, \beta) = Z_G^{Potts}(q, \beta)\\)
-- Sampling algorithm: Sample from random cluster model, give each connected component a uniform color
-- Standard polymer methods + careful enumeration
+and sample by first drawing a random-cluster configuration and then giving each connected component a uniform color.
 
-## Polymer Methods
+- Use standard polymer methods with sharper counting via extremal graph theory (Karger-style cut counting enters here) to control contributions of defects.
 
-The motivating idea is to visualize the state for $$\beta$$ large at low temperature as ground state + defects.
+## Polymer Methods (at a glance)
 
-Typical Colouring = Ground State + Defects
+At low temperature (large $$\beta$$), it is helpful to visualize a typical configuration as
 
-Polymer methods are pretty useful in such cases. These were first proposed in [^helmuth2019] and originated in statistical physics. We take $$G$$ to be our defect graph and each node in this represents a defect.
+\begin{equation}
+ \text{coloring} = \underbrace{\text{ground state}}_{\text{one dominant color}} + \underbrace{\text{defects}}_{\text{small regions}}.
+\label{eq:polymer-picture}
+\end{equation}
 
-Now using Polymer methods $$X \sim _GY$$
+Let the defect graph $$G$$ encode these regions as polymers. Then for a reference color (say “red”), one writes
 
-{% include image.html url="/assets/ferromagnetic-potts/proof-schematic.jpg" description="" %}
+\begin{equation}
+ Z_{\text{red}}\, e^{-\beta n d /2} 
+ = \sum_{I\subset V(G)}\; \prod_{\gamma\in I} w_\gamma,
+\label{eq:polymer-sum}
+\end{equation}
 
-Ideas is to $$Z_G(q,\beta) \sim Z_{red} + Z_{blue}+\dots$$ where $$Z_{red} \approx e^{\beta nd/2}$$
+where $$w_\gamma$$ is the weight of a polymer $$\gamma$$. The cluster expansion is the multivariate Taylor expansion in the $$w_\gamma$$ of
 
-$$Z_{red} e^{-\beta nd/2} = \sum_{I \subset V(G)} \prod_{\gamma \in I}w_{\gamma}$$ where $$w_{\gamma}$$ is the weight of polymer $$\gamma$$.
+\begin{equation}
+ \ln\!\left( \sum_{I\subset V(G)} \prod_{\gamma\in I} w_\gamma \right),
+\label{eq:cluster}
+\end{equation}
 
-We now move towards cluster expansion: multivariate in the $$w_{\gamma}$$ Taylor expansion of:
+and convergence is established by the Kotecký–Preiss criterion under the expansion conditions. A key combinatorial input is bounding how many connected vertex subsets have a given edge boundary in an $$\eta$$-expander.
 
-$$
-ln(\sum_{I \subset V(G)} \prod_{\gamma \in I}w_{\gamma})
-$$
+**Theorem (counting connected subsets).** In an $$\eta$$-expander, the number of connected subsets containing a fixed vertex and with edge boundary at most $$b$$ is at most $$d^{O((1+1/\eta)b/d)}.$$
 
-This is an infinite sum, so convergence is not guaranteed however convergence can be established by verifying the Kotecký-Preiss criterion.
+A companion question: how many $$q$$-colorings of an $$\eta$$-expander induce at most $$k$$ non-monochromatic edges? A crude but effective upper bound colors all but about $$k/d$$ vertices with the same color (the remaining set is likely independent) and colors the rest arbitrarily, giving
 
-We also want to answer how many connected subsets are there of a given edge boundary in an $$\eta$$-expander?
+\begin{equation}
+ \binom{n}{k/d} \; q^{\,k/d + 1}
+\label{eq:color-count}
+\end{equation}
 
-A heuristic we have is to count the number of such subsets that contain a given vertex $$u$$: a typical connected subgraph of size $$a$$ is tree-like, i.e., has edge boundary $$a \cdot d$$.
+candidates. In particular, for $$\eta$$-expanders and $$q\ge \mathrm{poly}(d)$$ there are at most $$n^4\, q^{O(k/d)}$$ such colorings.
 
-Working backward, a typically connected subgraph with edge boundary size $$b$$ has $$O(b/d)$$ vertices. The number of such subgraphs $$\leq$$ number of connected subgraphs of size $$O(b/d)$$ containing $$u$$. The original number of subsets is also $$\leq$$ Number of rooted (at $$u$$) trees with $$O(b/d)$$ vertices and maximum degree at most $$d = d^{O(b/d)}$$. Thus,
-
-Theorem: At most $$d^{O(1+1/\eta)b/d}$$ connected subsets in an $$\eta$$ expander that contains $$u$$ have edge boundary of size at most $$b$$.
-
-Another question to ask is how many $$q$$-colorings of an $$\eta$$-expander induce at most $$k$$ non-monochromatic edges?
-
-Easiest way is to make $$k$$ non-monochromatic edges is to color all but $$k/d$$ randomly chosen vertices with the same color. Now, $$k$$ small $$\implies$$ these vertices likely form an independent set. we now color these $$k/d$$ vertices arbitrarily. There are:
-
-$$
-{n \choose k/d} q^{k/d+1}
-$$
-
-ways.
-
-Theorem: For $$\eta$$-expanders and $$q \geq poly(d)$$ there are at most $$n^4 q^{O(k/d)}$$ possible colourings.
-
-Now we also know the maximum value of $$Z_G(q,\beta)$$ over all graphs $$G$$ with $$n$$ vertices, $$m$$ edges, and max degree $$d$$. This will always be attained when $$G$$ is a disjoint union of $$K_{d+1}$$ and $$K_1$$
+Finally, the maximum of $$Z_G(q,\beta)$$ over all graphs with $$n$$ vertices, $$m$$ edges, and maximum degree $$d$$ is achieved by the disjoint union of $$K_{d+1}$$ and isolated vertices, giving useful benchmarks for the analysis.
 
 {% include bibtex.html %}
 
