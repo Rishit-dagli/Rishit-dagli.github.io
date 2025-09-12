@@ -6,7 +6,7 @@
  tags: [statistical-physics, learning-algorithms, graph-theory]
 ---
 
-The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all $$1$$-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlines some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs. This is achieved by a significantly sharper analysis of standard "polymer methods" using extremal graph theory and applications of Karger's algorithm to count cuts that may be of independent interest. This article is mostly about a rabbit hole I went down while reading the paper *Algorithms for the ferromagnetic Potts model on expanders* [^carlson2022algorithms].
+The ferromagnetic Potts model is a canonical example of a Markov random field from statistical physics that is of great probabilistic and algorithmic interest. This is a distribution over all $$q$$-colorings of the vertices of a graph where monochromatic edges are favored. The algorithmic problem of efficiently sampling approximately from this model is known to be #BIS-hard, and has seen a lot of recent interest. This blog outlines some recently developed algorithms for approximately sampling from the ferromagnetic Potts model on d-regular weakly expanding graphs. This is achieved by a significantly sharper analysis of standard "polymer methods" using extremal graph theory and applications of Karger's algorithm to count cuts that may be of independent interest. This article is mostly about a rabbit hole I went down while reading the paper *Algorithms for the ferromagnetic Potts model on expanders* [^carlson2022algorithms].
 
 ## The Ferromagnetic Potts Model
 
@@ -17,18 +17,20 @@ Let’s pin down notation (and keep it light):
 - $$m(\chi)$$: number of monochromatic edges under $$\chi$$
 - $$\beta\in \mathbb{R}$$: inverse temperature
 
+Before we get into algorithms, it helps to fix a picture: a configuration $\chi$ assigns one of $\color{purple}{q}$ colors to each vertex; $\color{purple}{m(\chi)}$ counts how many edges are monochromatic under $\chi$. The parameter $\color{orange}{\beta}$ is the inverse temperature: positive $\beta$ rewards monochromatic edges (ferromagnetic), negative $\beta$ penalizes them (antiferromagnetic). For $q=2$ this specializes to the Ising model.[^ising]
+
 Define the Potts distribution
 
 \begin{equation}
- p(\chi) \propto \exp\big(\beta\, m(\chi)\big),
+ \color{blue}{p(\chi)} \propto \color{blue}{\exp\!\big( \color{orange}{\beta}\, \color{purple}{m(\chi)}\big)},
 \label{eq:potts-def}
 \end{equation}
 
 so for $$\beta>0$$ (ferromagnetic) matching edges are favored, and for $$\beta<0$$ (antiferromagnetic) they are discouraged. The normalized form is
 
 \begin{equation}
- p(\chi) 
- = \frac{\exp\big(\beta\, m(\chi)\big)}{\underbrace{\sum_{\chi'} \exp(\beta\, m(\chi'))}_{\text{partition function}~Z_G(q,\beta)}}.
+ p(\chi)
+ = \frac{\color{blue}{\exp\!\big(\underbrace{\beta}_{\text{inverse temp.}}\, \underbrace{m(\chi)}_{\text{# mono edges}}\big)}}{\underbrace{\sum_{\chi'} \color{blue}{\exp(\beta\, m(\chi'))}}_{\text{partition function } Z_G(q,\beta)}}.
 \label{eq:potts-p}
 \end{equation}
 
@@ -38,7 +40,7 @@ When $$\beta=0$$ this is the uniform distribution over all $$q$$-colorings; as $
 
 We want to sample (approximately) from $$p(\chi)$$ in time polynomial in the graph size and the accuracy parameter.
 
-A standard reduction says: it is enough to approximate $$Z_G(q,\beta)$$, since we can then turn partition-function approximations into samplers.
+A standard reduction says: it is enough to approximate $$Z_G(q,\beta)$$, since we can then turn partition-function approximations into samplers (self-reducibility). Roughly: if you can approximate $Z$ on minor variants of $G$, you can reveal one vertex at a time and sample a nearly exact configuration.[^self-reduce]
 
 **Goal (approximate sampling).** Given $$G$$ and $$\beta$$, sample from a law $$q$$ such that the total variation distance is small:
 
@@ -59,7 +61,7 @@ A Fully Polynomial Almost Uniform Sampler (FPAUS) produces an $$\epsilon$$-appro
 For $$\beta<0$$, the same definition applies,
 
 \begin{equation}
- p(\chi) \propto \exp\big(\beta\, m(\chi)\big), \qquad \beta<0.
+ \color{blue}{p(\chi)} \propto \color{blue}{\exp\!\big(\color{orange}{\beta}\, \color{purple}{m(\chi)}\big)}, \qquad \color{orange}{\beta<0}.
 \label{eq:anti}
 \end{equation}
 
@@ -77,18 +79,18 @@ To make things concrete, one proxy problem is: given a bipartite graph $$G$$, de
 Assume throughout that $$G$$ is $$d$$-regular on $$n$$ vertices. For a subset $$S\subseteq V$$, define its edge boundary
 
 \begin{equation}
- \nabla(S) := \\# \{\,uv\in E ~:\; u\in S, v\notin S\,\}.
+ \color{blue}{\nabla(S)} := \\# \{\,uv\in \color{purple}{E} ~:\; u\in \color{orange}{S}, \, v\notin \color{orange}{S}\,\}.
 \label{eq:edge-boundary}
 \end{equation}
 
 The graph $$G$$ is an $$\eta$$-expander if every $$S\subseteq V$$ of size at most $$n/2$$ satisfies
 
 \begin{equation}
- |\nabla(S)| \ge \eta\,|S|.
+ \big|\color{blue}{\nabla(S)}\big| \ge \color{green}{\eta}\,\big|\color{orange}{S}\big|.
 \label{eq:expander}
 \end{equation}
 
-**Theorem (informal).** For each $$\epsilon>0$$ there exist functions $$d(\epsilon)$$ and $$q(\epsilon)$$ such that there is an FPTAS for $$Z_G(q,\beta)$$ whenever $$G$$ is a $$d$$-regular 2-expander and the following conditions hold: $$q=\mathrm{poly}(d)$$ and $$\beta \notin (2\pm\epsilon)\, \tfrac{\ln q}{d}.$$
+**Theorem (informal).** For each $$\epsilon>0$$ there exist functions $$d(\epsilon)$$ and $$q(\epsilon)$$ such that there is an FPTAS for $$Z_G(q,\beta)$$ whenever $$G$$ is a $$d$$-regular 2-expander and the following conditions hold: $$q=\mathrm{poly}(d)$$ and $$\beta \notin (2\pm\epsilon)\, \tfrac{\ln q}{d}.$$ Intuition: outside a narrow window around $\color{orange}{2\,\ln q/d}$, the model is either in a well-mixed regime or has a dominant phase, and defects are sparse—precisely where polymer expansions converge fast.
 
 A sharper result proved in the referenced work is:
 
@@ -101,7 +103,7 @@ Previously, similar statements required stronger expansion with $$d = q^{\Omega(
 The order-disorder threshold for the ferromagnetic model is
 
 \begin{equation}
- \beta_0 := \ln\!\left(\frac{q-2}{(q-1)^{1-2/d} - 1}\right) = 2\, \frac{\ln q}{d}\,\Big(1+O\!\big(\tfrac{1}{q}\big)\Big).
+ \color{orange}{\beta_0} := \ln\!\left(\frac{\color{purple}{q}-2}{(\color{purple}{q}-1)^{1-2/\color{green}{d}} - 1}\right) = 2\, \frac{\ln \color{purple}{q}}{\color{green}{d}}\,\Big(1+O\!\big(\tfrac{1}{\color{purple}{q}}\big)\Big).
 \label{eq:beta0}
 \end{equation}
 
@@ -116,16 +118,16 @@ We care about the regimes $$\beta < (1-\epsilon)\beta_0$$ and $$\beta > (1+\epsi
 
 ## Strategy (why it works)
 
-- Pass to the random cluster model: a distribution on edge subsets
+First, pass to the random‑cluster (Fortuin–Kasteleyn) representation: a distribution on edge subsets $A\subseteq E$ that is exactly equivalent to the Potts model on $G$.
 
 \begin{equation}
- p(A) \propto q^{k(A)}\, \big(e^{\beta}-1\big)^{|A|}, \qquad Z_G^{\mathrm{RC}}(q,\beta) = Z_G^{\mathrm{Potts}}(q,\beta),
+ p(A) \propto q^{\color{purple}{k(A)}}\, \big(e^{\beta}-1\big)^{|A|}, \qquad Z_G^{\mathrm{RC}}(q,\beta) = Z_G^{\mathrm{Potts}}(q,\beta),
 \label{eq:rc}
 \end{equation}
 
-and sample by first drawing a random-cluster configuration and then giving each connected component a uniform color.
+Here $A\subseteq E$ is an edge set and $\color{purple}{k(A)}$ is the number of connected components in $(V,A)$. By the Edwards–Sokal coupling,[^edwards-sokal] one can sample by first drawing $A$ and then assigning a uniform color to each connected component.
 
-- Use standard polymer methods with sharper counting via extremal graph theory (Karger-style cut counting enters here) to control contributions of defects.
+Second, in the low‑temperature ferromagnetic regime, we analyze the model via polymer methods. Intuitively, a typical configuration is a “ground state” (one dominant color) plus small, well‑separated defect regions. We rewrite the partition function as a gas of non‑overlapping polymers (see Polymer Methods below) and apply the cluster expansion. On expanders, connected sets have large edge boundary, so defects are exponentially suppressed; Karger‑style cut counting controls how many such shapes there are. These inputs verify the Kotecký–Preiss criterion and yield fast convergence of the expansion—precisely the leverage behind the FPTAS outside the $(2\pm\epsilon)\,\ln q/d$ window.
 
 ## Polymer Methods (at a glance)
 
@@ -139,14 +141,14 @@ Let the defect graph $$G$$ encode these regions as polymers. Then for a referenc
 
 \begin{equation}
  Z_{\text{red}}\, e^{-\beta n d /2} 
- = \sum_{I\subset V(G)}\; \prod_{\gamma\in I} w_\gamma,
+ = \sum_{I\subset V(G)}\; \prod_{\gamma\in I} \color{teal}{w_\gamma},
 \label{eq:polymer-sum}
 \end{equation}
 
-where $$w_\gamma$$ is the weight of a polymer $$\gamma$$. The cluster expansion is the multivariate Taylor expansion in the $$w_\gamma$$ of
+Here $I$ ranges over mutually compatible sets of polymers (no overlaps), and $\color{teal}{w_\gamma}$ is the weight of a polymer $\gamma$. The cluster expansion is the multivariate Taylor expansion in the $w_\gamma$ of
 
 \begin{equation}
- \ln\!\left( \sum_{I\subset V(G)} \prod_{\gamma\in I} w_\gamma \right),
+ \ln\!\left( \sum_{I\subset V(G)} \prod_{\gamma\in I} \color{teal}{w_\gamma} \right),
 \label{eq:cluster}
 \end{equation}
 
@@ -176,3 +178,9 @@ Finally, the maximum of $$Z_G(q,\beta)$$ over all graphs with $$n$$ vertices, $$
 [^helmuth2019]: Helmuth, Tyler, Will Perkins, and Guus Regts. "Algorithmic pirogov-sinai theory." Proceedings of the 51st Annual ACM SIGACT Symposium on Theory of Computing. 2019.
 
 [^frankl1981short]: Frankl, Peter, and Zoltán Füredi. "A short proof for a theorem of Harper about Hamming-spheres." Discrete Mathematics 34.3 (1981): 311-313.
+
+[^ising]: For $q=2$, $m(\chi)$ counts edges with equal spins, and $\beta$ matches the Ising inverse temperature up to a constant; the models are equivalent after a change of variables.
+
+[^self-reduce]: See, e.g., Jerrum–Valiant–Vazirani-style self-reducibility: approximate $Z$ at successive conditionings to sample one variable at a time; the Potts model inherits this property from its log-linear form.
+
+[^edwards-sokal]: Edwards–Sokal coupling (1979) couples the Potts model with the random‑cluster model so that sampling edges $A$ and then coloring components yields an exact Potts configuration; see standard references on FK percolation.

@@ -873,3 +873,118 @@ th {
   --utterances-color-text-primary: var(--text-primary);
   --utterances-color-text-secondary: var(--text-secondary);
 } 
+/* Collapsible Table of Contents */
+.collapsible-toc {
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden;
+}
+
+.toc-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--header-font);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition);
+  text-align: left;
+}
+
+.toc-toggle:hover {
+  background-color: var(--code-bg);
+}
+
+.toc-toggle:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+
+.toc-toggle-text {
+  flex: 1;
+}
+
+.toc-toggle-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  color: var(--text-secondary);
+}
+
+.toc-toggle[aria-expanded="true"] .toc-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.toc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: var(--bg-secondary);
+}
+
+.toc-content[aria-hidden="false"] {
+  max-height: 500px; /* Adjust based on content */
+}
+
+.toc-list {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  list-style: none;
+  font-family: var(--header-font);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.toc-list ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list li {
+  margin: 0.3rem 0;
+}
+
+.toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+  padding: 0.2rem 0;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.toc-list a:hover {
+  color: var(--accent-primary);
+  background-color: var(--code-bg);
+  padding-left: 0.5rem;
+}
+
+/* Responsive TOC */
+@media (max-width: 768px) {
+  .collapsible-toc {
+    margin: 1.5rem 0;
+  }
+  
+  .toc-toggle {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .toc-list {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .toc-content[aria-hidden="false"] {
+    max-height: 400px;
+  }
+}

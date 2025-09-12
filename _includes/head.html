@@ -12,13 +12,16 @@
   <!-- Theme toggle script (loads early to prevent flash) -->
   <script src="{{ "/assets/js/theme-toggle.js" | relative_url }}"></script>
   
+  <!-- Collapsible TOC script -->
+  <script src="{{ "/assets/js/collapsible-toc.js" | relative_url }}"></script>
+  
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | relative_url }}">
   
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
   
-  <!-- MathJax with automatic equation numbering -->
+  <!-- MathJax with automatic equation numbering and color support -->
   <script>
   window.MathJax = {
     tex: {
@@ -26,11 +29,15 @@
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
       processEscapes: true,
-      processEnvironments: true
+      processEnvironments: true,
+      packages: {'[+]': ['color', 'colorv2']}
     },
     options: {
       ignoreHtmlClass: 'tex2jax_ignore',
       processHtmlClass: 'tex2jax_process'
+    },
+    loader: {
+      load: ['[tex]/color', '[tex]/colorv2']
     }
   };
   </script>
@@ -40,4 +47,4 @@
   
   <!-- SEO -->
   {% seo %}
-</head> 
+</head>

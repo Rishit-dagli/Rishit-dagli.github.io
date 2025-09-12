@@ -1,0 +1,29 @@
+{%- comment -%}
+  Collapsible Table of Contents Component
+  
+  Usage:
+    {% include collapsible-toc.html html=content %}
+  
+  Parameters:
+    * html (string) - the HTML content to generate TOC from
+{%- endcomment -%}
+
+{%- assign toc_content = include.html | default: content -%}
+
+{%- comment -%} Generate TOC using the existing toc.html include {%- endcomment -%}
+{%- capture generated_toc -%}
+  {%- include toc.html html=toc_content h_min=2 h_max=6 class="toc-list" -%}
+{%- endcapture -%}
+
+{%- comment -%} Only show TOC if there are headings {%- endcomment -%}
+{%- if generated_toc != blank -%}
+<div class="collapsible-toc">
+  <button class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc-content">
+    <span class="toc-toggle-text">Table of Contents</span>
+    <span class="toc-toggle-icon" aria-hidden="true">▼</span>
+  </button>
+  <div class="toc-content" id="toc-content" aria-hidden="true">
+    {{ generated_toc }}
+  </div>
+</div>
+{%- endif -%}
