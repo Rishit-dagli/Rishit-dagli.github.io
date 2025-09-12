@@ -28,11 +28,13 @@ Define the Potts distribution
 
 so for $$\beta>0$$ (ferromagnetic) matching edges are favored, and for $$\beta<0$$ (antiferromagnetic) they are discouraged. The normalized form is
 
+$$
 \begin{equation}
  p(\chi)
  = \frac{\color{blue}{\exp\!\big(\underbrace{\beta}_{\text{inverse temp.}}\, \underbrace{m(\chi)}_{\text{# mono edges}}\big)}}{\underbrace{\sum_{\chi'} \color{blue}{\exp(\beta\, m(\chi'))}}_{\text{partition function } Z_G(q,\beta)}}.
 \label{eq:potts-p}
 \end{equation}
+$$
 
 When $$\beta=0$$ this is the uniform distribution over all $$q$$-colorings; as $$\beta\to -\infty$$ it concentrates on proper colorings.
 
