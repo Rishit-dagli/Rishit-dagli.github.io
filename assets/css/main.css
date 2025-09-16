@@ -943,14 +943,40 @@ th {
   line-height: 1.6;
 }
 
+/* Reset all nested lists */
 .toc-list ul {
-  margin: 0.5rem 0 0 1rem;
+  margin: 0.5rem 0 0 0;
   padding: 0;
   list-style: none;
 }
 
+/* Progressive indentation using padding-left for better control */
 .toc-list li {
   margin: 0.3rem 0;
+}
+
+.toc-list > li {
+  padding-left: 0;
+}
+
+.toc-list ul li {
+  padding-left: 1.2rem;
+}
+
+.toc-list ul ul li {
+  padding-left: 2.4rem;
+}
+
+.toc-list ul ul ul li {
+  padding-left: 3.6rem;
+}
+
+.toc-list ul ul ul ul li {
+  padding-left: 4.8rem;
+}
+
+.toc-list ul ul ul ul ul li {
+  padding-left: 6rem;
 }
 
 .toc-list a {
