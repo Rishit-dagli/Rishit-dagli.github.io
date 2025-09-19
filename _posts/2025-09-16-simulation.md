@@ -460,7 +460,7 @@ $$
 
 We can see that our ODE defines the vector field in the phase plane and the integration is a circle in this simple case.[^fn-phase-space]
 
-{% include image.html url="/assets/simulation/phase_space-light.png" dark_url="/assets/simulation/phase_space-dark.png" description="Phase space for the linear spring–mass system. The vector field shows the flow defined by $\dot{q} = v$ =." %}
+{% include image.html url="/assets/simulation/phase_space-light.png" dark_url="/assets/simulation/phase_space-dark.png" description="Phase space for the linear spring–mass system. The vector field shows the flow $(\dot q,\dot v) = (v, -\tfrac{k}{m}\, q)$." %}
 
 There are two types of time integration algorithms:
 
