@@ -479,6 +479,29 @@ figure.no-auto-number figcaption::before {
   text-decoration: underline;
 }
 
+/* Theme-switching images */
+.theme-image {
+  transition: var(--transition);
+}
+
+/* Light theme: show light-only images, hide dark-only images */
+:root .light-only {
+  display: block;
+}
+
+:root .dark-only {
+  display: none;
+}
+
+/* Dark theme: hide light-only images, show dark-only images */
+[data-theme="dark"] .light-only {
+  display: none;
+}
+
+[data-theme="dark"] .dark-only {
+  display: block;
+}
+
 /* Blockquotes */
 blockquote {
   border-left: 4px solid var(--accent-primary);

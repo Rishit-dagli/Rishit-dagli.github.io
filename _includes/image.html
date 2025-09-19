@@ -1,4 +1,15 @@
 <figure class="image">
-    <img src="{{ include.url }}" alt="{{ include.description }}">
+    {% if include.dark_url %}
+        <!-- Dual theme images -->
+        <img src="{{ include.url }}" 
+             alt="{{ include.description }}" 
+             class="theme-image light-only">
+        <img src="{{ include.dark_url }}" 
+             alt="{{ include.description }}" 
+             class="theme-image dark-only">
+    {% else %}
+        <!-- Single theme image -->
+        <img src="{{ include.url }}" alt="{{ include.description }}">
+    {% endif %}
     <figcaption>{{ include.description }}</figcaption>
 </figure>
