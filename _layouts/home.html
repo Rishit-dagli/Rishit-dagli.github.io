@@ -36,6 +36,7 @@ layout: default
     <div class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
+      {%- unless post.unlisted -%}
       <article class="post">
         <h2 class="post-title">
           <a href="{{ post.url | relative_url }}">
@@ -54,6 +55,7 @@ layout: default
           </div>
         {%- endif -%}
       </article>
+      {%- endunless -%}
       {%- endfor -%}
     </div>
 

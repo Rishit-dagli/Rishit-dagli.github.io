@@ -121,6 +121,7 @@ fetch('/search.json')
     // Fallback: create search data from page context if available
     searchData = [
       {% for post in site.posts %}
+      {% unless post.unlisted %}
       {
         "title": {{ post.title | jsonify }},
         "url": {{ post.url | jsonify }},
@@ -129,6 +130,7 @@ fetch('/search.json')
         "content": {{ post.content | strip_html | jsonify }},
         "tags": {{ post.tags | jsonify }}
       }{% unless forloop.last %},{% endunless %}
+      {% endunless %}
       {% endfor %}
     ];
   });

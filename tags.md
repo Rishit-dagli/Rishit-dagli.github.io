@@ -12,7 +12,7 @@ permalink: /tags/
     {% for tag in sorted_tags %}
       {% assign tag_name = tag[0] %}
       {% assign posts = tag[1] %}
-      {% assign post_count = posts | size %}
+      {% assign post_count = posts | where_exp: "post", "post.unlisted != true" | size %}
       
       <div class="tag-item">
         <a href="#{{ tag_name | slugify }}" class="tag-link">
@@ -28,13 +28,15 @@ permalink: /tags/
       {% assign posts = tag[1] %}
       
       <section id="{{ tag_name | slugify }}" class="tag-section">
-        <h2>{{ tag_name }} <span class="tag-count">({{ posts | size }})</span></h2>
+        <h2>{{ tag_name }} <span class="tag-count">({{ posts | where_exp: "post", "post.unlisted != true" | size }})</span></h2>
         <ul class="post-list">
           {% for post in posts %}
+            {% unless post.unlisted %}
             <li>
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
               <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
             </li>
+            {% endunless %}
           {% endfor %}
         </ul>
       </section>

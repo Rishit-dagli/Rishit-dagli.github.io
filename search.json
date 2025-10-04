@@ -3,6 +3,7 @@ layout: null
 ---
 [
   {% for post in site.posts %}
+  {% unless post.unlisted %}
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
@@ -11,5 +12,6 @@ layout: null
     "content": {{ post.content | strip_html | truncatewords: 200 | jsonify }},
     "tags": {{ post.tags | jsonify }}
   }{% unless forloop.last %},{% endunless %}
+  {% endunless %}
   {% endfor %}
 ] 
