@@ -1,4 +1,4 @@
-<figure class="image">
+<figure class="image" {% if include.id %}id="{{ include.id }}"{% endif %}>
     {% if include.dark_url %}
         <!-- Dual theme images -->
         <img src="{{ include.url }}" 

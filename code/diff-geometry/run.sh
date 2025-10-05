@@ -24,6 +24,10 @@ CLASSES=(
     "CosphereBundleDark:cosphere-bundle"
     "EnergyLevelCircle:energy-level-circle"
     "EnergyLevelCircleDark:energy-level-circle"
+    "GeodesicComparison:geodesic-comparison"
+    "GeodesicComparisonDark:geodesic-comparison"
+    "LightCone:light-cone"
+    "LightConeDark:light-cone"
     # Add more classes here as needed
 )
 

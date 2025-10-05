@@ -479,6 +479,11 @@ figure.no-auto-number figcaption::before {
   text-decoration: underline;
 }
 
+/* Manual figure labels */
+.figure-label {
+  font-weight: 600;
+}
+
 /* Theme-switching images */
 .theme-image {
   transition: var(--transition);
@@ -954,7 +959,7 @@ th {
 }
 
 .toc-content[aria-hidden="false"] {
-  max-height: 500px; /* Adjust based on content */
+  max-height: none; /* allow full height */
 }
 
 .toc-list {
@@ -1034,7 +1039,7 @@ th {
   }
   
   .toc-content[aria-hidden="false"] {
-    max-height: 400px;
+    max-height: none;
   }
 }
 

@@ -1026,3 +1026,283 @@ class EnergyLevelCircle(EnergyLevelCircleBase):
 class EnergyLevelCircleDark(EnergyLevelCircleBase):
     def __init__(self, **kwargs):
         super().__init__(theme="dark", **kwargs)
+
+
+class GeodesicComparisonBase(Scene):
+    def __init__(self, theme="light", **kwargs):
+        super().__init__(**kwargs)
+        self.theme = theme
+        self.setup_theme_colors()
+    
+    def setup_theme_colors(self):
+        if self.theme == "dark":
+            self.camera.background_color = "#1a1a1a"
+            self.axis_color = "#ecf0f1"
+            self.geodesic_color = "#e74c3c"
+            self.magnetic_line_color = "#4a90e2"
+            self.magnetic_curve_color = "#e74c3c"
+            self.label_color = WHITE
+        else:
+            self.camera.background_color = WHITE
+            self.axis_color = "#2c3e50"
+            self.geodesic_color = "#c0392b"
+            self.magnetic_line_color = "#2980b9"
+            self.magnetic_curve_color = "#c0392b"
+            self.label_color = BLACK
+
+    def construct(self):
+        # Left side - Geodesics
+        left_axes = Axes(
+            x_range=[-2, 3.5, 1],
+            y_range=[-2, 3.5, 1],
+            x_length=4.5,
+            y_length=4.5,
+            axis_config={
+                "color": self.axis_color,
+                "stroke_width": 2,
+                "include_tip": True,
+                "tip_width": 0.2,
+                "tip_height": 0.2,
+            },
+        )
+        
+        x_label_left = MathTex("x", font_size=36, color=self.label_color).next_to(left_axes.x_axis.get_end(), RIGHT, buff=0.2)
+        y_label_left = MathTex("y", font_size=36, color=self.label_color).next_to(left_axes.y_axis.get_end(), UP, buff=0.2)
+        
+        # Create several parallel 45-degree arrows (geodesics) with different y-intercepts
+        geodesic_arrows = VGroup()
+        num_arrows = 5
+        for i in range(num_arrows):
+            # Different y-intercept for each arrow: y = x + c
+            y_intercept = -2.0 + i * 1.0  # -2, -1, 0, 1, 2
+            
+            # Start and end x positions
+            x_start = -1.5
+            x_end = 2.5
+            
+            # Calculate y positions: y = x + y_intercept
+            y_start = x_start + y_intercept
+            y_end = x_end + y_intercept
+            
+            arrow_start = left_axes.c2p(x_start, y_start)
+            arrow_end = left_axes.c2p(x_end, y_end)
+            
+            arrow = Arrow(
+                arrow_start,
+                arrow_end,
+                color=self.geodesic_color,
+                stroke_width=3,
+                max_tip_length_to_length_ratio=0.15,
+                buff=0
+            )
+            geodesic_arrows.add(arrow)
+        
+        geodesics_label = Text("geodesics", font_size=32, color=self.label_color)
+        
+        left_group = VGroup(left_axes, x_label_left, y_label_left, geodesic_arrows, geodesics_label)
+        geodesics_label.next_to(left_axes, UP, buff=0.6)
+        left_group.shift(LEFT * 3.5)
+        
+        # Right side - Magnetic Geodesics
+        right_axes = Axes(
+            x_range=[-2, 3.5, 1],
+            y_range=[-2, 3.5, 1],
+            x_length=4.5,
+            y_length=4.5,
+            axis_config={
+                "color": self.axis_color,
+                "stroke_width": 2,
+                "include_tip": True,
+                "tip_width": 0.2,
+                "tip_height": 0.2,
+            },
+        )
+        
+        x_label_right = MathTex("x", font_size=36, color=self.label_color).next_to(right_axes.x_axis.get_end(), RIGHT, buff=0.2)
+        y_label_right = MathTex("y", font_size=36, color=self.label_color).next_to(right_axes.y_axis.get_end(), UP, buff=0.2)
+        
+        # Blue dashed line going to top right
+        dashed_line_start = right_axes.c2p(0.5, 0.5)
+        dashed_line_end = right_axes.c2p(2.8, 2.8)
+        dashed_line = DashedLine(
+            dashed_line_start,
+            dashed_line_end,
+            color=self.magnetic_line_color,
+            stroke_width=3,
+            dash_length=0.15
+        )
+        
+        # Red curve winding around the dashed line
+        def magnetic_curve(t):
+            # Base line: y = x (45 degrees)
+            base_x = 0.5 + t * 2.3
+            base_y = 0.5 + t * 2.3
+            
+            # Add helical winding
+            radius = 0.25
+            frequency = 8
+            offset_x = radius * np.cos(frequency * 2 * PI * t)
+            offset_y = radius * np.sin(frequency * 2 * PI * t)
+            
+            # Rotate the offset to be perpendicular to the 45-degree line
+            rotated_offset_x = (offset_x - offset_y) / np.sqrt(2)
+            rotated_offset_y = (offset_x + offset_y) / np.sqrt(2)
+            
+            point = right_axes.c2p(
+                base_x + rotated_offset_x,
+                base_y + rotated_offset_y
+            )
+            return point
+        
+        magnetic_geodesic = ParametricFunction(
+            magnetic_curve,
+            t_range=[0, 1, 0.005],
+            color=self.magnetic_curve_color,
+            stroke_width=3
+        )
+        
+        magnetic_label = Text("magnetic geodesics", font_size=32, color=self.label_color)
+        
+        right_group = VGroup(right_axes, x_label_right, y_label_right, dashed_line, magnetic_geodesic, magnetic_label)
+        magnetic_label.next_to(right_axes, UP, buff=0.6)
+        right_group.shift(RIGHT * 3.5)
+        
+        # Add everything
+        self.add(left_group)
+        self.add(right_group)
+
+class GeodesicComparison(GeodesicComparisonBase):
+    def __init__(self, **kwargs):
+        super().__init__(theme="light", **kwargs)
+
+class GeodesicComparisonDark(GeodesicComparisonBase):
+    def __init__(self, **kwargs):
+        super().__init__(theme="dark", **kwargs)
+
+
+class LightConeBase(ThreeDScene):
+    def __init__(self, theme="light", **kwargs):
+        super().__init__(**kwargs)
+        self.theme = theme
+        self.setup_theme_colors()
+    
+    def setup_theme_colors(self):
+        if self.theme == "dark":
+            self.camera.background_color = "#1a1a1a"
+            self.cone_color = "#4a90e2"
+            self.spacelike_color = "#e74c3c"
+            self.timelike_color = "#2ecc71"
+            self.lightlike_color = "#f39c12"
+            self.label_color = WHITE
+        else:
+            self.camera.background_color = WHITE
+            self.cone_color = "#2980b9"
+            self.spacelike_color = "#c0392b"
+            self.timelike_color = "#27ae60"
+            self.lightlike_color = "#d35400"
+            self.label_color = BLACK
+
+    def construct(self):
+        # Set camera orientation
+        self.set_camera_orientation(phi=70 * DEGREES, theta=-45 * DEGREES)
+        
+        # Create the double cone (light cone)
+        def cone_surface(u, v):
+            t = v
+            r = abs(t)
+            x = r * np.cos(u)
+            y = r * np.sin(u)
+            z = t
+            return np.array([x, y, z])
+        
+        # Upper cone
+        upper_cone = Surface(
+            lambda u, v: cone_surface(u, v),
+            u_range=[0, 2*PI],
+            v_range=[0, 2.5],
+            resolution=(24, 12),
+            fill_opacity=0.3,
+            stroke_width=1,
+            stroke_color=self.cone_color,
+            fill_color=self.cone_color
+        )
+        
+        # Lower cone
+        lower_cone = Surface(
+            lambda u, v: cone_surface(u, -v),
+            u_range=[0, 2*PI],
+            v_range=[0, 2.5],
+            resolution=(24, 12),
+            fill_opacity=0.3,
+            stroke_width=1,
+            stroke_color=self.cone_color,
+            fill_color=self.cone_color
+        )
+        
+        # Create arrows from origin
+        arrow_length = 2.0
+        
+        # Space-like arrow (pointing in x direction)
+        spacelike_arrow = Arrow3D(
+            start=ORIGIN,
+            end=[arrow_length, 0, 0],
+            color=self.spacelike_color,
+            thickness=0.02,
+            height=0.15,
+            base_radius=0.04
+        )
+        
+        # Time-like arrow (pointing in z direction, up)
+        timelike_arrow = Arrow3D(
+            start=ORIGIN,
+            end=[0, 0, arrow_length],
+            color=self.timelike_color,
+            thickness=0.02,
+            height=0.15,
+            base_radius=0.04
+        )
+        
+        # Light-like arrow (pointing along the cone edge at 45 degrees)
+        # The cone edge is at r = |t|, so for positive t: x = t*cos(θ), y = t*sin(θ), z = t
+        # We'll use θ = π/4 for a nice visible angle
+        light_angle = PI/4
+        light_direction = np.array([
+            arrow_length * np.cos(light_angle) / np.sqrt(2),
+            arrow_length * np.sin(light_angle) / np.sqrt(2),
+            arrow_length / np.sqrt(2)
+        ])
+        
+        lightlike_arrow = Arrow3D(
+            start=ORIGIN,
+            end=light_direction,
+            color=self.lightlike_color,
+            thickness=0.02,
+            height=0.15,
+            base_radius=0.04
+        )
+        
+        # Create labels (they need to be added as 2D overlays)
+        spacelike_label = Text("space-like", font_size=24, color=self.spacelike_color)
+        spacelike_label.to_corner(UR, buff=0.5).shift(DOWN * 0)
+        
+        timelike_label = Text("time-like", font_size=24, color=self.timelike_color)
+        timelike_label.to_corner(UR, buff=0.5).shift(DOWN * 0.8)
+        
+        lightlike_label = Text("light-like", font_size=24, color=self.lightlike_color)
+        lightlike_label.to_corner(UR, buff=0.5).shift(DOWN * 1.6)
+        
+        # Add everything to the scene
+        self.add(lower_cone)
+        self.add(upper_cone)
+        self.add(spacelike_arrow)
+        self.add(timelike_arrow)
+        self.add(lightlike_arrow)
+        self.add_fixed_in_frame_mobjects(spacelike_label, timelike_label, lightlike_label)
+
+class LightCone(LightConeBase):
+    def __init__(self, **kwargs):
+        super().__init__(theme="light", **kwargs)
+
+class LightConeDark(LightConeBase):
+    def __init__(self, **kwargs):
+        super().__init__(theme="dark", **kwargs)

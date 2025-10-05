@@ -14,18 +14,23 @@
     function toggleTOC() {
       const isExpanded = tocToggle.getAttribute('aria-expanded') === 'true';
       const newState = !isExpanded;
-      
-      // Update ARIA attributes
+
       tocToggle.setAttribute('aria-expanded', newState.toString());
       tocContent.setAttribute('aria-hidden', (!newState).toString());
-      
-      // Update icon rotation
+
+      // If expanding, set height to fit content; if collapsing, set to 0
+      if (newState) {
+        // Temporarily set height to 'auto' to measure, then set explicit height for transition if needed
+        tocContent.style.maxHeight = 'none';
+      } else {
+        tocContent.style.maxHeight = '0px';
+      }
+
       const icon = tocToggle.querySelector('.toc-toggle-icon');
       if (icon) {
         icon.style.transform = newState ? 'rotate(180deg)' : 'rotate(0deg)';
       }
-      
-      // Store preference in localStorage
+
       localStorage.setItem('toc-expanded', newState.toString());
     }
     
@@ -35,10 +40,13 @@
       if (savedState === 'true') {
         tocToggle.setAttribute('aria-expanded', 'true');
         tocContent.setAttribute('aria-hidden', 'false');
+        tocContent.style.maxHeight = 'none';
         const icon = tocToggle.querySelector('.toc-toggle-icon');
         if (icon) {
           icon.style.transform = 'rotate(180deg)';
         }
+      } else {
+        tocContent.style.maxHeight = '0px';
       }
     }
     

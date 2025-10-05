@@ -87,7 +87,7 @@ The phase space $M=T^\*X$ has a canonical $1$-form $\Theta \in \Omega^1(M)$  whi
 
 where $\pi_*$ is the derivative of the projection map $\pi$. The derivate of $\pi$ allows us to project the vector $u$ to to the $X$ or "downstairs".
 
-In co-ordinates, we have $u = \sum_{i=1}^n u^i \frac{\partial}{\partial q^i} + \sum_{i=1}^n p_i \frac{\partial}{\partial p_i}$ and $p = \sum_{i=1}^n p_i dq^i$ (a point in the cotangent space over $q$). This is the same as Equations \ref{eq:tangent-vector} and \ref{eq:cotangent-vector}, we write it in terms of basis and parameters. So,
+In co-ordinates, we have $u = \sum_{i=1}^n u^i \frac{\partial}{\partial q^i} + \sum_{i=1}^n p_i \frac{\partial}{\partial p_i}$ and $p = \sum_{i=1}^n p_i dq^i$ (a point in the cotangent space over $q$). This is the same as Equations \eqref{eq:tangent-vector} and \eqref{eq:cotangent-vector}, we write it in terms of basis and parameters. So,
 
 \begin{equation}
 \begin{split}
@@ -98,7 +98,7 @@ In co-ordinates, we have $u = \sum_{i=1}^n u^i \frac{\partial}{\partial q^i} + \
 \label{eq:canonical-1-form}
 \end{equation}
 
-If we write $\Theta$ or in general any $1$-form can written in basis, $\Theta = a_i dq^i + b^j dp_j$. When we evaluate $\Theta$ on $u$, the $a_i$ terms would combine with the $u^i$ terms and the $b_j$ terms would combine with the $u_i$ terms which would given us Equation \ref{eq:canonical-1-form} (the canonical $1$-form on $T^\*X$). Essentially, $a_i$ becomes $p_i$ and $b^j$ becomes $0$.
+If we write $\Theta$ or in general any $1$-form can written in basis, $\Theta = a_i dq^i + b^j dp_j$. When we evaluate $\Theta$ on $u$, the $a_i$ terms would combine with the $u^i$ terms and the $b_j$ terms would combine with the $u_i$ terms which would given us Equation \eqref{eq:canonical-1-form} (the canonical $1$-form on $T^\*X$). Essentially, $a_i$ becomes $p_i$ and $b^j$ becomes $0$.
 
 Now, since the canonical $1$-form $\Theta \in \Omega^1(M)$ is differentiable we can obtain the $2$-form,
 
@@ -319,7 +319,7 @@ For example, let us suppose we are given a Riemannian metric $g$ on $Q$. We have
 
 What this means is if you take $Q$ and have the tangent spaces at each point $T^\*Q$. On $Q$ where $p=0$ the function is $0$ and on $T^\*Q$ where $p \neq 0$ the function grows quadratically as we move on $T^\*Q$ so we get ellipsoids or level sets of $fg^{-1}$. Connecting many of these level sets across different points of $Q$ we get cylindrical level sets of $fg^{-1}$ are called the cosphere bundles inside $T^\*Q$.
 
-{% include image.html url="/assets/diff-geometry/cosphere-bundle-light.png" dark_url="/assets/diff-geometry/cosphere-bundle-dark.png" description="The cosphere bundle." %}
+{% include image.html id="fig:cosphere" url="/assets/diff-geometry/cosphere-bundle-light.png" dark_url="/assets/diff-geometry/cosphere-bundle-dark.png" description="The cosphere bundle." %}
 
 Now, we can think about the Hamiltonian flow of $f_{g^{-1}}$ defined by the Riemannian metric $g$. If you are inside the cosphere bundle on the hase space and as Hamiltonian flow progress we will stay inside the cosphere bundle, and the Riemannian metric or the norm-squared of the momentum is preserved. **Interestingly, this function $\frac{1}{2}f_{g^{-1}}$ is the exact definition of kinetic energy of a particle on $Q$** (this definition works on any Riemannian manifold).
 
@@ -527,6 +527,8 @@ $$
 
 So, $q(t) = \cos(\omega t) q(0) + \underbrace{\frac{1}{\sqrt{km}} \sin(\omega t) p(0)}_{\omega^{-1}\sin{\omega t}\dot{x}(0)}$. An example is if you pull a mass and leave it, we wont have the second term because starting velocity is $0$ and we would oscillate with the cosine function in the first term, oscillation with frequency $\omega$.
 
+The hamiltonian is a function on the phase space, $H \in C^\infty(T^\*X) \supset \bigoplus_{k \geq 0} \Gamma(X, \underbrace{\operatorname{Sym}^k(T^\*X)}_{\text{polynomial functions } p \text{ of degree }k})$.
+
 Here we can simply change the variables or do a symplectomorphism to get rid some varibles, use $\tilde{q} = \sqrt{k}q$ and $\tilde{p} = \frac{1}{\sqrt{k}}$, so $H = \frac{1}{2}m^{-1}(k\tilde{p})^2 + \frac{1}{2}\tilde{q}^2$.
 
 This system has a few pretty well known properties in $k=m=1$,
@@ -542,6 +544,131 @@ Now split the circle curve into two.
 
 and we end up with $T = 2 \int_{-\sqrt{2E}}^{\sqrt{2E}} \frac{dx}{\sqrt{2E-x^2}} = 2\pi$. This is super interesting because we start out with **algebraic data**, this algebraic data determines a flow which determines integral which gives rise to a transcedental numbers from simple algebraic operations.
 
+## Magnetic Deformation
+
+Currently, we can incorporate electric forces from the potential $V (q)$. But a magnetic field is a bit more tricky. A magnetic field $B \in \Omega^2(X)$ is a $2$-form on $X$, $B = B_{ij}(q^1, \ldots, q^n)dq^i \otimes dq^j$ where $B_{ij}$ is a skew symmetric matrix of $n \times n$ smooth functions of $q^1, \ldots, q^n$. We also need $dB=0$.
+
+To incorporate the magnetic field we need to change the canonical symplectic form $\omega in \Omega^2(T^\*X)$ somehow. We need to somehow deform and changed the symplectic form. Onw thing we can do is shift $\omega$ to $\omega + \pi^\*B$ and then $\omega_B= dp_i \wedge dq^i + B_{ij} dq^i \wedge dq^j$. It is hard to see $\omega_B$ is symplectic because it needs to be closed (which is easy to show), skew-symmetric (which is easy to show), and non-degenerate.
+
+The $\omega_B$ defines a bundle map, $\omega_B: TM \mapsto T^\*M$, $v \mapsto \iota_v \omega_B = \omega_B(v, \cdot)$. This should be isomorphic. We can check that $det(\omega_B)_{ij} \neq 0$. In the case of skew-symmetric matrix the determinant of the matrix is the square of the pfaffian $(Pf(\omega_B))^2$.
+
+The pfaffian is essentially just $\frac{1}{n!} w_B \wedge w_B \wedge \cdots \wedge w_B \in \Omega^{2n}(M) = \underbrace{\frac{1}{n!} \omega_B^n}_{\text{Lioville volume form}}$. This means $\omega_B$ is non-degenerate if $\frac{1}{n!} \omega_B^n$ is nowehere zero.
+
+We can now use the change in variables we made giving us $\omega_B$,
+
+$$
+\begin{equation}
+\omega_B = \omega + \pi^*B = \omega^n + n \omega^{n-1} \wedge B + {n \choose 2} \omega^{n-2} \wedge B^2 + \cdots + B^n
+\label{eq:omega-b}
+\end{equation}
+$$
+
+We can call something like $B$ type $(0, 2)$ becuase it has $2$ q's, $B=B_{ij}dq^i \wedge dq^j$. Here, when we do $\omega^{n-1} \wedge B$ we have type $(n-1, n-1)$ for $\omega^{n-1}$ and $(0,2)$ for $B$ so $\omega^{n-1} \wedge B$ is type $(n-1, n+1)$. The $\omega^{n-1} \wedge B$ term is a wedge product of $n+1$ $dq^i$'s, so we have $dq^1 \ldots dq^n$ and then one more $dq^k$ term. Remmber the exterior product is alternating so the $dq^k$ would be equal to something else and $\omega^{n-1} \wedge B = 0$. Similarly, $\omega^{n-k} \wedge B^k=0$. In Equation \eqref{eq:omega-b} we have, all the tersm after $\omega^n$ are $0$.
+
+Thus, $\omega_B$ is symplectic and has the same Liouville volume as $\omega$.
+
+<div style="padding: 0.75em; border: 1px solid black;">
+If $(X, g)$ is a Riemannian manifold then the Hamiltonian system defines the free motion of particles by geodesics $(T^*X, \omega, H=\frac{1}{2}f_g^{-1})$.<br><br>
+
+Similarly if $B \in \Omega^2(X)$ and $dB=0$ then the Hamiltonian system defines the motion of charged particles in a magnetic field $(T^*X, \omega_B = \omega + \pi^*B, H=\frac{1}{2}f_g^{-1})$.
+</div>
+
+### Poisson Bracket
+
+The Hamiltonian flow is $X_H = -\omega_B^{-1}(dH)$ Let us start by computing the inverse for the Poisson bracket,
+
+$$
+\begin{equation}
+\begin{split}
+    \omega_B^{-1} &= (\omega + \pi^*B)^{-1} \\
+    &= (\omega (1 + \omega^{-1}B))^{-1} \\
+    &= (1+ \omega^{-1}B)^{-1} \omega^{-1} \\
+    &= (1 - \omega^{-1}B + \omega^{-2}B^2 - \cdots) \omega^{-1} \\
+    &= \omega^{-1} - \omega^{-1}B \omega^{-1} + \omega^{-1}B\omega^{-1}B\omega^{-1} - \cdots.
+\end{split}
+\label{eq:omega-b-inverse}
+\end{equation}
+$$
+
+Remember $\omega: T \mapsto T^\*$ and $B: T \mapsto T^\*$ or $\frac{\partial}{\partial q^i} \mapsto B_{ij} \frac{\partial}{\partial q^j}$.
+
+So if we think of the seqence we have, $B \omega^{-1}B$, then $\frac{\partial}{\partial q^i} \mapsto B_{ij} \frac{\partial}{\partial q^j} \mapsto B_{ij}\frac{\partial}{\partial p_j} \mapsto 0$. So all the terms after $\omega^{-1}B\omega^{-1}$ in Equation \eqref{eq:omega-b-inverse} are $0$.
+
+So, the hamiltonian vector field changes to $\omega_B^{-1} = \omega^{-1} - \underbrace{\omega^{-1}B \omega^{-1}}_{\text{new magnetic force}}$. This new Hamiltonian vector field does not change the $q$'s but it does change the $p$'s.
+
+$$
+\begin{equation}
+\begin{split}
+    \omega_B^{-1} &: dq^i \mapsto \frac{\partial}{\partial p^i} \\
+    &: dp^i \mapsto -\frac{\partial}{\partial q^i} + B_{ij} \frac{\partial}{\partial p^j}
+\end{split}
+\end{equation}
+$$
+
+So, our solution changes to,
+
+$$
+\begin{equation}
+\begin{split}
+    \dot q = g^{-1}p &\rightarrow \dot q = g^{-1}p \\
+    \dot p = \frac{1}{2}\partial_k g^{ij}p_i p_j &\rightarrow \dot p = \frac{1}{2}\partial_k g^{ij}p_i p_j +p_jg^{ij}B_{ik}
+\end{split}
+\end{equation}
+$$
+
+these new solutions are the magnetic geodesics. Similar to earlier the acceleration $\nabla_{\dot{q}} \dot{q} = g^{-1} (\iota_{\dot{q}} B)$ is the inverse mass multiplied by the magnetic force. Again the $g$ acts as the mass.
+
+### Particle in $\mathbb{R}^2$
+
+As an example, consider a free particle in the configuration space $(\mathbb{R}^2, x, y) = X$. The cotangent space $T^\*X = \mathbb{R}^2 \times \mathbb{R}^2$ with co-ordinates $(x, y, p_x, p_y)$ with $B = dx \wedge dy$. For the Riemannian metric on $\mathbb{R}^2$ we have $g = dx^2 + dy^2$. So, the Hamiltonian is $H = \frac{1}{2} (p_x^2 + p_y^2)$.
+
+Now, we can consider magnetic deformation $\omega_B = dp_x \wedge dx + dp_y \wedge dy + b dx \wedge dy$.
+
+{% include image.html url="/assets/diff-geometry/geodesic-comparison-light.png" dark_url="/assets/diff-geometry/geodesic-comparison-dark.png" description="Comparing solutions to the geodesic equation with and without a magnetic field." %}
+
+## Incorporating Other Effects
+
+This mathematical model which we used to describe the motion is very interesting because it lets us easily incorporate many other physical phenomena like magnetic fields, and here, even relativity into the same mathematical framework. Let us see now how we can incorporate realtivity into this.
+
+We have $X$ the configuration space and the time as $\mathbb{R}$. We can make a new extended configuration space $(X \times \mathbb{R}, (x, t))$. From this, we can get the extended phase space,
+
+$$
+\begin{equation}
+    T^*(X \times \mathbb{R}) = \underbrace{T^*X}_{(x, p)} \times \underbrace{T^*\mathbb{R}}_{(s, t)}.
+\label{eq:extended-phase-space}
+\end{equation}
+$$
+
+We can interpret Equation \eqref{eq:extended-phase-space} as $p$ is the momentum in the configuration space (spatial momentum) and $s$ is the momentum in the time direction (timelike momentum).
+
+One of the things to note here is we cant just have a Riemannian metric on the extended phase space to govern the system, instead we have a **Lorentzian metric** on the extended phase space, $g_X - dt^2$ where $g_X$ is the Riemannian metric on the configuration space $X$ and $dt^2$ is the standard metric on $\mathbb{R}$. The signature of the metric is,
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+    -1 & 0 \\
+    0 & \mathbb{I}_{n \times n}
+\end{pmatrix}
+\end{equation*}
+$$
+
+which is a bilinear form at each event $(x, t)$.
+
+Just like we had earlier the Lorentzian metric determines a quadratic function on the extended phase space,
+
+$$
+\begin{equation}
+    f_{g_{\text{Lorentzian}}} = \underbrace{\frac{1}{2} g^{ij}(x)p_ip_j}_{\text{kinetic energy along spatial directions}} - \overbrace{\frac{1}{2} s^2}^{\text{kinetic energy along time direction}}.
+\end{equation}
+$$
+
+If we use $H = f_{g_{\text{Lorentzian}}}$ to generate flows we obtain the Lorentzian geodesics. The initial condition we have is $((x, t), (p,s))$, the norm $$\|p\|^2 - s^2 = -m^2$$ could be positive (space-like), negative (time-like), or zero (light-like). If you have read the popular book, "A Brief History of Time" by Hawking you might find a lot of this highly familiar. You can interpret this as flow in this way, again shamelessly copied from "A Brief History of Time".
+
+{% include image.html url="/assets/diff-geometry/light-cone-light.png" dark_url="/assets/diff-geometry/light-cone-dark.png" description="The light cone." %}
+
+Generally, given a state $(x, t), (p,s)$ with timelike momentum ( $\|p\|^2 - s^2 < 0$) we have the mass of the state be $m = \sqrt{-(\|p\|^2 - s^2)}$. It is very interesting that the only thing we need to do for incorporating relativity is enlarge the phase space by two, and use the Lorentzian metric which is still quadratic. But the Lorentzian metric is not positive defininite, so instead of having unit cospheres which are compact ({% include figref.html id="fig:cosphere" %}) they will look like hyperbloids and be non-compact.
+
+What this means is if $X=\mathbb{R}^3$, $g_X = dx^2 + dy^2 + dz^2$ then the system $(\hat{X} = \mathbb{R}^3 \times \mathbb{R}, g_{\text{Lorentzian}}=g_X - dt^2)$ has an enlarged group of symmetries including the famous Poincaré group (translation in space and time, rotations in space, and boosts or change in velocity). This would look like $SO(3, 1)\ltimes \mathbb{R}^4$ where $\ltimes$ is the semidirect product, these all preserve the Lorentzian metric.
 
 ## References and Footnotes
 
