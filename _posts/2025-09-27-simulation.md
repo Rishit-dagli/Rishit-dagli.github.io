@@ -1,6 +1,6 @@
 ---
 title: "Hopefully the Most Gentle Introduction to Simulation"
-date: 2025-09-18
+date: 2025-09-27
 excerpt: "An illustrated primer on physics-based simulation for graphics: mass-spring systems as a unifying idea, time integration (Euler, RK, backward/symplectic), and mass-spring models, and constraints."
 image: /assets/simulation/spring-mass-system-light.png
 tags: [optimization, machine-learning, graphics, simulation, mechanics]

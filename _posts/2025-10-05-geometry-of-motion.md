@@ -1,8 +1,8 @@
 ---
 title: "Geometry of Motion"
-date: 2025-10-03
+date: 2025-10-05
 excerpt: ""
-image: 
+image: /assets/diff-geometry/cosphere-bundle-light.png
 tags: [geometry, differential-geometry, mechanics]
 unlisted: true
 ---
@@ -89,28 +89,32 @@ where $\pi_*$ is the derivative of the projection map $\pi$. The derivative of $
 
 In coordinates, we have $u = \sum_{i=1}^n u^i \frac{\partial}{\partial q^i} + \sum_{i=1}^n p_i \frac{\partial}{\partial p_i}$ and $p = \sum_{i=1}^n p_i dq^i$ (a point in the cotangent space over $q$). This is the same as Equations \eqref{eq:tangent-vector} and \eqref{eq:cotangent-vector}, we write it in terms of basis and parameters. So,
 
+$$
 \begin{equation}
 \begin{split}
-    \Theta(u) &= p_i dq^i (u^j\frac{\partial}{\partial q^j} + u_j\frac{\partial}{\partial p_j}) \\\\\
-    &= p_i u^i  \\\\\
+    \Theta(u) &= p_i dq^i (u^j\frac{\partial}{\partial q^j} + u_j\frac{\partial}{\partial p_j}) \\
+    &= p_i u^i  \\
     &= p_idq^i
 \end{split}
 \label{eq:canonical-1-form}
 \end{equation}
+$$
 
 If we write $\Theta$ or in general any $1$-form can be written in a basis, $\Theta = a_i dq^i + b^j dp_j$. When we evaluate $\Theta$ on $u$, the $a_i$ terms would combine with the $u^i$ terms and the $b_j$ terms would combine with the $u_i$ terms which would give us Equation \eqref{eq:canonical-1-form} (the canonical $1$-form on $T^\*X$). Essentially, $a_i$ becomes $p_i$ and $b^j$ becomes $0$.
 
 Now, since the canonical $1$-form $\Theta \in \Omega^1(M)$ is differentiable we can obtain the $2$-form,
 
+$$
 \begin{equation}
 \begin{split}
-    \omega &= d\Theta \\\\\
-    &= d(p_i dq^i) \\\\\
-    &= dp_i \wedge dq^i \\\\\
+    \omega &= d\Theta \\
+    &= d(p_i dq^i) \\
+    &= dp_i \wedge dq^i \\
     &= \underbrace{dp_1 \wedge dq^1 + dp_2 \wedge dq^2 + \cdots + dp_n \wedge dq^n}_{\text{symplectic form on }M}.
 \end{split}
 \label{eq:symplectic-form}
 \end{equation}
+$$
 
 This is independent of the original choice of coordinates $q^i$. So if we do a coordinate change $\tilde{q}^i = \tilde{q}^i(q^1, \ldots, q^n)$ this would give us new $\tilde{p}_i$ which is canonically conjugate to $\tilde{q}^i$, the $\omega$ would still be the same just in coordinates $(\tilde{q}^i, \tilde{p}_i)$ for the same $M$.
 
@@ -140,15 +144,17 @@ This gives us some properties of $\omega$,<br><br>
 
 This means, we can use it to define a map that takes a tangent vector to a covector on the phase space, $\omega: TM \mapsto T^\*M$ or $\omega: u \mapsto \underbrace{\iota_u \omega}_{\text{interior product}} = \omega(u, \cdot)$. The $\cdot$ is a covector on the phase space. Since $\omega$ is non-degenerate, this map is an isomorphism.
 
+$$
 \begin{equation}
 \begin{split}
-    \omega:& TM \mapsto T^\*M \\\\\\
-    \omega:& u \mapsto \underbrace{\iota_u \omega}_{\text{interior product}} = \omega(u, \cdot) \\\\\\
-    \omega:& \frac{\partial}{\partial p_i} \mapsto \iota_{\frac{\partial}{\partial p_i}} (dp_j \wedge dq^j) = \left( \iota_{\frac{\partial}{\partial p_i}} dp_j \right) dq^j + (-1) dp_j \wedge \underbrace{(\iota_{\frac{\partial}{\partial p_i}} dq^j)}_0 = dq^i \\\\\\
-    \omega:& \frac{\partial}{\partial q^i} \mapsto -dp_i. \\\\\\ 
+    \omega:& TM \mapsto T^*M \\
+    \omega:& u \mapsto \underbrace{\iota_u \omega}_{\text{interior product}} = \omega(u, \cdot) \\
+    \omega:& \frac{\partial}{\partial p_i} \mapsto \iota_{\frac{\partial}{\partial p_i}} (dp_j \wedge dq^j) = \left( \iota_{\frac{\partial}{\partial p_i}} dp_j \right) dq^j + (-1) dp_j \wedge \underbrace{(\iota_{\frac{\partial}{\partial p_i}} dq^j)}_0 = dq^i \\
+    \omega:& \frac{\partial}{\partial q^i} \mapsto -dp_i. \\ 
 \end{split}
 \label{eq:omega-map}
 \end{equation}
+$$
 
 So the momentum vector gets sent to the derivative of the position vector. And the position vector gets sent to the negative derivative of the momentum vector. We essentially get to convert a tangent vector on phase space to a cotangent vector on phase space.
 
@@ -169,15 +175,17 @@ The Hamiltonian vector field $X_f$ is such that,
 
 2. **Differentiating the symplectic form in the direction of the vector field.**
 
+$$
 \begin{equation}
 \begin{split}
-    L_{X_f} \omega &= (d \iota_{X_f} + \iota_{X_f}d)\omega \\\\\
-    &= d \iota_{X_f} \omega \\\\\
-    &= d(\omega (-\omega^{-1}df, \cdot)) \\\\\
-    &= d (-df) \\\\\
+    L_{X_f} \omega &= (d \iota_{X_f} + \iota_{X_f}d)\omega \\
+    &= d \iota_{X_f} \omega \\
+    &= d(\omega (-\omega^{-1}df, \cdot)) \\
+    &= d (-df) \\
     &= 0,
 \end{split}
 \end{equation}
+$$
 
 Thus, $\omega$ is preserved, where $\mathcal{L}$ is the Lie derivative. The Hamiltonian vector field of a function $f$ is a symmetry of $(M, \omega , f)$. So, a Hamiltonian system consists of:
 
@@ -200,13 +208,15 @@ so we can take two functions $f$ and $g$ and one of these two functions determin
 
 The Poisson bracket, Equation \eqref{eq:poisson-bracket} satisfies the Leibniz rule,
 
+$$
 \begin{equation}
 \begin{split}
-    \underbrace{\lbrace f_1f_2, g\rbrace }_{\text{differentiate product with vector field from $g$}} &= X_g(f_1f_2) \\\\\
-    &= X_g(f_1)f_2 + f_1X_g(f_2) \\\\\
+    \underbrace{\lbrace f_1f_2, g\rbrace }_{\text{differentiate product with vector field from $g$}} &= X_g(f_1f_2) \\
+    &= X_g(f_1)f_2 + f_1X_g(f_2) \\
     &= \lbrace f_1, g\rbrace f_2 + f_1\lbrace f_2, g\rbrace 
 \end{split}
 \end{equation}
+$$
 
 <div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
 <b> (Poisson Algebra.)</b> A Poisson algebra is a commutative algebra $A$ together with a bracket $\lbrace ,\rbrace : A \times A \mapsto A$ that is,<br><br>
@@ -283,8 +293,8 @@ $$
     &= -\omega^{-1}(p_i \frac{\partial V^i}{\partial q^j} + V^i dp_i) \\
     &= -p_i \frac{\partial V^i}{\partial q^j}\frac{\partial}{\partial p_j} + V^i \frac{\partial}{\partial q^i} \\
 \end{split}
-\end{equation}
 \label{eq:hamiltonian-vector-field-degree-1}
+\end{equation}
 $$
 
 We now have a term that has a vertical component $\frac{\partial}{\partial p_j}$ for the Hamiltonian flow depending on the magnitude of the momentum. This guarantees that the Hamiltonian flow has, $\frac{d}{dt}q^i = V^i(q^1, \ldots, q^n)$ because there is only one term changing $q^i$, $V^i \frac{\partial}{\partial q^i}$. We can use the ODE $\frac{d}{dt}q^i = V^i(q^1, \ldots, q^n)$ to directly get the positions in this case.
@@ -626,7 +636,7 @@ Now, we can consider magnetic deformation $\omega_B = dp_x \wedge dx + dp_y \wed
 
 {% include image.html url="/assets/diff-geometry/geodesic-comparison-light.png" dark_url="/assets/diff-geometry/geodesic-comparison-dark.png" description="Comparing solutions to the geodesic equation with and without a magnetic field." %}
 
-## Incorporating Other Effects
+## Incorporating Relativistic Effects
 
 This mathematical model is very interesting because it lets us easily incorporate many other physical phenomena, such as magnetic fields and, here, even relativity, into the same framework. Let us see now how we can incorporate relativity into this.
 
