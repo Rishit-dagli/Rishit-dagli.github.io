@@ -1,14 +1,18 @@
 ---
 title: "Geometry of Motion"
 date: 2025-10-05
-excerpt: ""
+excerpt: "A geometric lens on simulation: cotangent bundles, Hamiltonian flows, and how geodesics, magnetism, and relativity emerge in one coherent framework."
 image: /assets/diff-geometry/cosphere-bundle-light.png
 tags: [geometry, differential-geometry, mechanics]
-unlisted: true
 ---
 
-A primer on differential geometry and dynamics.
-It includes many thoughts and musings on the geometry of motion.
+Some of this is actually what I learned in as well as notes from [a nice geometry course](https://www.math.toronto.edu/mgualt/courses/25-QM/) at the University of Toronto.
+
+Motion has a shape. This article looks at simulation through lens of geometry. If you prefer a computational entry point, skim my [simulation primer article]({% post_url 2025-09-27-simulation %}) first, it complements this view from the Lagrangian side. While this article and the simulation primer are closely related and many of the things I show here clearly fit into the Lagrangian view, the previous article talks about. I do recommend reading it first and then coming back here to get many aha moments of how well things fit in.
+
+This article is mainly focused on the Hamiltonian view to simulation. The Hamiltonian is a very powerful mathematical tool that can represent the main kind of simulations we care about i.e. motion of particles following Newtonian mechanics (I am very interested in this). However, the Hamiltonian can easily be extended to represent many other kinds of systems, magnetism, and relativity (we only talk a little bit about relativity at the end) all within the same framework! It might seem that it takes a while to buid the overall framework, but once we do it we can easily incorporate many other kinds of systems into the same framework. Another side effect is a lot of Hamiltonian mechanics falls out by taking insights from geometry and overall **most** of it is fairly intuitive.
+
+Unlike the [previous article]({% post_url 2025-09-27-simulation %}), this article requires some more pre-requisites. This article assumes some basic knowledge of differential geometry. But I think this shoudl not in general make the article less accessible because many of the things are popular terms [^fn-pre-req].
 
 ## Hamiltonian Dynamics
 
@@ -455,7 +459,7 @@ This system takes a force using the potential $V$ and the Riemannian metric $g$ 
 
 #### An Oscillator
 
-Let us consider a simple oscillator. At this stage, I highly recommend reading [my article on the simulation]({% post_url 2025-09-18-simulation %}) first where I talk about many of these kinds of systems at length.
+Let us consider a simple oscillator. At this stage, I highly recommend reading [my article on the simulation]({% post_url 2025-09-27-simulation %}) first where I talk about many of these kinds of systems at length.
 
 {% include image.html url="/assets/diff-geometry/spring-mass-system-light.png" dark_url="/assets/diff-geometry/spring-mass-system-dark.png" description="An example of a simple configuration." %}
 
@@ -478,7 +482,7 @@ $$
 \end{equation}
 $$
 
-The vector field would be a rotational vector field, something like the below image taken from [my article on the simulation]({% post_url 2025-09-18-simulation %}) (you should read this to directly connect this view to the Lagrangian view). Essentially, the vector field gets bigger as we move away from the origin.
+The vector field would be a rotational vector field, something like the below image taken from [my article on the simulation]({% post_url 2025-09-27-simulation %}) (you should read this to directly connect this view to the Lagrangian view). Essentially, the vector field gets bigger as we move away from the origin.
 
 {% include image.html url="/assets/simulation/phase_space-light.png" dark_url="/assets/simulation/phase_space-dark.png" description="The vector field for the oscillator." %}
 
@@ -509,7 +513,7 @@ $$
 \end{equation}
 $$
 
-Does this look familiar? It is exactly what we get from the [Lagrangian view]({% post_url 2025-09-18-simulation %})! Similarly, note that $A^2 = -k m^{-1} \mathbb{I} = -\omega^2 \mathbb{I}$ so we can scale $A$ such that it squares to the negative of the identity matrix or the operator behaves like a complex number $(\underbrace{\omega^{-1} A}_J)^2=-\mathbb{I}$. So,
+Does this look familiar? It is exactly what we get from the [Lagrangian view]({% post_url 2025-09-27-simulation %})! Similarly, note that $A^2 = -k m^{-1} \mathbb{I} = -\omega^2 \mathbb{I}$ so we can scale $A$ such that it squares to the negative of the identity matrix or the operator behaves like a complex number $(\underbrace{\omega^{-1} A}_J)^2=-\mathbb{I}$. So,
 
 $$
 \begin{equation}
@@ -674,13 +678,15 @@ $$
 
 If we use $H = f_{g_{\text{Lorentzian}}}$ to generate flows we obtain the Lorentzian geodesics. The initial condition we have is $((x, t), (p,s))$, the norm $$\|p\|^2 - s^2 = -m^2$$ may be positive (space-like), negative (time-like), or zero (light-like). If you have read the popular book, "A Brief History of Time" by Hawking, you might find much of this familiar. You can interpret this flow as follows, again shamelessly copied from "A Brief History of Time".
 
-{% include image.html url="/assets/diff-geometry/light-cone-light.png" dark_url="/assets/diff-geometry/light-cone-dark.png" description="The light cone." %}
+{% include image.html url="/assets/diff-geometry/light-cone-light.png" dark_url="/assets/diff-geometry/light-cone-dark.png" description="The light cone (shamelessly copied from A Brief History of Time)." %}
 
 Generally, given a state $(x, t), (p,s)$ with timelike momentum ( $\|p\|^2 - s^2 < 0$) we have the mass of the state to be $m = \sqrt{-(\|p\|^2 - s^2)}$. It is very interesting that the only thing we need to do for incorporating relativity is enlarge the phase space by two dimensions and use the Lorentzian metric which is still quadratic. But the Lorentzian metric is not positive definite, so instead of having unit cospheres which are compact ({% include figref.html id="fig:cosphere" %}) they will look like hyperboloids and be non-compact.
 
 What this means is if $X=\mathbb{R}^3$, $g_X = dx^2 + dy^2 + dz^2$ then the system $(\hat{X} = \mathbb{R}^3 \times \mathbb{R}, g_{\text{Lorentzian}}=g_X - dt^2)$ has an enlarged group of symmetries including the famous Poincaré group (translation in space and time, rotations in space, and boosts, or changes in velocity). This would look like $SO(3, 1)\ltimes \mathbb{R}^4$ where $\ltimes$ is the semidirect product; these all preserve the Lorentzian metric.
 
 ## References and Footnotes
+
+[^fn-pre-req]: Even if you think you are a bit fuzzy on some of them, you should be able to go through them as they appear in the article.
 
 [^fn-projection]: Why is there a projection? By how we built the state space, a point of $T^\*X$ is a pair $(q,p)$ with $q\in X$ and $p$ a covector at $q$. So there is a natural "forgetful" map that just returns the base point: $\pi(q,p)=q$. In the case $T^\*S^1\cong S^1\times\mathbb{R}$, this is simply the first coordinate.
 
