@@ -640,6 +640,55 @@ Now, we can consider magnetic deformation $\omega_B = dp_x \wedge dx + dp_y \wed
 
 {% include image.html url="/assets/diff-geometry/geodesic-comparison-light.png" dark_url="/assets/diff-geometry/geodesic-comparison-dark.png" description="Comparing solutions to the geodesic equation with and without a magnetic field." %}
 
+We can now try to find the Hamiltonain flow,
+
+$$
+\begin{equation}
+\begin{split}
+    X_H &= -\omega_B^{-1}(p_x dp_x + p_y dp_y) \\
+    &= -\left( p_x \left( -\frac{\partial}{\partial x} + b \frac{\partial}{\partial p_y} \right) + p_y \left( -\frac{\partial}{\partial y} - b \frac{\partial}{\partial p_x} \right) \right)
+\end{split}
+\end{equation}
+$$
+
+We can now write the solution as,
+
+$$
+\begin{equation}
+\begin{split}
+\begin{pmatrix}
+    \dot{x} \\ \dot{y}
+\end{pmatrix} &= \begin{pmatrix}
+    p_x \\ p_y
+\end{pmatrix} \\
+\begin{pmatrix}
+    \dot{p_x} \\ \dot{p_y}
+\end{pmatrix} &= \begin{pmatrix}
+    b p_y \\ -b p_x
+\end{pmatrix}\\
+\begin{pmatrix}
+    \ddot{x} \\ \ddot{y}
+\end{pmatrix} &= -b \underbrace{\begin{pmatrix}
+    0 & -1 \\ 1 & 0
+\end{pmatrix}}_{J} \begin{pmatrix}
+    \dot{x} \\ \dot{y}
+\end{pmatrix}
+\end{split}
+\end{equation}
+$$
+
+Just like earlier (Equation \eqref{eq:solution-oscillator}), we can write this as representing the rotation at angular speed $b$ for $\begin{pmatrix}\dot{x} \\\\ \dot{y}\end{pmatrix}$,
+
+$$
+\begin{equation}
+    \begin{pmatrix}
+        \dot{x} \\ \dot{y}
+    \end{pmatrix} = e^{-bJt} \begin{pmatrix}
+        \dot{x}(0) \\ \dot{y}(0)
+    \end{pmatrix}.
+\end{equation}
+$$
+
 ## Incorporating Relativistic Effects
 
 This mathematical model is very interesting because it lets us easily incorporate many other physical phenomena, such as magnetic fields and, here, even relativity, into the same framework. Let us see now how we can incorporate relativity into this.
