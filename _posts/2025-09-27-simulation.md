@@ -1,5 +1,5 @@
 ---
-title: "Hopefully the Most Gentle Introduction to Simulation"
+title: "Simulating Stuff"
 date: 2025-09-27
 excerpt: "An illustrated primer on physics-based simulation for graphics: mass-spring systems as a unifying idea, time integration (Euler, RK, backward/symplectic), and mass-spring models, and constraints."
 image: /assets/simulation/spring-mass-system-light.png
@@ -286,7 +286,7 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
 })();
 </script>
 
-A good portion of this content was originally the first set of notes for a course I took, called *Topics in Computer Graphics: Seminar on Physics Based Animation* mainly as an excercise to remind myself of the basic ideas when I was taking the course. I would credit a lot of this content to the course.
+Some things I learned for a course I took, called *Topics in Computer Graphics: Seminar on Physics Based Animation* mainly as an excercise to remind myself of the pre-requisites when I was taking the course. I would credit a lot of this content to the course.
 
 Arguably the primary areas of computer graphics are,
 
