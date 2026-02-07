@@ -418,7 +418,7 @@ $$
 \end{equation}
 $$
 
-To find the correct initialization variance it shoudl be straightforward to use a numerical root-finding method. We define the residual function:
+To find the correct initialization variance it should be straightforward to use a numerical root-finding method. We define the residual function:
 
 $$
 \begin{equation}
