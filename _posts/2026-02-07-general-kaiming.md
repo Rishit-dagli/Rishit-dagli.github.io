@@ -219,30 +219,128 @@ $$
 
 #### The Xavier Solution
 
-We now have two conflicting constraints: one for the forward pass and one for the backward pass. Standard Xavier initialization resolves this by taking the harmonic mean of the two variances (or implicitly averaging $n_{in}$ and $n_{out}$).
+We now have two candidate weight variances: one that preserves variance in the forward direction, and one that preserves variance in the backward direction. Following the same motivation as standard Xavier/Glorot initialization, we combine these two constraints into a single choice of $(\sigma_W^2)$ by taking the harmonic mean.
 
-Combining the constraints, we arrive at the general formula:
+From the forward-pass constraint \(Var(z)=\sigma_x^2\), we derived \eqref{eq:sigmaW_fwd}. From the backward-pass constraint (same derivation with \(n_{out}\) and gradient statistics), we derived \eqref{eq:sigmaW_bwd}.
+
+Let's start by defining the harmonic mean,
+
+$$
+\begin{equation}
+\sigma_W^2
+=
+\mathrm{HM}\!\left(\sigma_{W,\text{fwd}}^2,\sigma_{W,\text{bwd}}^2\right)
+=
+\frac{2}{\frac{1}{\sigma_{W,\text{fwd}}^2}+\frac{1}{\sigma_{W,\text{bwd}}^2}}.
+\label{eq:harmonic_mean_def}
+\end{equation}
+$$
+
+Now, make the reciprocals from Equation \eqref{eq:harmonic_mean_def} a bit easier to work with,
+
+$$
+\begin{equation}
+\frac{1}{\sigma_{W,\text{fwd}}^2}
+=
+\frac{n_{in}\left(1+\frac{\mu_x^2}{\sigma_x^2}\right)}{1-n_{in}\mu_W^2},
+\qquad
+\frac{1}{\sigma_{W,\text{bwd}}^2}
+=
+\frac{n_{out}\left(1+\frac{\mu_g^2}{\sigma_g^2}\right)}{1-n_{out}\mu_W^2}.
+\end{equation}
+$$
+
+Substitute Equation \eqref{eq:reciprocals} into \eqref{eq:harmonic_mean_def},
 
 $$
 \begin{equation}
 \boxed{
-    \sigma_W^2 = \frac{2 - \mu_W^2(n_{in} + n_{out})}{n_{in}\left(1 + \frac{\mu_x^2}{\sigma_x^2}\right) + n_{out}\left(1 + \frac{\mu_g^2}{\sigma_g^2}\right)}.
+\sigma_W^2
+=
+\frac{2}{
+\frac{n_{in}\left(1+\frac{\mu_x^2}{\sigma_x^2}\right)}{1-n_{in}\mu_W^2}
++
+\frac{n_{out}\left(1+\frac{\mu_g^2}{\sigma_g^2}\right)}{1-n_{out}\mu_W^2}
+}.
 }
+\label{eq:general_xavier_harmonic}
 \end{equation}
 $$
 
-To verify this generalizes the standard formula, simply substitute the standard assumptions: zero means ($\mu_W = \mu_x = \mu_g = 0$).
+Let's do a little bit of algebraic manipulation to make this look a bit nicer. We can multiply numerator and denominator by $\left(1-n_{in}\mu_W^2\right)\left(1-n_{out}\mu_W^2\right)$,
+
+$$
+\begin{equation}
+\boxed{
+\sigma_W^2
+=
+\frac{
+2\left(1-n_{in}\mu_W^2\right)\left(1-n_{out}\mu_W^2\right)
+}{
+n_{in}\left(1+\frac{\mu_x^2}{\sigma_x^2}\right)\left(1-n_{out}\mu_W^2\right)
++
+n_{out}\left(1+\frac{\mu_g^2}{\sigma_g^2}\right)\left(1-n_{in}\mu_W^2\right)
+}.
+}
+\label{eq:general_xavier_harmonic_rational}
+\end{equation}
+$$
+
+Let us try to plug in standard Xavier into Equation \eqref{eq:general_xavier_harmonic_rational} to see if we can recover Xavier. Under the standard Xavier assumptions,
+
+$$
+\mu_W = 0,\quad \mu_x = 0,\quad \mu_g = 0.
+$$
+
+Lets us work through the substitutions. First we have the ratio terms,
 
 $$
 \begin{equation}
 \begin{split}
-    \sigma_W^2 &= \frac{2 - 0(n_{in} + n_{out})}{n_{in}\left(1 + 0\right) + n_{out}\left(1 + 0\right)} \\
-    &= \frac{2}{n_{in} + n_{out}}
+1+\frac{\mu_x^2}{\sigma_x^2} &= 1+\frac{0}{\sigma_x^2} = 1,\\
+1+\frac{\mu_g^2}{\sigma_g^2} &= 1+\frac{0}{\sigma_g^2} = 1.
 \end{split}
+\label{eq:xavier_numerator_substitutions}
 \end{equation}
 $$
 
-This recovers the standard Xavier Initialization formula exactly.
+Then the denominators,
+
+$$
+\begin{equation}
+\begin{split}
+1-n_{in}\mu_W^2 &= 1-n_{in}\cdot 0^2 = 1,\\
+1-n_{out}\mu_W^2 &= 1-n_{out}\cdot 0^2 = 1.
+\end{split}
+\label{eq:xavier_substitutions}
+\end{equation}
+$$
+
+Now substitute Equation \eqref{eq:xavier_substitutions}\eqref{eq:xavier_numerator_substitutions} into \eqref{eq:general_xavier_harmonic},
+
+$$
+\begin{equation}
+\sigma_W^2
+=
+\frac{2}{
+\frac{n_{in}\cdot 1}{1}
++
+\frac{n_{out}\cdot 1}{1}
+}
+=
+\frac{2}{n_{in}+n_{out}}.
+\end{equation}
+$$
+
+This exactly recovers the usual Xavier/Glorot variance!
+
+{% include remark.html content="For $\sigma_{W,\text{fwd}}^2$ and $\sigma_{W,\text{bwd}}^2$ to be positive (and for the harmonic mean to be well-defined), we require,
+
+$$
+1-n_{in}\mu_W^2>0
+\quad\text{and}\quad
+1-n_{out}\mu_W^2>0.
+$$" %}
 
 ### General Kaiming / He Initialization
 
