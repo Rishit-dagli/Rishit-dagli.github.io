@@ -202,6 +202,7 @@ $$
     \sigma_W^2 &= \frac{\sigma_x^2 (1 - n_{in} \mu_W^2)}{n_{in} (\sigma_x^2 + \mu_x^2)} \\
     &= \frac{1 - n_{in} \mu_W^2}{n_{in} (1 + \frac{\mu_x^2}{\sigma_x^2})}
 \end{split}
+\label{eq:sigmaW_fwd}
 \end{equation}
 $$
 
@@ -214,6 +215,7 @@ Thus, we require:
 $$
 \begin{equation}
     \sigma_W^2 = \frac{1 - n_{out} \mu_W^2}{n_{out} (1 + \frac{\mu_g^2}{\sigma_g^2})}.
+    \label{eq:sigmaW_bwd}
 \end{equation}
 $$
 
@@ -221,7 +223,7 @@ $$
 
 We now have two candidate weight variances: one that preserves variance in the forward direction, and one that preserves variance in the backward direction. Following the same motivation as standard Xavier/Glorot initialization, we combine these two constraints into a single choice of $(\sigma_W^2)$ by taking the harmonic mean.
 
-From the forward-pass constraint \(Var(z)=\sigma_x^2\), we derived \eqref{eq:sigmaW_fwd}. From the backward-pass constraint (same derivation with \(n_{out}\) and gradient statistics), we derived \eqref{eq:sigmaW_bwd}.
+From the forward-pass constraint $Var(z)=\sigma_x^2$, we derived \eqref{eq:sigmaW_fwd}. From the backward-pass constraint (same derivation with $n_{out}$ and gradient statistics), we derived \eqref{eq:sigmaW_bwd}.
 
 Let's start by defining the harmonic mean,
 
