@@ -528,3 +528,5 @@ f(\sigma_W^2) = \sigma_W^2 - \frac{\frac{1}{n_{in} K(\alpha(\sigma_W^2))} - \mu_
 $$
 
 We can solve $f(\sigma_W^2) = 0$ using methods like Newton-Raphson.
+
+{% include bibtex.html %}
