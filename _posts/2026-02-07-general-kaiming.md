@@ -67,7 +67,7 @@ So we are relaxing the standard constraint where $\mu_x = 0$ and $\mu_W = 0$.
 
 ## A Less General Case
 
-Before tackling the full derivation with non-zero means, let's look at a "less general" case: the standard Kaiming Initialization. Here, we maintain the zero-mean assumption ($\mathbb{E}[x] = 0, \mathbb{E}[W] = 0$) but allow the input variance $\sigma_x^2$ to be arbitrary (not necessarily $1$).
+Before tackling the full derivation with non-zero means, let's look at a "less general" case. Here, we maintain the zero-mean assumption ($\mathbb{E}[x] = 0, \mathbb{E}[W] = 0$) but allow the input variance $\sigma_x^2$ to be arbitrary (not necessarily $1$).
 
 This is quite similar to the standard Kaiming derivation, but makes a small step towards the general case.
 
