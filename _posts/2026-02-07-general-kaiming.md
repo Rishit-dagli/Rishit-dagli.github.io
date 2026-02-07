@@ -247,6 +247,7 @@ $$
 \frac{1}{\sigma_{W,\text{bwd}}^2}
 =
 \frac{n_{out}\left(1+\frac{\mu_g^2}{\sigma_g^2}\right)}{1-n_{out}\mu_W^2}.
+\label{eq:reciprocals}
 \end{equation}
 $$
 
