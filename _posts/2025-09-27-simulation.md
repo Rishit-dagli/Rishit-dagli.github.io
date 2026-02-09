@@ -601,6 +601,8 @@ If we do this just right, we can cancel the exploding and damping. A property is
 
 ## Mass–Spring Systems in 3D
 
+Note: unlike the 1D case, our coordinates are now 3D.
+
 We can first get generalized coordinates and generalized velocity of the spring–mass system. Suppose there are two particles at <span style="color:#17becf">positions</span> $\color{#17becf}{x_0}$ and $\color{#17becf}{x_1}$ at the two ends of the spring,
 \begin{equation}
     \dot q = \begin{pmatrix}
