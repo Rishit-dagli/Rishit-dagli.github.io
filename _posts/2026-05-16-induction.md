@@ -1,14 +1,14 @@
 ---
 title: "What is Induction?"
 date: 2026-05-16
-excerpt: "I try to understand how finite evidence supports claims about unobserved cases through confirmation puzzles, probability spaces, Bayesian updating, chance, statistics, and learning in the limit."
+excerpt: "I try to understand how finite evidence supports claims about unobserved cases through confirmation puzzles, probability spaces, Bayesian updating, chance, statistics, and learning in the limit. Not to be confused with mathematical induction."
 image: /assets/induction/teaser.png
 tags: [philosophy]
 ---
 
 Some things I learned from and thought about while taking a philosophy course (my first one!) called *Probability and Inductive Logic*.
 
-Induction is the step that turns finite observations into claims about cases we have not observed, and this article is about why that step is so hard to justify. The data itself does not say how it should be continued, so to make a projection we have to add structure: a language for the hypotheses, a probability space, a class of allowed continuations, some notion of evidence, and some goal like probability raising, convergence, error control, or eventually learning the truth. Most of the article is really about pinning down where exactly that structure ends up sitting in each particular formalism.
+Induction (not to be confused with mathematical induction) is the step that turns finite observations into claims about cases we have not observed, and this article is about why that step is so hard to justify. The data itself does not say how it should be continued, so to make a projection we have to add structure: a language for the hypotheses, a probability space, a class of allowed continuations, some notion of evidence, and some goal like probability raising, convergence, error control, or eventually learning the truth. Most of the article is really about pinning down where exactly that structure ends up sitting in each particular formalism.
 
 The theme running through the article is that induction is a family of projection rules under chosen structure, and the interesting question is to see where the structure enters and what each formalism actually justifies. Most of these rules look very different from each other on the surface, but each one comes down to a choice of representation paired with a rule that turns the representation into a prediction. The hard part of induction is almost never the rule itself, it is the representation that the rule is defined over.
 
