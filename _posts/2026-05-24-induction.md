@@ -17,7 +17,9 @@ The theme running through is a family of projection rules under chosen structure
 The basic pattern is:
 
 $$
+\begin{equation}
 \text{some things I have observed} \quad \rightsquigarrow \quad \text{some things I have not observed}.
+\end{equation}
 $$
 
 For example, all observed ravens have been black, so the next raven will probably be black. Usually, a theory predicts an observation, the observation happens, and we say the theory has been confirmed. The question we want to answer is normative: we want to know when the inference from observed cases to unobserved cases may be made, and why.
@@ -41,7 +43,9 @@ Suppose $h$ is general relativity and $e$ is the proposition that Mercury has th
 But $h \wedge x$ also implies $e$ for any irrelevant $x$, so the same observation confirms
 
 $$
+\begin{equation}
 \text{general relativity} \wedge \text{there is life on Mars},
+\end{equation}
 $$
 
 even though the evidence has no apparent bearing on Mars. Disjunction gives the dual problem: if $h$ implies $e$, then $h$ implies $e \vee x$, so a true but irrelevant disjunction can appear to confirm a hypothesis as well. For example, "Toronto is a city or I am immortal if I am human" can become evidence for "all humans are immortal" if we read confirmation only through this bare hypothetico-deductive shape.
@@ -49,7 +53,9 @@ even though the evidence has no apparent bearing on Mars. Disjunction gives the 
 The trouble is that confirmation needs more than implication. It needs relevance, background, and some account of the alternatives we are comparing against. So confirmation is almost never a two-place relation between evidence and hypothesis but rather, for now, a three-place relation
 
 $$
+\begin{equation}
 e \text{ confirms } h \text{ given } b,
+\end{equation}
 $$
 
 where $b$ is the relevant background information. Clouds confirm rain only against meteorological background assumptions, a positive allergy test confirms the allergy only against assumptions about the test, and Mercury's perihelion confirms a theory only against assumptions about observation, calculation, auxiliary physics, and the absence of certain systematic errors.
@@ -65,13 +71,17 @@ A green apple is a non-black non-raven and therefore a positive instance of the 
 One response is to accept the conclusion as stated and treat the confirmation as extremely weak: a green apple does confirm the raven hypothesis, but much less than a black raven does. This is really a limitation of purely qualitative confirmation, since if the only question is
 
 $$
+\begin{equation}
 \text{does }e\text{ confirm }h?
+\end{equation}
 $$
 
 the answer can hide important differences, while if we ask the quantitative question
 
 $$
+\begin{equation}
 \text{how much does }e\text{ confirm }h?
+\end{equation}
 $$
 
 the result is much easier to interpret. A black raven is much more diagnostic than a green apple, because given any plausible background there are vastly more non-black non-ravens than ravens, so seeing one more green apple barely moves the probability at all.
@@ -80,9 +90,11 @@ We can see this in a rough likelihood comparison. Suppose there are $N_R$ ravens
 while under $\neg h$ it has likelihood $P(B\mid R,\neg h)=1-\frac{k}{N_R}$. The likelihood ratio is therefore
 
 $$
+\begin{equation}
 \frac{P(B\mid R,h)}{P(B\mid R,\neg h)}
 =
 \frac{1}{1-k/N_R}.
+\end{equation}
 $$
 
 Now compare this to sampling a non-black object and seeing that it is not a raven. Under $h$, every non-black object is a non-raven: $P(\neg R\mid \neg B,h)=1$. Under $\neg h$, only the $k$ non-black ravens spoil this: $P(\neg R\mid \neg B,\neg h)=1-\frac{k}{N_{\neg B}}$.
@@ -97,13 +109,17 @@ Falsification seems at first to avoid the problem entirely. If $h \to e$ and we 
 But actual tests almost never look like $h \to e$. They usually look more like
 
 $$
+\begin{equation}
 h \wedge a_1 \wedge a_2 \wedge \cdots \wedge a_n \to e,
+\end{equation}
 $$
 
 where the $a_i$ are auxiliary assumptions, measurement assumptions, background theory, assumptions about the experimental setup, and so on. When $\neg e$ happens, all deductive logic actually gives us is
 
 $$
+\begin{equation}
 \neg(h \wedge a_1 \wedge a_2 \wedge \cdots \wedge a_n),
+\end{equation}
 $$
 
 i.e. something in the conjunction failed, but the rule does not tell us which conjunct to blame. The failure could lie in the main hypothesis, in an auxiliary theory, in an instrument, in the experimental setup, or even in the derivation itself, and deciding which assumption to discard requires the kind of judgment that modus tollens does not supply on its own. The actual job of deciding what has been falsified is not done by the logical rule.
@@ -204,8 +220,10 @@ There are infinitely many functions $$f$$ such that $$f(x_i)=y_i$$ for every obs
 If the only constraint is interpolation, the data do not determine what $$f$$ should do at a new point $$x_{n+1}$$. We need a hypothesis class $$\mathcal H=\{h:X\to Y\}$$, and usually some preference inside that class, for example
 
 $$
+\begin{equation}
 \hat h=\arg\min_{h\in\mathcal H}
 \sum_{i=1}^n \ell(h(x_i),y_i)+\lambda\Omega(h).
+\end{equation}
 $$
 
 The hypothesis class $$\mathcal H$$, the loss $$\ell$$, and the regularizer $$\Omega$$ together do exactly the work that "projectibility" does in the grue example: they say which continuations are even allowed, and among those which ones are preferred. A polynomial interpolant, a kernel method with a small RKHS norm, a decision tree of bounded depth, and a convolutional neural network can all fit the observed data exactly and disagree on almost everything else, and the difference between them does not live in the finite data but it lives in the representation and inductive bias each one carries.
@@ -240,17 +258,17 @@ Then a belief function $$b:\{A_1,\ldots,A_n\}\to\mathbb{R}$$ is not accuracy-dom
 
 *(Non-probabilistic $$\Rightarrow$$ dominated.)* Suppose $$b\notin\Delta$$, and let $$b^*=\operatorname{proj}_\Delta(b)$$ be the Euclidean projection of $$b$$ onto $$\Delta$$. Since $$\Delta$$ is closed and convex and $$b\notin\Delta$$, we have $$b^*\neq b$$. The projection property gives $$(b-b^*)^\top(p-b^*)\leq 0$$ for every $$p\in\Delta$$. Because each truth valuation $$e_k$$ lies in $$\Delta$$, setting $$p=e_k$$ yields $$(b-b^*)^\top(b^*-e_k)\geq 0$$, and so
 
-$$\|b-e_k\|^2=\underbrace{\|b-b^*\|^2}_{>0}+2\underbrace{(b-b^*)^\top(b^*-e_k)}_{\geq 0}+\|b^*-e_k\|^2>\|b^*-e_k\|^2.$$
+$$ \begin{equation} \|b-e_k\|^2=\underbrace{\|b-b^*\|^2}_{>0}+2\underbrace{(b-b^*)^\top(b^*-e_k)}_{\geq 0}+\|b^*-e_k\|^2>\|b^*-e_k\|^2. \end{equation} $$
 
 Therefore $$I(b,w_k)>I(b^*,w_k)$$ for every world $$w_k$$, and $$b^*\in\Delta$$ strictly dominates $$b$$.
 
 *(Probabilistic $$\Rightarrow$$ not dominated.)* Suppose $$b\in\Delta$$ and $$I(b',w_k)\leq I(b,w_k)$$ for all $$k$$. Using $$I(b,w_k)=\frac{1}{n}(\|b\|^2+1-2b_k)$$, each inequality rearranges to
 
-$$b'_k\geq b_k+c,\qquad c=\frac{\|b'\|^2-\|b\|^2}{2}.$$
+$$ \begin{equation} b'_k\geq b_k+c,\qquad c=\frac{\|b'\|^2-\|b\|^2}{2}. \end{equation} $$
 
 Write $$b'_k=b_k+c+r_k$$ with $$r_k\geq 0$$. If $$b'\in\Delta$$, summing over $$k$$ gives $$1\geq 1+nc$$, so $$c\leq 0$$. Expanding $$\|b'\|^2$$ and substituting $$\|b'\|^2=\|b\|^2+2c$$ forces
 
-$$2\sum_k b_k r_k+\sum_k(c+r_k)^2=0.$$
+$$ \begin{equation} 2\sum_k b_k r_k+\sum_k(c+r_k)^2=0. \end{equation} $$
 
 Both terms are non-negative, so $$(c+r_k)^2=0$$ for every $$k$$, giving $$r_k=-c$$ and therefore $$b'_k=b_k$$. No other probabilistic belief can even weakly dominate $$b$$. Any non-probabilistic competitor $$b''\notin\Delta$$ is itself strictly dominated by $$\operatorname{proj}_\Delta(b'')$$, so it cannot serve as a dominator either." %}
 
@@ -286,7 +304,9 @@ We might be tempted to describe this as zooming in on the $E$-worlds, but the ev
 If we move away from strict conditionalization, we can handle cases where experience changes probabilities without making us certain of one proposition. Suppose $\{E_1,\ldots,E_n\}$ is the most fine-grained partition directly affected by the experience. Then:
 
 $$
+\begin{equation}
 P^*(H)=\sum_i P(H\mid E_i)P^*(E_i).
+\end{equation}
 $$
 
 The conditional probabilities inside the cells are held fixed; only the weights of the cells themselves change. This treats evidence as more flexible than learning a single proposition with full certainty, which fits how perception, testimony, measurement, memory, and inference usually behave: each of them shifts probabilities without producing certainty about any one cell. As before, the formula does not pick its own partition for us; we still have to say which propositions were directly affected by the experience, and the update rule is exact only once the evidential event has been described at the right level of grain.
