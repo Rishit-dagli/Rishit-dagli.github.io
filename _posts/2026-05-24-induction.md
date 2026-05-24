@@ -417,8 +417,8 @@ After working through all of these arguments, I have come around to thinking tha
 
 It also seems interesting that evidence is always evidence under a description. The same object can be a black raven, a non-white bird, a non-green non-apple, or a grue emerald, the same sequence of bits can have very different significance under different stopping rules, and the same frequency can either matter or fail to matter depending on which reference class we decide to use. To say what an inductive inference is, we have to say what structure is being projected under, and to defend an inductive inference, we end up having to defend that choice of structure as much as the rule we run on top of it.
 
+{% include bibtex.html %}
+
 ## References
 
 [^joyce1998nonpragmatic]: Joyce, J. M. (1998). A nonpragmatic vindication of probabilism. Philosophy of Science, 65(4), 575–603.
-
-{% include bibtex.html %}
