@@ -199,11 +199,16 @@ The riddle therefore changes the question from "how many positive instances are 
 
 ### Inductive Bias and Model Classes
 
-A similar pattern appears in learning algorithms. Suppose we observe finitely many input-output pairs $D=\{(x_i,y_i)\}_{i=1}^n$.
-There are infinitely many functions $f$ such that $f(x_i)=y_i$ for every observed point.
-If the only constraint is interpolation, the data do not determine what $f$ should do at a new point $x_{n+1}$. We need a hypothesis class $\mathcal H=\{h:X\to Y\}$ and usually some preference inside that class $\hat h=\arg\min_{h\in\mathcal H}\sum_{i=1}^n \ell(h(x_i),y_i)+\lambda\Omega(h)$.
+A similar pattern appears in learning algorithms. Suppose we observe finitely many input-output pairs $$D=\{(x_i,y_i)\}_{i=1}^n$$.
+There are infinitely many functions $$f$$ such that $$f(x_i)=y_i$$ for every observed point $$i$$.
+If the only constraint is interpolation, the data do not determine what $$f$$ should do at a new point $$x_{n+1}$$. We need a hypothesis class $$\mathcal H=\{h:X\to Y\}$$, and usually some preference inside that class, for example
 
-The hypothesis class $\mathcal H$, the loss $\ell$, and the regularizer $\Omega$ together do exactly the work that "projectibility" does in the grue example: they say which continuations are even allowed, and among those which ones are preferred. A polynomial interpolant, a kernel method with a small RKHS norm, a decision tree of bounded depth, and a convolutional neural network can all fit the observed data exactly and disagree on almost everything else, and the difference between them does not live in the finite data but it lives in the representation and inductive bias each one carries.
+$$
+\hat h=\arg\min_{h\in\mathcal H}
+\sum_{i=1}^n \ell(h(x_i),y_i)+\lambda\Omega(h).
+$$
+
+The hypothesis class $$\mathcal H$$, the loss $$\ell$$, and the regularizer $$\Omega$$ together do exactly the work that "projectibility" does in the grue example: they say which continuations are even allowed, and among those which ones are preferred. A polynomial interpolant, a kernel method with a small RKHS norm, a decision tree of bounded depth, and a convolutional neural network can all fit the observed data exactly and disagree on almost everything else, and the difference between them does not live in the finite data but it lives in the representation and inductive bias each one carries.
 
 Thus the problem of induction is close (not identical) to generalization. Finite training error is a statement about observed samples. Generalization requires assumptions about the data-generating process, the hypothesis class, the sampling procedure, or the algorithm. It also seems different frameworks formalize different ways in which a continuation is allowed to count as natural.
 
@@ -220,36 +225,34 @@ The argument supports coherence, but it is a bit limiting since betting behavior
 
 Let us take a more direct epistemic route. A full belief is accurate when it is true, and a partial belief is accurate to the extent that it is close to the truth value of the proposition: $1$ if $A$ is true and $0$ if it is false, so a credence $b(A)$ is inaccurate insofar as it sits far from that truth value.
 
-For a finite partition $\{A_1,\ldots,A_n\}$, the Brier score is one natural measure: $I(b,w)=\frac{1}{n}\sum_i (b(A_i)-w(A_i))^2$. A belief function is accuracy dominated if there is another belief function that is at least as accurate in every possible world and more accurate in at least one. With the accuracy domninance theorem, we can show, under certain assumptions about inaccuracy,
-the non-dominated belief functions are exactly the 
-probabilistic ones
+For a finite partition $$\{A_1,\ldots,A_n\}$$, the Brier score is one natural measure: $$I(b,w)=\frac{1}{n}\sum_i (b(A_i)-w(A_i))^2$$. A belief function is accuracy-dominated if there is another belief function that is at least as accurate in every possible world and more accurate in at least one. The Accuracy Dominance Theorem[^joyce1998nonpragmatic] shows that, under mild assumptions on the inaccuracy measure, the non-dominated belief functions are exactly the probabilistic ones.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;" markdown="1">
-**(Accuracy Dominance Theorem [^joyce1998nonpragmatic]).** Let $\{A_1,\ldots,A_n\}$ be a finite partition with worlds $w_1,\ldots,w_n$, where $w_k$ is the world in which $A_k$ holds. Write $v_{w_k} = e_k$ for the truth valuation in world $w_k$, i.e., the vector with $1$ in position $k$ and $0$ elsewhere. Let $I(b,w)$ be an inaccuracy measure satisfying:
+{% include theorem_proof.html
+  label="thm:accuracy-dominance"
+  name="Accuracy Dominance"
+  content="Let $$\{A_1,\ldots,A_n\}$$ be a finite partition with worlds $$w_1,\ldots,w_n$$, where $$w_k$$ is the world in which $$A_k$$ holds. Write $$v_{w_k} = e_k$$ for the truth valuation in world $$w_k$$, i.e., the vector with $$1$$ in position $$k$$ and $$0$$ elsewhere. Let $$I(b,w)$$ be an inaccuracy measure satisfying:
 
-1. Truth-directedness. For each world $w$, $I(b,w)$ is uniquely minimized at the truth valuation $b = v_w$.
-2. Continuity. $I(b,w)$ is continuous in $b$.
+1. *Truth-directedness.* For each world $$w$$, $$I(b,w)$$ is uniquely minimized at the truth valuation $$b = v_w$$.
+2. *Continuity.* $$I(b,w)$$ is continuous in $$b$$.
 
-Then a belief function $b:\{A_1,\ldots,A_n\}\to\mathbb{R}$ is not accuracy-dominated if and only if $b$ is a probability function, i.e., $b(A_i)\geq 0$ for all $i$ and $\sum_i b(A_i)=1$.
+Then a belief function $$b:\{A_1,\ldots,A_n\}\to\mathbb{R}$$ is not accuracy-dominated if and only if $$b$$ is a probability function, i.e., $$b(A_i)\geq 0$$ for all $$i$$ and $$\sum_i b(A_i)=1$$."
+  proof="**(Proof Sketch.)** Write $$b_i$$ for $$b(A_i)$$. The probability simplex is $$\Delta=\{b\in[0,1]^n:\sum_i b_i=1\}$$, and for the Brier score, $$I(b,w_k)=\frac{1}{n}\|b-e_k\|^2$$.
 
-**Proof sketch (Brier score).** Write $b_i$ for $b(A_i)$. The probability simplex is $\Delta=\{b\in[0,1]^n:\sum_i b_i=1\}$, and for the Brier score, $I(b,w_k)=\frac{1}{n}\|b-e_k\|^2$.
-
-(Non-probabilistic $\Rightarrow$ dominated.) Suppose $b\notin\Delta$, and let $b^*=\operatorname{proj}_\Delta(b)$ be the Euclidean projection of $b$ onto $\Delta$. Since $\Delta$ is closed and convex and $b\notin\Delta$, we have $b^*\neq b$. The projection property gives $(b-b^*)^\top(p-b^*)\leq 0$ for every $p\in\Delta$. Because each truth valuation $e_k$ lies in $\Delta$, setting $p=e_k$ yields $(b-b^*)^\top(b^*-e_k)\geq 0$, and so
+*(Non-probabilistic $$\Rightarrow$$ dominated.)* Suppose $$b\notin\Delta$$, and let $$b^*=\operatorname{proj}_\Delta(b)$$ be the Euclidean projection of $$b$$ onto $$\Delta$$. Since $$\Delta$$ is closed and convex and $$b\notin\Delta$$, we have $$b^*\neq b$$. The projection property gives $$(b-b^*)^\top(p-b^*)\leq 0$$ for every $$p\in\Delta$$. Because each truth valuation $$e_k$$ lies in $$\Delta$$, setting $$p=e_k$$ yields $$(b-b^*)^\top(b^*-e_k)\geq 0$$, and so
 
 $$\|b-e_k\|^2=\underbrace{\|b-b^*\|^2}_{>0}+2\underbrace{(b-b^*)^\top(b^*-e_k)}_{\geq 0}+\|b^*-e_k\|^2>\|b^*-e_k\|^2.$$
 
-Therefore $I(b,w_k)>I(b^*,w_k)$ for every world $w_k$, and $b^*\in\Delta$ strictly dominates $b$.
+Therefore $$I(b,w_k)>I(b^*,w_k)$$ for every world $$w_k$$, and $$b^*\in\Delta$$ strictly dominates $$b$$.
 
-(Probabilistic $\Rightarrow$ not dominated.) Suppose $b\in\Delta$ and $I(b',w_k)\leq I(b,w_k)$ for all $k$. Using $I(b,w_k)=\frac{1}{n}(\|b\|^2+1-2b_k)$, each inequality rearranges to
+*(Probabilistic $$\Rightarrow$$ not dominated.)* Suppose $$b\in\Delta$$ and $$I(b',w_k)\leq I(b,w_k)$$ for all $$k$$. Using $$I(b,w_k)=\frac{1}{n}(\|b\|^2+1-2b_k)$$, each inequality rearranges to
 
 $$b'_k\geq b_k+c,\qquad c=\frac{\|b'\|^2-\|b\|^2}{2}.$$
 
-Write $b'_k=b_k+c+r_k$ with $r_k\geq 0$. If $b'\in\Delta$, summing over $k$ gives $1\geq 1+nc$, so $c\leq 0$. Expanding $\|b'\|^2$ and substituting $\|b'\|^2=\|b\|^2+2c$ forces
+Write $$b'_k=b_k+c+r_k$$ with $$r_k\geq 0$$. If $$b'\in\Delta$$, summing over $$k$$ gives $$1\geq 1+nc$$, so $$c\leq 0$$. Expanding $$\|b'\|^2$$ and substituting $$\|b'\|^2=\|b\|^2+2c$$ forces
 
 $$2\sum_k b_k r_k+\sum_k(c+r_k)^2=0.$$
 
-Both terms are non-negative, so $(c+r_k)^2=0$ for every $k$, giving $r_k=-c$ and therefore $b'_k=b_k$. No other probabilistic belief can even weakly dominate $b$. Any non-probabilistic competitor $b''\notin\Delta$ is itself strictly dominated by $\operatorname{proj}_\Delta(b'')$, so it cannot serve as a dominator either.
-</div>
+Both terms are non-negative, so $$(c+r_k)^2=0$$ for every $$k$$, giving $$r_k=-c$$ and therefore $$b'_k=b_k$$. No other probabilistic belief can even weakly dominate $$b$$. Any non-probabilistic competitor $$b''\notin\Delta$$ is itself strictly dominated by $$\operatorname{proj}_\Delta(b'')$$, so it cannot serve as a dominator either." %}
 
 This is quite different from the earlier setup, since the claim is that incoherent credences are avoidably worse as estimates of the truth, not that they get punished by a clever bettor. But even taken at its strongest, the accuracy argument still gives only coherence and not correctness: a probabilistic credence function can be coherent and badly calibrated, coherent and based on a terrible prior, or coherent and defined over the wrong partition, so the probability axioms constrain belief without choosing the right way to carve up the world for it to range over.
 
@@ -343,9 +346,10 @@ If a coin lands heads twice in three tosses, conjecture that the limiting relati
 At first this rule looks weak, because the conjecture is plainly not guaranteed to be correct at any finite time. The justification is of a different kind: the straight rule converges to the true limiting frequency iff some rule does.
 If a limiting relative frequency exists, the observed frequency converges to it, and if no such limit exists then there is nothing for any rule of this kind to converge to in the first place.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
-<b>(Convergence Theorem).</b> Fix a sequence of event tokens and an event type $A$. If the limiting relative frequency of $A$ exists, then the straight rule converges to that limit. If no limiting relative frequency exists, no rule can converge to the correct limiting relative frequency, because there is no such frequency.
-</div>
+{% include theorem.html
+  label="thm:convergence"
+  name="Convergence"
+  content="Fix a sequence of event tokens and an event type $$A$$. If the limiting relative frequency of $$A$$ exists, then the straight rule converges to that limit. If no limiting relative frequency exists, no rule can converge to the correct limiting relative frequency, because there is no such frequency." %}
 
 So the straight rule is vindicated with respect to convergence rather than immediate truth, and the response has a quite different shape from the usual one: it is a deductive argument that a certain inductive rule serves a weaker cognitive end, with an instrumental conclusion,
 If you want convergence when convergence is possible, use this kind of rule.

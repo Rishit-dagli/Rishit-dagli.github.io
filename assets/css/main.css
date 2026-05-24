@@ -85,6 +85,7 @@
   --accent-primary: #001174;
   --accent-secondary: #3559fc;
   --border-color: #e0e0e0;
+  --theorem-border: #000000;
   --code-bg: #f5f5f5;
   --shadow: rgba(0, 0, 0, 0.1);
   
@@ -101,6 +102,7 @@
   --accent-primary: #3559fc;
   --accent-secondary: #4da6ff;
   --border-color: #333333;
+  --theorem-border: #ffffff;
   --code-bg: #1e1e1e;
   --shadow: rgba(255, 255, 255, 0.05);
 }
@@ -901,6 +903,12 @@ th {
   --utterances-color-text-primary: var(--text-primary);
   --utterances-color-text-secondary: var(--text-secondary);
 } 
+/* Theorem and proof boxes */
+.theorem-box ol,
+.theorem-box ul {
+  padding-left: 2em;
+}
+
 /* Collapsible Table of Contents */
 .collapsible-toc {
   margin: 2rem 0;
