@@ -909,6 +909,102 @@ th {
   padding-left: 2em;
 }
 
+/* ─── Post layout: sidebar TOC fixed in the left margin ──────────────────── */
+
+.sidebar-toc {
+  display: none; /* hidden on mobile / narrow screens */
+}
+
+@media (min-width: 1200px) {
+  .sidebar-toc {
+    display: block;
+    position: fixed;
+    top: 5rem;
+    max-height: calc(100vh - 6rem);
+    left: max(8px, calc(50vw - 640px));
+    width: 160px;
+    overflow-y: auto;
+    overflow-x: hidden;          /* no horizontal scroll */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+  }
+
+  /* Inline collapsible TOC is redundant when the sidebar is visible */
+  .post-layout .collapsible-toc {
+    display: none;
+  }
+}
+
+/* Sidebar title */
+.sidebar-toc-title {
+  font-family: var(--header-font);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+/* Tighter link styles inside the sidebar */
+.sidebar-toc .toc-list {
+  padding: 0;
+  font-size: 0.79rem;
+  line-height: 1.45;
+}
+
+.sidebar-toc .toc-list li {
+  margin: 0.18rem 0;
+}
+
+.sidebar-toc .toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+  padding: 0.1rem 0;
+  transition: color 0.15s;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.sidebar-toc .toc-list a:hover {
+  color: var(--accent-primary);
+}
+
+.sidebar-toc .toc-list a.toc-active {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Active indicator: color the tree-connector itself for nested items,
+   and add a left bar only for top-level active items */
+.sidebar-toc .toc-list > li > a.toc-active {
+  border-left: 2px solid var(--accent-primary);
+  padding-left: 0.3rem;
+  margin-left: -0.3rem;
+}
+
+
+/* All nested lists hidden by default at every depth */
+.sidebar-toc .toc-list li > ul {
+  display: none;
+}
+
+/* JS marks every ancestor <li> of the active heading as this class,
+   which recursively reveals the correct sub-lists at every level */
+.sidebar-toc .toc-list li.toc-section-active > ul {
+  display: block;
+}
+
+/* Tree-style nesting: vertical bar + short connector, no wide indent */
+.sidebar-toc .toc-list ul {
+  padding-left: 0.3rem;  /* sole source of per-level indentation */
+  margin: 0.1rem 0 0 0;  /* no left margin — prevents unequal accumulation */
+  border-left: 1px solid var(--border-color);
+}
+/* ─── End sidebar TOC ─────────────────────────────────────────────────────── */
+
 /* Collapsible Table of Contents */
 .collapsible-toc {
   margin: 2rem 0;

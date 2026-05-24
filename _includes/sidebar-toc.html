@@ -1,0 +1,16 @@
+{%- comment -%}
+  Sidebar Table of Contents
+  Visible only on wide screens (≥1100px). Hidden on mobile via CSS.
+  Usage: {% include sidebar-toc.html html=content %}
+{%- endcomment -%}
+
+{%- capture _sidebar_toc -%}
+  {%- include toc.html html=include.html h_min=2 h_max=6 class="toc-list" -%}
+{%- endcapture -%}
+
+{%- if _sidebar_toc != blank -%}
+<aside class="sidebar-toc" aria-label="On this page">
+  <p class="sidebar-toc-title">On this page</p>
+  <nav>{{ _sidebar_toc }}</nav>
+</aside>
+{%- endif -%}
