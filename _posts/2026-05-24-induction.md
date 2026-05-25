@@ -1,5 +1,5 @@
 ---
-title: "How to Generate Hypothesis from Data?"
+title: "How to Generate Hypotheses from Data?"
 date: 2026-05-24
 excerpt: "I try to understand how finite evidence supports claims about unobserved cases through confirmation puzzles, probability spaces, Bayesian updating, chance, statistics, and learning in the limit. Not to be confused with mathematical induction."
 image: /assets/induction/teaser.png
