@@ -8,7 +8,7 @@ image: /assets/diff-geometry/cosphere-bundle-light.png
 tags: [geometry, differential-geometry, mechanics]
 ---
 
-Some things I learned from [a nice geometry course](https://www.math.toronto.edu/mgualt/courses/25-QM/) and some things I tried at the University of Toronto.
+Some things I learned from a nice geometry course and some things I tried at the University of Toronto.
 
 Motion has a shape. This article looks at simulation through lens of geometry. If you prefer a computational entry point, skim my [simulation primer article]({% post_url 2025-09-27-simulation %}) first, it complements this view from the Lagrangian side. This article and the simulation primer are closely related, and many of the things I show here clearly fit into the Lagrangian view, the previous article talks about the Lagrangian view. I do recommend reading it first and then coming back here to get many aha moments of just how well things fit in.
 
