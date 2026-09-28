@@ -54,9 +54,21 @@
     });
   }
 
+  function normalizeFootnoteRoles() {
+    document.querySelectorAll('sup[role="doc-noteref"]').forEach((reference) => {
+      reference.removeAttribute('role');
+      reference.querySelector('a[href]')?.setAttribute('role', 'doc-noteref');
+    });
+
+    document.querySelectorAll('[role="doc-endnote"]').forEach((footnote) => {
+      footnote.removeAttribute('role');
+    });
+  }
+
   function initializeAccessibilityEnhancements() {
     updateScrollableCodeBlocks();
     makeMathReferencesAccessible();
+    normalizeFootnoteRoles();
 
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
