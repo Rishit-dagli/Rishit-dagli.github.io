@@ -838,6 +838,23 @@ th {
   }
 }
 
+@media (max-width: 540px) {
+  .site-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .site-title {
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+}
+
 /* Print styles - SIGGRAPH paper style */
 @media print {
   body {
