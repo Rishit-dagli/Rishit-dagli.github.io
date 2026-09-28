@@ -83,6 +83,10 @@
   /* Layout */
   --main-width: 1000px;
   --content-width: 800px;
+  --margin-gap: 2.4rem;
+  --margin-edge: 1.6rem;
+  --sidenote-width: clamp(220px, 17vw, 300px);
+  --toc-width: 200px;
   
   /* Light theme colors - SIGGRAPH inspired */
   --bg-primary: #f9f9f9;
@@ -130,6 +134,7 @@
 html {
   font-size: var(--font-size-base);
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem; /* clears the sticky .site-header */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -230,6 +235,10 @@ p {
   hyphens: auto;
 }
 
+.post-content div > p:last-child {
+  margin-bottom: 0;
+}
+
 /* Links */
 a {
   color: var(--accent-primary);
@@ -253,6 +262,7 @@ code {
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-weight: 400;
+  overflow-wrap: break-word;
 }
 
 pre {
@@ -290,7 +300,7 @@ pre code {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  background-color: rgba(var(--bg-secondary), 0.9);
+  background-color: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
 }
 
 .site-title {
@@ -492,6 +502,13 @@ article img {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Numbered equations inside inline math still render full-width */
+.post-content mjx-container:not([display="true"]):has(mjx-mlabeledtr) {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 mjx-assistive-mml {
@@ -947,6 +964,17 @@ a.tag:focus-visible {
   }
 }
 
+/* A pinned header would cover too much of a phone screen */
+@media (max-width: 540px), (max-height: 540px) {
+  html {
+    scroll-padding-top: 1rem;
+  }
+
+  .site-header {
+    position: static;
+  }
+}
+
 /* Print styles - SIGGRAPH paper style */
 @media print {
   body {
@@ -1018,20 +1046,42 @@ a.tag:focus-visible {
   padding-left: 2em;
 }
 
-/* ─── Post layout: sidebar TOC fixed in the left margin ──────────────────── */
+/* ─── Post layout: sidebar TOC in the left margin, sidenotes in the right ── */
+
+.post-layout {
+  --post-width: var(--content-width);
+}
 
 .sidebar-toc {
   display: none; /* hidden on mobile / narrow screens */
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
+  /* Narrow the text column just enough to fit sidenotes beside it */
+  .post-layout.has-sidenotes {
+    --post-width: min(
+      var(--content-width),
+      calc(100vw - 2 * (var(--margin-gap) + var(--sidenote-width) + var(--margin-edge)))
+    );
+  }
+
+  .post-layout .post-article {
+    max-width: var(--post-width);
+  }
+
   .sidebar-toc {
     display: block;
     position: fixed;
     top: 5rem;
     max-height: calc(100vh - 6rem);
-    left: max(8px, calc(50vw - 640px));
-    width: 160px;
+    left: max(
+      var(--margin-edge),
+      calc(50vw - var(--post-width) / 2 - var(--margin-gap) - var(--toc-width))
+    );
+    width: min(
+      var(--toc-width),
+      calc(50vw - var(--post-width) / 2 - var(--margin-gap) - var(--margin-edge))
+    );
     overflow-y: auto;
     overflow-x: hidden;          /* no horizontal scroll */
     scrollbar-width: thin;
@@ -1113,6 +1163,91 @@ a.tag:focus-visible {
   border-left: 1px solid var(--border-color);
 }
 /* ─── End sidebar TOC ─────────────────────────────────────────────────────── */
+
+/* ─── Sidenotes, built from Kramdown footnotes by sidenotes.js ───────────── */
+
+.post-content sup[id^="fnref:"] {
+  line-height: 0;
+}
+
+.post-content a.footnote {
+  position: relative;
+  text-decoration: none;
+}
+
+.sidenote {
+  display: none;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: left;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+}
+
+.sidenote-number {
+  position: relative;
+  top: -0.4em;
+  margin-right: 0.3em;
+  font-size: 0.75em;
+  color: var(--accent-primary);
+}
+
+.sidenote-paragraph + .sidenote-paragraph {
+  display: block;
+  margin-top: 0.5em;
+}
+
+.sidenote.is-highlighted,
+.post-content a.footnote.is-highlighted,
+.post-content a.footnote[aria-expanded="true"] {
+  --sidenote-highlight: color-mix(in srgb, var(--accent-secondary) 14%, transparent);
+  border-radius: 2px;
+  background-color: var(--sidenote-highlight);
+  box-shadow: 0 0 0 0.3rem var(--sidenote-highlight);
+}
+
+.post-content a.footnote.is-highlighted,
+.post-content a.footnote[aria-expanded="true"] {
+  box-shadow: 0 0 0 0.1em var(--sidenote-highlight);
+}
+
+@media (min-width: 1280px) {
+  /* The float's margin box has zero width, so the text column never wraps
+     around it; --sidenote-inset compensates for padded containers. */
+  .sidenote {
+    display: block;
+    float: right;
+    clear: right;
+    width: var(--sidenote-width);
+    margin-top: 0.35rem;
+    margin-bottom: 1rem;
+    margin-left: calc(var(--margin-gap) + var(--sidenote-inset, 0px));
+    margin-right: calc(-1 * (var(--sidenote-width) + var(--margin-gap) + var(--sidenote-inset, 0px)));
+  }
+
+  .sidenote.is-repeat {
+    display: none;
+  }
+}
+
+@media (max-width: 1279.98px) {
+  /* Superscripts are tiny; enlarge the tap target without moving the text */
+  .post-content a.footnote::after {
+    content: "";
+    position: absolute;
+    inset: -0.6em -0.3em;
+  }
+
+  .sidenote.is-open {
+    display: block;
+    margin: 0.75rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+    font-size: 0.85rem;
+  }
+}
+/* ─── End sidenotes ───────────────────────────────────────────────────────── */
 
 /* Collapsible Table of Contents */
 .collapsible-toc {
@@ -1254,72 +1389,4 @@ a.tag:focus-visible {
   .toc-content[aria-hidden="false"] {
     max-height: none;
   }
-}
-
-/* Footnote Tooltip Styles */
-.footnote-tooltip {
-  position: absolute;
-  z-index: 1000;
-  background-color: #333;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  line-height: 1.4;
-  max-width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: none;
-  pointer-events: none;
-  word-wrap: break-word;
-}
-
-/* Ensure MathJax renders properly in tooltips */
-.footnote-tooltip .MathJax {
-  font-size: 1em !important;
-}
-
-.footnote-tooltip mjx-container {
-  margin: 0.2em 0 !important;
-}
-
-.footnote-tooltip::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 10px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #333;
-}
-
-/* Dark mode support for tooltips */
-@media (prefers-color-scheme: dark) {
-  .footnote-tooltip {
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  .footnote-tooltip::before {
-    border-bottom-color: #f5f5f5;
-  }
-}
-
-/* Light mode when dark mode is explicitly toggled off */
-[data-theme="light"] .footnote-tooltip {
-  background-color: #333;
-  color: white;
-}
-
-[data-theme="light"] .footnote-tooltip::before {
-  border-bottom-color: #333;
-}
-
-/* Dark mode when explicitly toggled on */
-[data-theme="dark"] .footnote-tooltip {
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-[data-theme="dark"] .footnote-tooltip::before {
-  border-bottom-color: #f5f5f5;
 }

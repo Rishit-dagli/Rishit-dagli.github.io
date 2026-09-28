@@ -21,8 +21,8 @@
     // ── Geometry: clamp sidebar between header bottom and footer top ────────
 
     function repositionSidebar() {
-      if (window.innerWidth < 1200) return;
-      var headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      if (window.innerWidth < 1280) return;
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
       var footerTop    = footer ? footer.getBoundingClientRect().top : window.innerHeight;
       var gap = 20;
       sidebar.style.top       = (headerBottom + gap) + 'px';
@@ -32,7 +32,7 @@
     // ── Find the heading we are currently inside ────────────────────────────
 
     function getCurrentHeading() {
-      var headerH     = header ? header.offsetHeight : 0;
+      var headerH     = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
       var triggerLine = window.scrollY + headerH + 32;
       var active      = null;
       for (var i = 0; i < headings.length; i++) {

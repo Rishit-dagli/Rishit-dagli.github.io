@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<div class="post-layout">
+<div class="post-layout{% if content contains 'class="footnotes"' %} has-sidenotes{% endif %}">
 
 {%- include sidebar-toc.html html=content -%}
 
