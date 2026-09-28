@@ -9,7 +9,7 @@ tags: [optimization, machine-learning, learning-algorithms, training, code-imple
 
 <img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico" alt=""> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/gradient_centralization.ipynb)
 
-# Gradient Centralization for Better Training Performance
+## Gradient Centralization for Better Training Performance
 
 **Author:** [Rishit Dagli](https://github.com/Rishit-dagli)<br>
 **Date created:** 06/18/21<br>

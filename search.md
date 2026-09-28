@@ -80,13 +80,18 @@ permalink: /search/
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
   font-size: 12px;
   color: var(--text-secondary);
 }
 
 .search-result .tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
+  min-width: 0;
 }
 
 .search-result .tag {
@@ -96,6 +101,14 @@ permalink: /search/
   border-radius: 12px;
   font-size: 11px;
   border: 1px solid var(--border-color);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 540px) {
+  .search-result .meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 .no-results {

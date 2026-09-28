@@ -106,7 +106,7 @@
   --bg-secondary: #1a1a1a;
   --text-primary: #eeeeee;
   --text-secondary: #b0b0b0;
-  --accent-primary: #3559fc;
+  --accent-primary: #6f8cff;
   --accent-secondary: #4da6ff;
   --border-color: #333333;
   --theorem-border: #ffffff;
@@ -133,6 +133,7 @@ body {
   line-height: 1.7;
   color: var(--text-primary);
   background-color: var(--bg-primary);
+  overflow-x: clip;
   transition: var(--transition);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -427,6 +428,20 @@ article img {
 }
 
 /* Keep long display equations usable without widening the page. */
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.katex-display > .katex {
+  display: inline-block;
+  min-width: 100%;
+  width: max-content;
+}
+
 mjx-container[display="true"] {
   max-width: 100%;
   overflow-x: auto;

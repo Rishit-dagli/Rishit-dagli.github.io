@@ -9,7 +9,7 @@ tags: [computer-vision, transformers, code-implementation, machine-learning]
 
 <img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico" alt=""> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/swin_transformers.ipynb)
 
-# Image classification with Swin Transformers
+## Image classification with Swin Transformers
 
 **Author:** [Rishit Dagli](https://twitter.com/rishit_dagli)<br>
 **Date created:** 2021/09/08<br>
@@ -90,7 +90,7 @@ plt.show()
     x_train shape: (50000, 32, 32, 3) - y_train shape: (50000, 100)
     x_test shape: (10000, 32, 32, 3) - y_test shape: (10000, 100)
 
-![](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_6_1.png)
+![Sample images from the CIFAR-100 training set](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_6_1.png)
 
 ## Configure the hyperparameters
 
@@ -652,7 +652,7 @@ plt.grid()
 plt.show()
 ```
 
-    ![](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_22_0.png)
+    ![Training and validation metrics for the Swin Transformer model](https://keras.io/img/examples/vision/swin_transformers/swin_transformers_22_0.png)
 
 
 Let's display the final results of the training on CIFAR-100.

@@ -7,32 +7,53 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
 ---
 
 <div style="border: 2px solid #333; border-radius: 8px; padding: 20px; margin: 20px auto; background: #f8f9fa; max-width: 100%; overflow: hidden;">
-<h3 class="no_toc" style="margin-top: 0; color: #333;">Try building this soon!</h3>
+<h2 class="no_toc" style="margin-top: 0; color: #333;">Try building this soon!</h2>
 <div style="width: 100%; overflow: hidden; display: flex; justify-content: center;">
-<canvas id="clothCanvas" width="700" height="350" style="border: 1px solid #ddd; cursor: crosshair; max-width: 100%; height: auto;"></canvas>
+<canvas id="clothCanvas" width="700" height="350" role="img" aria-label="Interactive cloth simulation. Drag the cloth to interact with it." style="border: 1px solid #ddd; cursor: crosshair; max-width: 100%; height: auto; touch-action: none;">Interactive cloth simulation with controls for stiffness, damping, external force, and spacing.</canvas>
 </div>
 <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
     <div>
-        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Stiffness: <span id="stiffnessValue">0.8</span></label>
+        <label for="stiffnessSlider" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Stiffness: <span id="stiffnessValue">0.8</span></label>
         <input type="range" id="stiffnessSlider" min="0.1" max="1.0" step="0.1" value="0.8" style="width: 100%;">
     </div>
     <div>
-        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Damping: <span id="dampingValue">0.99</span></label>
+        <label for="dampingSlider" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Damping: <span id="dampingValue">0.99</span></label>
         <input type="range" id="dampingSlider" min="0.8" max="1.0" step="0.01" value="0.99" style="width: 100%;">
     </div>
     <div>
-        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">External Force: <span id="gravityValue">0.3</span></label>
+        <label for="gravitySlider" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">External Force: <span id="gravityValue">0.3</span></label>
         <input type="range" id="gravitySlider" min="0.0" max="0.8" step="0.1" value="0.3" style="width: 100%;">
     </div>
     <div>
-        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Spacing: <span id="spacingValue">25</span></label>
+        <label for="spacingSlider" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Spacing: <span id="spacingValue">25</span></label>
         <input type="range" id="spacingSlider" min="15" max="35" step="5" value="25" style="width: 100%;">
     </div>
 </div>
 <div style="margin-top: 10px; text-align: center; font-size: 14px; color: #666;">
-    <strong>Controls:</strong> Click and drag to interact
+    <strong>Controls:</strong> Drag to interact
 </div>
 </div>
+
+<style>
+/* Keep instructional color annotations readable in both themes. */
+.post-content [style*="color:#17becf"] { color: #006b73 !important; }
+.post-content [style*="color:#7f7f7f"] { color: #666666 !important; }
+.post-content [style*="color:#ff7f0e"] { color: #9a4100 !important; }
+.post-content [style*="color:#bcbd22"] { color: #666700 !important; }
+.post-content [style*="color:#2ca02c"] { color: #176f17 !important; }
+.post-content [style*="color:#9467bd"] { color: #68408c !important; }
+.post-content [style*="color:#e377c2"] { color: #913366 !important; }
+.post-content [style*="color:#e67e22"] { color: #944000 !important; }
+
+[data-theme="dark"] .post-content [style*="color:#17becf"] { color: #62dce5 !important; }
+[data-theme="dark"] .post-content [style*="color:#7f7f7f"] { color: #b5b5b5 !important; }
+[data-theme="dark"] .post-content [style*="color:#ff7f0e"] { color: #ffad70 !important; }
+[data-theme="dark"] .post-content [style*="color:#bcbd22"] { color: #e4e56d !important; }
+[data-theme="dark"] .post-content [style*="color:#2ca02c"] { color: #75d775 !important; }
+[data-theme="dark"] .post-content [style*="color:#9467bd"] { color: #c69bea !important; }
+[data-theme="dark"] .post-content [style*="color:#e377c2"] { color: #f09bd5 !important; }
+[data-theme="dark"] .post-content [style*="color:#e67e22"] { color: #ffab70 !important; }
+</style>
 
 <script>
 (function() {
@@ -51,7 +72,7 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
     let damping = 0.99;
     let stiffness = 0.8;
     
-    // Mouse interaction
+    // Pointer interaction
     let mouse = { x: 0, y: 0, down: false, constraint: null };
     
     // Particle class
@@ -195,11 +216,17 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
         });
     }
     
-    // Mouse event handlers
-    canvas.addEventListener('mousedown', (e) => {
+    function updatePointer(e) {
         const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+        mouse.x = (e.clientX - rect.left) * (canvas.width / rect.width);
+        mouse.y = (e.clientY - rect.top) * (canvas.height / rect.height);
+    }
+
+    // Pointer handlers support mouse, touch, and pen input.
+    canvas.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        canvas.setPointerCapture(e.pointerId);
+        updatePointer(e);
         mouse.down = true;
         
         // Find closest particle
@@ -220,10 +247,8 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
         mouse.constraint = closest;
     });
     
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+    canvas.addEventListener('pointermove', (e) => {
+        updatePointer(e);
         
         if (mouse.down && mouse.constraint) {
             mouse.constraint.x = mouse.x;
@@ -231,10 +256,16 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
         }
     });
     
-    canvas.addEventListener('mouseup', () => {
+    function releasePointer(e) {
         mouse.down = false;
         mouse.constraint = null;
-    });
+        if (canvas.hasPointerCapture(e.pointerId)) {
+            canvas.releasePointerCapture(e.pointerId);
+        }
+    }
+
+    canvas.addEventListener('pointerup', releasePointer);
+    canvas.addEventListener('pointercancel', releasePointer);
     
     // Animation loop
     function animate() {
