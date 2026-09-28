@@ -6,7 +6,7 @@ permalink: /search/
 
 <div class="search-page">
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search posts..." />
+    <input type="search" id="searchInput" aria-label="Search posts" placeholder="Search posts..." />
     <div id="searchResults"></div>
   </div>
 </div>

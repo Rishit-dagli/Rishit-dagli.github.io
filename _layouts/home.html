@@ -3,17 +3,17 @@ layout: default
 ---
 
 <div class="home">
-  {%- if page.title -%}
+  {%- if page.title and page.title != "" -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
   <!-- Hero images as single figure -->
   <figure class="hero-figure-container">
     <div class="hero-images">
-      <img src="{{ "/assets/0.jpg" | relative_url }}" alt="Image 1">
-      <img src="{{ "/assets/1.jpg" | relative_url }}" alt="Image 2">
-      <img src="{{ "/assets/2.jpg" | relative_url }}" alt="Image 3">
-      <img src="{{ "/assets/3.jpg" | relative_url }}" alt="Image 4">
+      <img src="{{ "/assets/home/0.webp" | relative_url }}" alt="Star-filled night sky" width="480" height="640" decoding="async" fetchpriority="high">
+      <img src="{{ "/assets/home/1.webp" | relative_url }}" alt="Observer using a telescope in an observatory" width="480" height="640" decoding="async">
+      <img src="{{ "/assets/home/2.webp" | relative_url }}" alt="Close view of the Moon through a telescope" width="482" height="640" decoding="async">
+      <img src="{{ "/assets/home/3.webp" | relative_url }}" alt="Telescope beneath an observatory dome opening" width="480" height="640" decoding="async">
     </div>
     <figcaption>Random captures.</figcaption>
   </figure>

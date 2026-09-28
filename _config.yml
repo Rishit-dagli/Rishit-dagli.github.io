@@ -15,6 +15,13 @@ google_analytics: G-GZHCC07NT1
 show_excerpts: true # set to false to remove excerpts on the homepage
 theme: minima
 
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
 kramdown:
   math_engine: katex
 

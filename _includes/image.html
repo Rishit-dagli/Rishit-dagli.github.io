@@ -3,13 +3,17 @@
         <!-- Dual theme images -->
         <img src="{{ include.url }}" 
              alt="{{ include.description }}" 
+             loading="lazy"
+             decoding="async"
              class="theme-image light-only">
         <img src="{{ include.dark_url }}" 
              alt="{{ include.description }}" 
+             loading="lazy"
+             decoding="async"
              class="theme-image dark-only">
     {% else %}
         <!-- Single theme image -->
-        <img src="{{ include.url }}" alt="{{ include.description }}">
+        <img src="{{ include.url }}" alt="{{ include.description }}" loading="lazy" decoding="async">
     {% endif %}
     <figcaption>{{ include.description }}</figcaption>
 </figure>

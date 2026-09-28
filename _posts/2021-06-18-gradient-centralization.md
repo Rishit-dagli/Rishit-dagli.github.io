@@ -2,12 +2,12 @@
 title: "Gradient Centralization for Better Training Performance"
 date: 2021-06-18
 excerpt: "Gradient Centralization transforms DNN training performance by bringing gradients to zero mean, this helps with training stability and performance."
+canonical_url: https://keras.io/examples/vision/gradient_centralization/
+math: false
 tags: [optimization, machine-learning, learning-algorithms, training, code-implementation]
 ---
 
-<link rel="canonical" href="https://keras.io/examples/vision/nnclr/">
-
-<img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico"/> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/gradient_centralization.ipynb)
+<img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico" alt=""> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/gradient_centralization.ipynb)
 
 # Gradient Centralization for Better Training Performance
 

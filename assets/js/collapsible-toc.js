@@ -17,6 +17,7 @@
 
       tocToggle.setAttribute('aria-expanded', newState.toString());
       tocContent.setAttribute('aria-hidden', (!newState).toString());
+      tocContent.inert = !newState;
 
       // If expanding, set height to fit content; if collapsing, set to 0
       if (newState) {
@@ -40,12 +41,16 @@
       if (savedState === 'true') {
         tocToggle.setAttribute('aria-expanded', 'true');
         tocContent.setAttribute('aria-hidden', 'false');
+        tocContent.inert = false;
         tocContent.style.maxHeight = 'none';
         const icon = tocToggle.querySelector('.toc-toggle-icon');
         if (icon) {
           icon.style.transform = 'rotate(180deg)';
         }
       } else {
+        tocToggle.setAttribute('aria-expanded', 'false');
+        tocContent.setAttribute('aria-hidden', 'true');
+        tocContent.inert = true;
         tocContent.style.maxHeight = '0px';
       }
     }

@@ -2,16 +2,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>{% if page.title %}{{ page.title | escape }} {% endif %}{{ site.title | escape }}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-  
+
   <!-- SIGGRAPH-inspired CSS -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   
   <!-- Theme toggle script (loads early to prevent flash) -->
   <script src="{{ "/assets/js/theme-toggle.js" | relative_url }}"></script>
-  
+
+  {% if page.layout == "post" %}
   <!-- Collapsible TOC script -->
   <script src="{{ "/assets/js/collapsible-toc.js" | relative_url }}"></script>
   
@@ -23,6 +21,7 @@
   
   <!-- Figure references script -->
   <script src="{{ "/assets/js/figure-refs.js" | relative_url }}"></script>
+  {% endif %}
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | relative_url }}">
@@ -30,6 +29,7 @@
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
   
+  {% if page.layout == "post" and page.math != false %}
   <!-- MathJax with automatic equation numbering and color support -->
   <script>
   window.MathJax = {
@@ -53,7 +53,19 @@
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-  
+  {% endif %}
+
   <!-- SEO -->
   {% seo %}
+
+  {% if jekyll.environment == "production" and site.google_analytics %}
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
 </head>

@@ -2,12 +2,12 @@
 title: "Implementing Swin Transformers"
 date: 2021-09-08
 excerpt: "Implementing Swin Transformers, a general-purpose backbone for computer vision."
+canonical_url: https://keras.io/examples/vision/swin_transformers/
+math: false
 tags: [computer-vision, transformers, code-implementation, machine-learning]
 ---
 
-<link rel="canonical" href="https://keras.io/examples/vision/swin_transformers/">
-
-<img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico"/> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/swin_transformers.ipynb)
+<img class="k-inline-icon" src="https://colab.research.google.com/img/colab_favicon.ico" alt=""> [**View in Colab**](https://colab.research.google.com/github/keras-team/keras-io/blob/master/examples/vision/ipynb/swin_transformers.ipynb)
 
 # Image classification with Swin Transformers
 
@@ -38,8 +38,8 @@ which can be installed using the following commands:
 
     Collecting tensorflow-addons
     Downloading tensorflow_addons-0.14.0-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.1 MB)
-    [K     |████████████████████████████████| 1.1 MB 7.9 MB/s 
-    [?25hCollecting typeguard>=2.7
+    |????????????????????????????????| 1.1 MB 7.9 MB/s
+    Collecting typeguard>=2.7
     Downloading typeguard-2.12.1-py3-none-any.whl (17 kB)
     Installing collected packages: typeguard, tensorflow-addons
     Successfully installed tensorflow-addons-0.14.0 typeguard-2.12.1
@@ -678,10 +678,7 @@ as well as seen in above graph. This means we can train this network for longer
 This performance can further be improved by additional techniques like cosine
 decay learning rate schedule, other data augmentation techniques. While experimenting,
 I tried training the model for 150 epochs with a slightly higher dropout and greater
-embedding dimensions which pushes the performance to ~72% test accuracy on CIFAR-100
-as you can see in the screenshot.
-
-![Results of training for longer](https://i.imgur.com/9vnQesZ.png)
+embedding dimensions, which pushes the performance to ~72% test accuracy on CIFAR-100.
 
 The authors present a top-1 accuracy of 87.3% on ImageNet. The authors also present
 a number of experiments to study how input sizes, optimizers etc. affect the final

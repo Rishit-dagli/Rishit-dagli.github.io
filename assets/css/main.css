@@ -3,7 +3,8 @@
 /* Font declarations - Linux Libertine and Biolinum (SIGGRAPH style) */
 @font-face {
   font-family: 'Linux Libertine';
-  src: url('../fonts/linux-libertine/LinLibertine_R.woff') format('woff');
+  src: url('../fonts/linux-libertine/LinLibertine_R.woff2') format('woff2'),
+       url('../fonts/linux-libertine/LinLibertine_R.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -11,7 +12,8 @@
 
 @font-face {
   font-family: 'Linux Libertine';
-  src: url('../fonts/linux-libertine/LinLibertine_RI.woff') format('woff');
+  src: url('../fonts/linux-libertine/LinLibertine_RI.woff2') format('woff2'),
+       url('../fonts/linux-libertine/LinLibertine_RI.woff') format('woff');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -19,7 +21,8 @@
 
 @font-face {
   font-family: 'Linux Libertine';
-  src: url('../fonts/linux-libertine/LinLibertine_RB.woff') format('woff');
+  src: url('../fonts/linux-libertine/LinLibertine_RB.woff2') format('woff2'),
+       url('../fonts/linux-libertine/LinLibertine_RB.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -27,7 +30,8 @@
 
 @font-face {
   font-family: 'Linux Libertine';
-  src: url('../fonts/linux-libertine/LinLibertine_RBI.woff') format('woff');
+  src: url('../fonts/linux-libertine/LinLibertine_RBI.woff2') format('woff2'),
+       url('../fonts/linux-libertine/LinLibertine_RBI.woff') format('woff');
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -35,7 +39,8 @@
 
 @font-face {
   font-family: 'Linux Biolinum';
-  src: url('../fonts/linux-biolinum/LinBiolinum_R.woff') format('woff');
+  src: url('../fonts/linux-biolinum/LinBiolinum_R.woff2') format('woff2'),
+       url('../fonts/linux-biolinum/LinBiolinum_R.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -43,7 +48,8 @@
 
 @font-face {
   font-family: 'Linux Biolinum';
-  src: url('../fonts/linux-biolinum/LinBiolinum_RI.woff') format('woff');
+  src: url('../fonts/linux-biolinum/LinBiolinum_RI.woff2') format('woff2'),
+       url('../fonts/linux-biolinum/LinBiolinum_RI.woff') format('woff');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -51,7 +57,8 @@
 
 @font-face {
   font-family: 'Linux Biolinum';
-  src: url('../fonts/linux-biolinum/LinBiolinum_RB.woff') format('woff');
+  src: url('../fonts/linux-biolinum/LinBiolinum_RB.woff2') format('woff2'),
+       url('../fonts/linux-biolinum/LinBiolinum_RB.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -106,9 +113,6 @@
   --code-bg: #1e1e1e;
   --shadow: rgba(255, 255, 255, 0.05);
 }
-
-/* Import Fira Code for code blocks */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 /* Base styles */
 * {
@@ -412,6 +416,23 @@ article img {
   box-shadow: 0 4px 16px var(--shadow);
 }
 
+.post-content img.k-inline-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin: 0 0.35em 0 0;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: -0.2em;
+}
+
+/* Keep long display equations usable without widening the page. */
+mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 /* Figure and caption styles - SIGGRAPH paper style */
 figure {
   margin: 2rem 0;
@@ -570,7 +591,7 @@ th {
 
 .social-links a {
   color: var(--text-secondary);
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: var(--transition);
   text-decoration: none;
 }
