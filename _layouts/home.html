@@ -5,6 +5,8 @@ layout: default
 <div class="home">
   {%- if page.title and page.title != "" -%}
     <h1 class="page-heading">{{ page.title }}</h1>
+  {%- else -%}
+    <h1 class="visually-hidden">{{ site.title }}</h1>
   {%- endif -%}
 
   <!-- Hero images as single figure -->
