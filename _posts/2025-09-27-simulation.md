@@ -47,14 +47,20 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
 .post-content [style*="color:#e377c2"] { color: #913366 !important; }
 .post-content [style*="color:#e67e22"] { color: #944000 !important; }
 
-[data-theme="dark"] .post-content [style*="color:#17becf"] { color: #62dce5 !important; }
-[data-theme="dark"] .post-content [style*="color:#7f7f7f"] { color: #b5b5b5 !important; }
-[data-theme="dark"] .post-content [style*="color:#ff7f0e"] { color: #ffad70 !important; }
-[data-theme="dark"] .post-content [style*="color:#bcbd22"] { color: #e4e56d !important; }
-[data-theme="dark"] .post-content [style*="color:#2ca02c"] { color: #75d775 !important; }
-[data-theme="dark"] .post-content [style*="color:#9467bd"] { color: #c69bea !important; }
-[data-theme="dark"] .post-content [style*="color:#e377c2"] { color: #f09bd5 !important; }
-[data-theme="dark"] .post-content [style*="color:#e67e22"] { color: #ffab70 !important; }
+[data-theme="dark"] .post-content [style*="#17becf"] { color: #62dce5 !important; }
+[data-theme="dark"] .post-content [style*="#7f7f7f"] { color: #b5b5b5 !important; }
+[data-theme="dark"] .post-content [style*="#ff7f0e"] { color: #ffad70 !important; }
+[data-theme="dark"] .post-content [style*="#bcbd22"] { color: #e4e56d !important; }
+[data-theme="dark"] .post-content [style*="#2ca02c"] { color: #75d775 !important; }
+[data-theme="dark"] .post-content [style*="#9467bd"] { color: #c69bea !important; }
+[data-theme="dark"] .post-content [style*="#e377c2"] { color: #f09bd5 !important; }
+[data-theme="dark"] .post-content [style*="#e67e22"] { color: #ffab70 !important; }
+[data-theme="dark"] .post-content [style*="#1f77b4"] { color: #63b3ed !important; }
+[data-theme="dark"] .post-content [style*="#d62728"] { color: #ff6b6b !important; }
+[data-theme="dark"] .post-content [style*="#8c564b"] { color: #d69a8c !important; }
+[data-theme="dark"] .post-content [style*="#2c3e50"] { color: #9fb3c8 !important; }
+[data-theme="dark"] .post-content [style*="#008080"] { color: #2ec4b6 !important; }
+[data-theme="dark"] .post-content [style*="#c0392b"] { color: #ff766d !important; }
 </style>
 
 <script>

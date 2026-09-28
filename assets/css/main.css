@@ -91,6 +91,9 @@
   --text-secondary: #4a4a4a;
   --accent-primary: #001174;
   --accent-secondary: #3559fc;
+  --interactive-bg: #001174;
+  --interactive-bg-hover: #142b99;
+  --interactive-text: #ffffff;
   --border-color: #e0e0e0;
   --theorem-border: #000000;
   --code-bg: #f5f5f5;
@@ -108,6 +111,9 @@
   --text-secondary: #b0b0b0;
   --accent-primary: #6f8cff;
   --accent-secondary: #4da6ff;
+  --interactive-bg: #3349b8;
+  --interactive-bg-hover: #263b9e;
+  --interactive-text: #ffffff;
   --border-color: #333333;
   --theorem-border: #ffffff;
   --code-bg: #1e1e1e;
@@ -137,6 +143,45 @@ body {
   transition: var(--transition);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background: var(--interactive-bg);
+  color: var(--interactive-text);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: none;
+}
+
+.skip-link:focus {
+  color: var(--interactive-text);
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, pre, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Typography */
@@ -182,7 +227,7 @@ a {
 
 a:hover {
   color: var(--accent-secondary);
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* Code blocks */
@@ -437,12 +482,9 @@ article img {
   -webkit-overflow-scrolling: touch;
 }
 
-.post-content mjx-container:not([display="true"]) {
-  display: inline-block !important;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  vertical-align: middle;
+mjx-assistive-mml {
+  width: 1px !important;
+  max-width: 1px !important;
 }
 
 /* Figure and caption styles - SIGGRAPH paper style */
@@ -682,10 +724,12 @@ th {
   transition: var(--transition);
 }
 
-.tag:hover {
-  background-color: var(--accent-primary);
-  color: var(--bg-primary);
+a.tag:hover,
+a.tag:focus-visible {
+  background-color: var(--interactive-bg);
+  color: var(--interactive-text);
   text-decoration: none;
+  opacity: 1;
 }
 
 /* Post navigation */
@@ -745,8 +789,8 @@ th {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: var(--accent-primary);
-  color: white;
+  background-color: var(--interactive-bg);
+  color: var(--interactive-text);
   border-radius: 5px;
   text-decoration: none;
   transition: var(--transition);
@@ -754,8 +798,10 @@ th {
 }
 
 .feed-subscribe a:hover {
-  background-color: var(--accent-secondary);
+  background-color: var(--interactive-bg-hover);
+  color: var(--interactive-text);
   text-decoration: none;
+  opacity: 1;
 }
 
 .feed-subscribe svg {
@@ -793,14 +839,15 @@ th {
 }
 
 .pagination a:hover {
-  background-color: var(--accent-primary);
-  color: white;
+  background-color: var(--interactive-bg);
+  color: var(--interactive-text);
   text-decoration: none;
+  opacity: 1;
 }
 
 .current-page {
-  background-color: var(--accent-primary);
-  color: white;
+  background-color: var(--interactive-bg);
+  color: var(--interactive-text);
   font-weight: 600;
 }
 

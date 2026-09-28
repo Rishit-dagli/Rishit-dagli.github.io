@@ -30,7 +30,13 @@ The simplest form of induction is something like: $\text{All observed }F\text{s 
 
 The inference is not deductively valid: the premises can all be true while the conclusion is false, since every raven observed so far can be black and the next one can still turn out to be white. A deductive argument cannot give us genuinely new information about unobserved cases unless something about those cases was already built into the premises, which is precisely what inductive arguments try to do, and using induction to justify that move is itself circular.
 
-However, we want a justification of the rule: $\text{past regularity} \quad \Longrightarrow \quad \text{future regularity}$. If the justification is deductive, it cannot go beyond the evidence. If it is inductive, it presupposes the principle it is supposed to justify. The point is not to stop predicting things, since science and ordinary life both use induction routinely and successfully; the question is what kind of structure has to be added before such a projection counts as reasonable.
+However, we want a justification of the rule:
+
+$$
+\text{past regularity} \quad \Longrightarrow \quad \text{future regularity}.
+$$
+
+If the justification is deductive, it cannot go beyond the evidence. If it is inductive, it presupposes the principle it is supposed to justify. The point is not to stop predicting things, since science and ordinary life both use induction routinely and successfully; the question is what kind of structure has to be added before such a projection counts as reasonable.
 
 {% include image.html url="/assets/induction/projection.png" description="The observations do not choose their own projection." %}
 
@@ -142,9 +148,18 @@ Here $W$ is a non-empty set of possible worlds or outcomes, $\mathcal A$ is an a
 For a coin toss, we might choose $W=\{H,T\}$ or maybe $W=\{H,T,N\}$, where $N$ is some abnormal outcome.
 For two tosses, we might choose $W=\{HH,HT,TH,TT\}$ or we might collapse order and choose $W=\{2H,1H1T,2T\}$.
 These spaces are not the same. A uniform distribution over the first two-toss space gives different weights to counts than a uniform distribution over the count-space.
-In the ordered space, $W_1=\{HH,HT,TH,TT\}$, uniformity gives $P(HH)=P(HT)=P(TH)=P(TT)=\frac14$.
+In the ordered space, $W_1=\{HH,HT,TH,TT\}$, uniformity gives
 
-So the induced probability of exactly one head is $P(\text{exactly one }H)=P(HT)+P(TH)=\frac12$.
+$$
+P(HH)=P(HT)=P(TH)=P(TT)=\frac14.
+$$
+
+So the induced probability of exactly one head is
+
+$$
+P(\text{exactly one }H)=P(HT)+P(TH)=\frac12.
+$$
+
 In the count-space, $W_2=\{2H,1H1T,2T\}$,
 uniformity gives $P(2H)=P(1H1T)=P(2T)=\frac13$.
 
@@ -183,7 +198,14 @@ There is also the zero-probability issue if $P(C)=0$ then $P(B\mid C)$ is undefi
 
 One ambitious thought is that probability might be logical: evidence should support a hypothesis to some specific degree purely as a matter of logic, independently of anyone's psychology and of any physical chance. To make this precise, we can imagine a formal language with individual constants $a,b,\ldots$ and predicates $F,G,\ldots$.
 
-A state description says completely, for each named individual and each primitive predicate, whether the individual has the predicate. With two individuals $a,b$ and one predicate $F$, the four state descriptions are $F(a)\wedge F(b), F(a)\wedge \neg F(b), F(a)\wedge \neg F(b), \neg F(a)\wedge F(b)$.
+A state description says completely, for each named individual and each primitive predicate, whether the individual has the predicate. With two individuals $a,b$ and one predicate $F$, the four state descriptions are
+
+$$
+F(a)\wedge F(b),\quad
+F(a)\wedge \neg F(b),\quad
+\neg F(a)\wedge F(b),\quad
+\neg F(a)\wedge \neg F(b).
+$$
 
 A structure description remembers only the pattern, so the two middle state descriptions above both belong to the same structure exactly one of the two individuals is $F$. The structure-description move assigns equal probability to each structure description and then divides each structure's total weight uniformly among the states that fall inside it, which gives the structures $\text{two }F,\quad \text{one }F,\quad \text{zero }F$, each with weight $1/3$, and since the middle structure contains two state descriptions, each of those gets $1/6$.
 

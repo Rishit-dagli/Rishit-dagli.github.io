@@ -77,10 +77,17 @@ permalink: /tags/
   transition: all 0.2s ease;
 }
 
-.tag-link:hover {
-  background: var(--accent-primary);
-  color: var(--bg-primary);
+.tag-link:hover,
+.tag-link:focus-visible {
+  background: var(--interactive-bg);
+  color: var(--interactive-text);
   transform: scale(0.98);
+  opacity: 1;
+}
+
+.tag-link:hover .tag-count,
+.tag-link:focus-visible .tag-count {
+  color: inherit;
 }
 
 .tag-count {

@@ -64,7 +64,11 @@ $$
 $$
 
 In both the usual setup and our setup, we assume independence between weights and inputs, and across indices. In particular,
-$$\mathbb{E}[W_{ji} x_i] = \mathbb{E}[W_{ji}]\,\mathbb{E}[x_i] = \mu_W \mu_x.$$
+
+$$
+\mathbb{E}[W_{ji} x_i] = \mathbb{E}[W_{ji}]\,\mathbb{E}[x_i] = \mu_W \mu_x.
+$$
+
 So we are relaxing the standard constraint where $\mu_x = 0$ and $\mu_W = 0$.
 
 ## A Less General Case
@@ -494,9 +498,11 @@ K(0) \approx 0.3408
 $$
 
 The key subtlety is that the ReLU output does not have zero mean even when $z$ is centered. In fact, for $z \sim \mathcal{N}(0,\sigma_z^2)$,
+
 $$
 \mathbb{E}[a^2] = \frac{1}{2}\sigma_z^2 \quad \text{but} \quad Var(a) = \left(\frac{1}{2} - \frac{1}{2\pi}\right)\sigma_z^2 \approx 0.3408\,\sigma_z^2.
 $$
+
 Standard Kaiming/He initialization targets preservation of the second moment (or makes the approximation $Var(a)\approx \mathbb{E}[a^2]$), which is why it yields the familiar $2/n_{in}$.
 
 #### Feasibility Constraints

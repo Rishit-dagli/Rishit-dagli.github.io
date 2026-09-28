@@ -22,7 +22,15 @@ Let us begin with a smooth manifold $X$ which we will call the configuration spa
 
 {% include image.html url="/assets/diff-geometry/spring-mass-system-light.png" dark_url="/assets/diff-geometry/spring-mass-system-dark.png" description="An example of a simple configuration." %}
 
-The position of the mass is a configuration which forms a smooth manifold in one dimension. We could also have this in multiple dimensions, $X = (\mathbb{R}^n, (q_1, q_2, \ldots, q_n))$ or the set of complex numbers with norm one $X = S^1 = \lbrace  z \in \mathbb{C} : \mid z \mid = 1 \rbrace $ or the $n$-sphere inside the $n+1$-dimensional space $X = S^n \in \mathbb{R}^{n+1} \quad S^n = \lbrace  (q^0, q^1, \ldots, q^n) \in \mathbb{R}^{n+1} : \sum_{i=0}^n (q^i)^2 = 1 \rbrace $. These configurations are like point particles moving on a smooth manifold.
+The position of the mass is a configuration which forms a smooth manifold in one dimension. We could also have this in multiple dimensions, $X = (\mathbb{R}^n, (q_1, q_2, \ldots, q_n))$, or the set of complex numbers with norm one, $X = S^1 = \lbrace z \in \mathbb{C} : \mid z \mid = 1 \rbrace$. The $n$-sphere inside the $n+1$-dimensional space is
+
+$$
+X = S^n \subset \mathbb{R}^{n+1},
+\qquad
+S^n = \left\lbrace (q^0, q^1, \ldots, q^n) \in \mathbb{R}^{n+1} : \sum_{i=0}^n (q^i)^2 = 1 \right\rbrace.
+$$
+
+These configurations are like point particles moving on a smooth manifold.
 
 Broadly speaking, the entire purpose of Hamiltonian mechanics is to predict the future or past of a system based on the current state of the system, so, if we fully know some initial state of the system and we know the law it satisfies, we can predict the future or the past. Generally speaking, the future is not just defined by the current "position" or configuration but rather it is uniquely determined by the **state** of the system. This state consists of $q$: the position and $p$: the momentum. This state is an element of the set which is the cotangent bundle $T^\*X$ (the state space or phase space), $(q, p) \in T^\*X$. This cotangent bundle is essentially the set of all possible states of the system, $q \in X$, and $p$ is an element in the dual space of the tangent space to $X$ at $q$ and $p \in T_q^*X$. The momentum $p$ is a covector at $q$. This essentially tells us how much momentum there is in a direction $v \in T_qX$.
 
@@ -177,7 +185,19 @@ where $X_f \in \Psi(M)$ is the Hamiltonian vector field associated to $f$.
 
 The Hamiltonian vector field $X_f$ is such that,
 
-1. **Hamiltonian vector field of $f$ preserves itself**. $X_f (f) = df (X_f) = df(-\omega^{-1}(df)) = -\omega^{-1}(df, df) = 0$ since $\omega$ is skew. However, this is very different from the gradient of $f$, on a Riemannian manifold $\nabla f = g^{-1}(df)$, $(\nabla f) (f) = df (g^{-1}df) = g^{-1}(df, df) = \mid \mid df \mid \mid^2$. Essentially, if the derivative is non-zero the gradient is not going to preserve the function. The Hamiltonian vector field, on the other hand, preserves the level sets of $f$ or $f$ is conserved by the flow of $X_f$. And this is exactly why things like energy and momentum can be conserved, due to this feature of the Hamiltonian vector field.
+1. **Hamiltonian vector field of $f$ preserves itself**.
+
+   $$
+   X_f(f) = df(X_f) = df\!\left(-\omega^{-1}(df)\right) = -\omega^{-1}(df,df) = 0,
+   $$
+
+   since $\omega$ is skew. However, this is very different from the gradient of $f$. On a Riemannian manifold, $\nabla f = g^{-1}(df)$ and
+
+   $$
+   (\nabla f)(f) = df(g^{-1}df) = g^{-1}(df,df) = \lVert df \rVert^2.
+   $$
+
+   Essentially, if the derivative is non-zero, the gradient is not going to preserve the function. The Hamiltonian vector field, on the other hand, preserves the level sets of $f$, or $f$ is conserved by the flow of $X_f$. And this is exactly why things like energy and momentum can be conserved, due to this feature of the Hamiltonian vector field.
 
 2. **Differentiating the symplectic form in the direction of the vector field.**
 
@@ -435,7 +455,13 @@ $$
 \end{equation}
 $$
 
-For $X_v = -\omega^{-1}(dV) = (dp_i \wedge dq^i)^{-1}(\partial_k V dq^k)$ we have,
+For
+
+$$
+X_v = -\omega^{-1}(dV) = (dp_i \wedge dq^i)^{-1}(\partial_k V\,dq^k),
+$$
+
+we have
 
 $$
 \begin{equation}
@@ -543,7 +569,11 @@ $$
 
 So, $q(t) = \cos(\omega t) q(0) + \underbrace{\frac{1}{\sqrt{km}} \sin(\omega t) p(0)}_{\omega^{-1}\sin{\omega t}\dot{x}(0)}$. An example is if you pull a mass and leave it, we won't have the second term because the initial velocity is $0$, and we will oscillate with the cosine term at frequency $\omega$.
 
-The Hamiltonian is a function on the phase space, $H \in C^\infty(T^\*X) \supset \bigoplus_{k \geq 0} \Gamma(X, \underbrace{\operatorname{Sym}^k(T^\*X)}_{\text{polynomial functions } p \text{ of degree }k})$.
+The Hamiltonian is a function on the phase space:
+
+$$
+H \in C^\infty(T^\*X) \supset \bigoplus_{k \geq 0} \Gamma\!\left(X, \underbrace{\operatorname{Sym}^k(T^\*X)}_{\text{polynomial functions } p \text{ of degree }k}\right).
+$$
 
 Here we can simply change variables or perform a symplectomorphism to eliminate some variables, use $\tilde{q} = \sqrt{k}q$ and $\tilde{p} = \frac{1}{\sqrt{k}} p$, so $H = \frac{1}{2}m^{-1}(k\tilde{p})^2 + \frac{1}{2}\tilde{q}^2$.
 
@@ -568,7 +598,16 @@ To incorporate the magnetic field we need to change the canonical symplectic for
 
 The $\omega_B$ defines a bundle map, $\omega_B: TM \mapsto T^\*M$, $v \mapsto \iota_v \omega_B = \omega_B(v, \cdot)$. This should be isomorphic. We can check that $det(\omega_B)_{ij} \neq 0$. In the case of skew-symmetric matrix the determinant of the matrix is the square of the Pfaffian $(Pf(\omega_B))^2$.
 
-The Pfaffian is essentially just $\frac{1}{n!} \omega_B \wedge \omega_B \wedge \cdots \wedge \omega_B \in \Omega^{2n}(M) = \underbrace{\frac{1}{n!} \omega_B^n}_{\text{Liouville volume form}}$. This means $\omega_B$ is non-degenerate if $\frac{1}{n!} \omega_B^n$ is nowhere zero.
+The Pfaffian is essentially
+
+$$
+\frac{1}{n!}\underbrace{\omega_B \wedge \omega_B \wedge \cdots \wedge \omega_B}_{n\text{ factors}}
+\in \Omega^{2n}(M)
+=
+\underbrace{\frac{1}{n!}\omega_B^n}_{\text{Liouville volume form}}.
+$$
+
+This means $\omega_B$ is non-degenerate if $\frac{1}{n!}\omega_B^n$ is nowhere zero.
 
 We can now use the change in variables we made giving us $\omega_B$,
 
