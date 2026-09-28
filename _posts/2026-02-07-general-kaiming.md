@@ -1,6 +1,8 @@
 ---
 title: "Deriving a Generalized Kaiming Initialization"
 date: 2026-02-07
+redirect_from:
+  - /2026/02/07/general-kaiming.html
 excerpt: "A new general form of Kaiming initialization here which does not assume: that the weights and inputs have zero mean and that the inputs have variance $1$."
 image:
 tags: [training, machine-learning, learning-algorithms]

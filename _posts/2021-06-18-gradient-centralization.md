@@ -1,6 +1,8 @@
 ---
 title: "Gradient Centralization for Better Training Performance"
 date: 2021-06-18
+redirect_from:
+  - /2021/06/18/gradient-centralization.html
 excerpt: "Gradient Centralization transforms DNN training performance by bringing gradients to zero mean, this helps with training stability and performance."
 canonical_url: https://keras.io/examples/vision/gradient_centralization/
 math: false

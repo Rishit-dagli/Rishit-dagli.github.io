@@ -3,11 +3,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% if page.layout == "post" and page.math != false %}
-  <!-- KaTeX output is generated at build time; this provides its layout and fonts. -->
-  <link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | relative_url }}">
-  {% endif %}
-
   <!-- SIGGRAPH-inspired CSS -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   
@@ -33,7 +28,33 @@
   
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-  
+
+  {% if page.layout == "post" and page.math != false %}
+  <!-- MathJax with automatic equation numbering and color support -->
+  <script>
+  window.MathJax = {
+    tex: {
+      tags: 'ams',
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['color', 'colorv2']}
+    },
+    options: {
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    },
+    loader: {
+      load: ['[tex]/color', '[tex]/colorv2']
+    }
+  };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  {% endif %}
+
   <!-- SEO -->
   {% seo %}
 

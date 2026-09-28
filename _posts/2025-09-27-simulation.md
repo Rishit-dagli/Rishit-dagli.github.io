@@ -1,6 +1,8 @@
 ---
 title: "Simulating Stuff"
 date: 2025-09-27
+redirect_from:
+  - /2025/09/27/simulation.html
 excerpt: "An illustrated primer on physics-based simulation for graphics: mass-spring systems as a unifying idea, time integration (Euler, RK, backward/symplectic), and mass-spring models, and constraints."
 image: /assets/simulation/spring-mass-system-light.png
 tags: [optimization, machine-learning, graphics, simulation, mechanics]

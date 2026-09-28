@@ -427,25 +427,22 @@ article img {
   vertical-align: -0.2em;
 }
 
-/* Keep long display equations usable without widening the page. */
-.katex-display {
+.post-content mjx-container[display="true"] {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 0.25rem;
   -webkit-overflow-scrolling: touch;
 }
 
-.katex-display > .katex {
-  display: inline-block;
-  min-width: 100%;
-  width: max-content;
-}
-
-mjx-container[display="true"] {
+.post-content mjx-container:not([display="true"]) {
+  display: inline-block !important;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  vertical-align: middle;
 }
 
 /* Figure and caption styles - SIGGRAPH paper style */

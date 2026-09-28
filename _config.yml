@@ -14,6 +14,7 @@ google_analytics: G-GZHCC07NT1
 
 show_excerpts: true # set to false to remove excerpts on the homepage
 theme: minima
+permalink: /:title/
 
 defaults:
   - scope:
@@ -23,7 +24,7 @@ defaults:
       layout: post
 
 kramdown:
-  math_engine: katex
+  math_engine: mathjax
 
 plugins:
  - jekyll-seo-tag

@@ -1,6 +1,8 @@
 ---
 title: "Compression Unlocks Statistical Learning Secrets"
 date: 2023-03-06
+redirect_from:
+  - /2023/03/06/statistical-learning-using-compression.html
 excerpt: "Characterizing the sample complexity of different machine learning tasks is an important question in learning theory. This article reviews the less conventional approach of using compression schemes for proving sample complexity upper bounds, with specific applications in learning under adversarial perturbations and learning Gaussian mixture models."
 tags: [statistical-learning, compression, machine-learning]
 ---

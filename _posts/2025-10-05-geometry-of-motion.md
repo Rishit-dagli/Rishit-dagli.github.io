@@ -1,6 +1,8 @@
 ---
 title: "Geometry of Motion"
 date: 2025-10-05
+redirect_from:
+  - /2025/10/05/geometry-of-motion.html
 excerpt: "A geometric lens on simulation: cotangent bundles, Hamiltonian flows, and how geodesics, magnetism, and relativity emerge in one coherent framework."
 image: /assets/diff-geometry/cosphere-bundle-light.png
 tags: [geometry, differential-geometry, mechanics]

@@ -1,6 +1,8 @@
 ---
 title: "What Is the Largest Integer Not of the Form mb+nc?"
 date: 2021-11-04
+redirect_from:
+  - /2021/11/04/conductor-of-two-naturals.html
 excerpt: "What's the largest number that absolutely refuses to be written as mb+nc?"
 tags: [number-theory]
 ---

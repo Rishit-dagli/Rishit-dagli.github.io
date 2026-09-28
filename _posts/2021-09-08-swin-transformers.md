@@ -1,6 +1,8 @@
 ---
 title: "Implementing Swin Transformers"
 date: 2021-09-08
+redirect_from:
+  - /2021/09/08/swin-transformers.html
 excerpt: "Implementing Swin Transformers, a general-purpose backbone for computer vision."
 canonical_url: https://keras.io/examples/vision/swin_transformers/
 math: false

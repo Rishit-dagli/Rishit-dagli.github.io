@@ -1,6 +1,8 @@
 ---
  title: "#BIS-Hard but Not Impossible: Ferromagnetic Potts Model on Expanders"
  date: 2023-03-07
+ redirect_from:
+   - /2023/03/07/ferromagnetic-potts.html
  excerpt: "How do you efficiently sample from a distribution that's algorithmically #BIS-hard? The ferromagnetic Potts model is a canonical Markov random field where monochromatic edges win the popularity contest. This article is about how polymer methods and extremal graph theory crack the sampling puzzle on d-regular weakly expanding graphs."
  image: /assets/ferromagnetic-potts/sample-graph.png
  tags: [statistical-physics, learning-algorithms, graph-theory]
