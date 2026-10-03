@@ -5,8 +5,7 @@ url: https://rishit-dagli.github.io
 twitter:
   username: rishit_dagli
   card: summary
-description: >
-  This page is a backup of all the blogs I have written. I write about Machine Learning, Open Source and Computer Science in general.
+description: I write about Machine Learning.
 # social links
 twitter_username: rishit_dagli # DO NOT include the @ character, or else the build will fail!
 github_username:  Rishit-dagli # DO NOT include the @ character, or else the build will fail!
