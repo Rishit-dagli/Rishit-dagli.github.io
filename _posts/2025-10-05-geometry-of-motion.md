@@ -54,7 +54,7 @@ A cotangent vector at $q \in X$ can be written as,
 
 And since it is a dual basis evaluating the vector field $\frac{\partial}{\partial q^i}$ at $dq^i$ gives us $1$ and at any other $dq^j$ gives us $0$. Essentially, by choosing the coordinates $(q^1, q^2, \ldots, q^n)$ we automatically obtain coordinates $(q^1, q^2, \ldots, q^n, p_1, p_2, \ldots, p_n)$ for $T^*X$ (cotangent bundle) which is a $2n$-dimensional smooth manifold. The $(p_1, p_2, \ldots, p_n)$ are called the canonical conjugate variables of $(q^1, q^2, \ldots, q^n)$.
 
-<div style="padding: 0.75em; border: 1px solid black;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border);">
 <b>(Main Idea).</b> The evolution in time of the state $(q, p) \in T^*X$ is the flow of a vector field on $T^*X$.
 </div>
 
@@ -83,7 +83,7 @@ This is used to provide the vector field determining time evolution,
     \underbrace{H}_{\text{Hamiltonian function or energy}} \mapsto \overbrace{X_H}^{\text{time evolution}}.
 \end{equation}
 
-<div style="padding: 0.75em; border: 1px solid black;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border);">
 So, the mathematical model underlying Hamiltonian mechanics is that any system can be defined by only two things: (1) the configuration space and (2) the Hamiltonian function to define the dynamics,
 
 \begin{equation}
@@ -146,7 +146,7 @@ Essentially, we have,
 
 If we plug in the basis vectors $\frac{\partial}{\partial q^i}$ and $\frac{\partial}{\partial p_i}$ in Equation \eqref{eq:skew-symmetric-bilinear-form} we get the matrix. It is easy to see most of the entries are $0$ because we might get non-zero only when the momentum we plug in and the position we put in have the same index.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 This gives us some properties of $\omega$,<br><br>
 
 1. $\omega$ is skew-symmetric, i.e. $\omega(u, v) = -\omega(v, u)$.<br>
@@ -172,7 +172,7 @@ $$
 
 So the momentum vector gets sent to the derivative of the position vector. And the position vector gets sent to the negative derivative of the momentum vector. We essentially get to convert a tangent vector on phase space to a cotangent vector on phase space.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 <b> Hamiltonian Vector Field of $f$.</b>
 This essentially gives us a way to convert $f \in C^\infty(M, \mathbb{R})$ to a vector field $X_f \in \Psi(M)$,
 
@@ -244,7 +244,7 @@ $$
 \end{equation}
 $$
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 <b> (Poisson Algebra.)</b> A Poisson algebra is a commutative algebra $A$ together with a bracket $\lbrace ,\rbrace : A \times A \mapsto A$ that is,<br><br>
 
 1. skew<br>
@@ -341,7 +341,7 @@ We can think of this as for degree $0$ we have functions on $Q$, $C^\infty(Q)$ a
 
 The function we have is linear in the direction of the fiber so it is $0$ in the zero section of the cotangent bundle and grows linearly in the direction of the fiber. Because of this, they are elements of the dual space of the cotangent fiber and thus are tangent vectors. Since $f\in C^\infty(T^\*Q)$ is linear on $T^*Q$ fibers, it defines a tangent vector at every point in $Q$. Thus, Hamiltonians of degree 1 are $\mathfrak{X}(Q)$, vector fields on $Q$. Like, $f = V^1 p_1 + \ldots + V^n p_n$ corresponds to the vector field $V = V^i \frac{\partial}{\partial q^i}$.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 <b>(Proposition.)</b> There is a vector field $V$ on $Q$ which generates a flow on $Q$, it induces a diffeomorphism on $Q$. This means it also induces a diffeomorphism on $T^\*Q$. This induced diffeomorphism or symmetry is the Hamiltonian flow of the function determined by $V$.<br><br>
 
 Hamiltonian flow of $f_V = V^ip_i$ coincides with the flow on $T^\*Q$ induced by the flow of $V$ on $Q$.
@@ -430,7 +430,7 @@ $$
 \end{equation}
 $$
 
-<div style="padding: 0.75em; border: 1px solid black;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border);">
 From Hamilton's equations of motion we know,
 
 $$
@@ -622,7 +622,7 @@ We can call something like $B$ type $(0, 2)$ because it has $2$ q's, $B=B_{ij}dq
 
 Thus, $\omega_B$ is symplectic and has the same Liouville volume as $\omega$.
 
-<div style="padding: 0.75em; border: 1px solid black;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border);">
 If $(X, g)$ is a Riemannian manifold then the Hamiltonian system defines the free motion of particles by geodesics $(T^*X, \omega, H=\frac{1}{2}f_g^{-1})$.<br><br>
 
 Similarly if $B \in \Omega^2(X)$ and $dB=0$ then the Hamiltonian system defines the motion of charged particles in a magnetic field $(T^*X, \omega_B = \omega + \pi^*B, H=\frac{1}{2}f_g^{-1})$.

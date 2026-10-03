@@ -434,7 +434,7 @@ $$
 \end{equation}
 $$
 
-<div markdown="1" style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div markdown="1" style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 Our perturbation is arbitrary, so the integrand must always be zero:
 
 $$
@@ -452,7 +452,7 @@ If a trajectory satisfies Euler–Lagrange, then it is physically valid. [^fn-eu
 
 In 1D, the kinetic energy is $T = \tfrac{1}{2} m \dot q^2$.
 
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 <b>Hooke's Law.</b> <span style="color:#ff7f0e">Force</span> is linearly proportional to <span style="color:#17becf">stretch</span> in the spring: $\color{#ff7f0e}{f} = -k \, \color{#17becf}{x}$.
 </div>
 
@@ -542,7 +542,7 @@ A good choice is $a=0$, $b=1$, $\alpha=\beta=\tfrac{1}{2}$. With these we get He
 \begin{equation}
     y^{t+1} = y^t + \frac{\Delta t}{2} A^{-1}\big(f(y^t) + f(\tilde y^{\\, t+1})\big), \qquad \tilde y^{\\, t+1} = y^t + \Delta t \\, A^{-1} f(y^t).
 \end{equation}
-<div style="padding: 0.75em; border: 1px solid black; margin-bottom: 1em;">
+<div style="padding: 0.75em; border: 1px solid var(--theorem-border); margin-bottom: 1em;">
 These can be written in a compact form as
 \begin{equation}
 \begin{split}
