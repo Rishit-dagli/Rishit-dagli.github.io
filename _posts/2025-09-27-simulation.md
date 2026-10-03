@@ -325,7 +325,7 @@ tags: [optimization, machine-learning, graphics, simulation, mechanics]
 })();
 </script>
 
-Some things I learned for a course I took, called *Topics in Computer Graphics: Seminar on Physics Based Animation* mainly as an excercise to remind myself of the pre-requisites when I was taking the course. I would credit a lot of this content to the course.
+Some things I learned for a course I took, called *Topics in Computer Graphics: Seminar on Physics Based Animation* mainly as an exercise to remind myself of the pre-requisites when I was taking the course. I would credit a lot of this content to the course.
 
 Arguably the primary areas of computer graphics are,
 
@@ -812,7 +812,7 @@ q^{t+1} &= q^t + \Delta t\, P^T \dot{\hat{q}}^{\, t+1}.
 
 [^fn-state]: A common example of state is when we consider a particle with some motion, we not only need to know its position but also its momentum to know the state.
 
-[^fn-smooth]: Now, if you think about the geometry of the space of all states, it is natural to ask if this space is continous or discrete, after all we are working with meshes? In mechanics, we (usually) assume a smooth configuration space (a continuous set of positions and orientations) or a smooth manifold. If you don't assume a $C^\infty$ smooth world, we get some weird things best left to later. So what are we doing in simulation? In graphics, when we implement things, configurations spaces don't really stay smooth, but you should think of it as we are working in a smooth world but just have a discrete surrogate we apply the results on.
+[^fn-smooth]: Now, if you think about the geometry of the space of all states, it is natural to ask if this space is continuous or discrete, after all we are working with meshes? In mechanics, we (usually) assume a smooth configuration space (a continuous set of positions and orientations) or a smooth manifold. If you don't assume a $C^\infty$ smooth world, we get some weird things best left to later. So what are we doing in simulation? In graphics, when we implement things, configurations spaces don't really stay smooth, but you should think of it as we are working in a smooth world but just have a discrete surrogate we apply the results on.
 
 [^fn-variational-vs-vectorial]: Vectorial mechanics writes equations directly in terms of forces and accelerations ($F=ma$). Variational (analytical) mechanics specifies a scalar Lagrangian $L=T-V$ and chooses trajectories that make the action $S=\int L\,dt$ stationary. For conservative systems these formalisms are equivalent via the Euler–Lagrange equations.
 

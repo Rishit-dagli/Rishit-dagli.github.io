@@ -169,7 +169,7 @@ Both choices can be described as "uniform," but they are uniform over different 
 
 The classical interpretation of probability says that if cases are equally possible, probability is favorable cases divided by total cases: six equally possible cases for a fair die, two for a coin, and so on. This works as long as we know what "equally possible" actually means
 
-Howver, the following example shows that this is not as simple as it sounds.
+However, the following example shows that this is not as simple as it sounds.
 Draw a random chord in a circle. What is the probability that the chord is longer than a side of the inscribed equilateral triangle? There are three standard answers.
 If we choose two random endpoints on the circumference, the answer is $\frac13$.
 If we choose a random point on a radius and draw the perpendicular chord, the answer is $\frac12$.
@@ -345,7 +345,7 @@ Expected utility is straightforward when the states are independent of the acts,
 Evidential decision theory handles this by using $P(s\mid a)$ in place of $P(s)$, i.e. by asking what the act itself would be evidence for. This works well in the studying case: if $P(\text{pass}\mid \text{study})=0.9$ and $P(\text{pass}\mid \text{not study})=0.2$,
 then studying can have much higher expected utility even if passing without studying would be the best outcome.
 
-Cosnider a new problem: there are two boxes, a transparent one containing a thousand dollars, and an opaque one containing either a million dollars or nothing. A predictor that has been almost always correct in the past has already predicted whether I will take only the opaque box or both, and the opaque box contains the million exactly when the predictor predicted one-boxing.
+Consider a new problem: there are two boxes, a transparent one containing a thousand dollars, and an opaque one containing either a million dollars or nothing. A predictor that has been almost always correct in the past has already predicted whether I will take only the opaque box or both, and the opaque box contains the million exactly when the predictor predicted one-boxing.
 
 Evidential decision theory recommends one-boxing, because one-boxing is strong evidence that the predictor predicted one-boxing, which is in turn strong evidence that the opaque box contains the million. Causal decision theory recommends two-boxing, because the prediction has already been made and my current action does not causally affect what is already in the box, so whatever is in the opaque box, taking both boxes gives a thousand dollars more than taking the opaque one alone.
 
