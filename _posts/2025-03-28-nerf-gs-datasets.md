@@ -3,7 +3,7 @@ title: "Reconstruct-It! A Collection of 3D Reconstruction Datasets and Trained S
 date: 2025-03-28
 redirect_from:
   - /2025/03/28/nerf-gs-datasets.html
-excerpt: "This collection brings together 77 carefully curated scenes with multi-view sequences, camera parameters, and pre-trained Gaussian Splats—everything you need to jump into radiance field training."
+excerpt: "This collection brings together 77 carefully curated scenes with multi-view sequences, camera parameters, and pre-trained Gaussian Splats."
 image: /assets/nerf-gs-datasets/cover.jpg
 math: false
 tags: [3d-reconstruction, machine-learning]

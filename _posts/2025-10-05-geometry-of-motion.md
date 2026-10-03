@@ -766,9 +766,9 @@ $$
 \end{equation}
 $$
 
-If we use $H = f_{g_{\text{Lorentzian}}}$ to generate flows we obtain the Lorentzian geodesics. The initial condition we have is $((x, t), (p,s))$, the norm $$\|p\|^2 - s^2 = -m^2$$ may be positive (space-like), negative (time-like), or zero (light-like). If you have read the popular book, "A Brief History of Time" by Hawking, you might find much of this familiar. You can interpret this flow as follows, again shamelessly copied from "A Brief History of Time".
+If we use $H = f_{g_{\text{Lorentzian}}}$ to generate flows we obtain the Lorentzian geodesics. The initial condition we have is $((x, t), (p,s))$, the norm $$\|p\|^2 - s^2 = -m^2$$ may be positive (space-like), negative (time-like), or zero (light-like).
 
-{% include image.html url="/assets/diff-geometry/light-cone-light.png" dark_url="/assets/diff-geometry/light-cone-dark.png" description="The light cone (shamelessly copied from A Brief History of Time)." %}
+{% include image.html url="/assets/diff-geometry/light-cone-light.png" dark_url="/assets/diff-geometry/light-cone-dark.png" description="The light cone." %}
 
 Generally, given a state $(x, t), (p,s)$ with timelike momentum ( $\|p\|^2 - s^2 < 0$) we have the mass of the state to be $m = \sqrt{-(\|p\|^2 - s^2)}$. It is very interesting that the only thing we need to do for incorporating relativity is enlarge the phase space by two dimensions and use the Lorentzian metric which is still quadratic. But the Lorentzian metric is not positive definite, so instead of having unit cospheres which are compact ({% include figref.html id="fig:cosphere" %}) they will look like hyperboloids and be non-compact.
 

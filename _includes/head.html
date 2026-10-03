@@ -30,7 +30,7 @@
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
-  {% if page.layout == "post" and page.math != false %}
+  {% if page.layout == "home" or (page.layout == "post" and page.math != false) %}
   <!-- MathJax with automatic equation numbering and color support -->
   <script>
   window.MathJax = {
