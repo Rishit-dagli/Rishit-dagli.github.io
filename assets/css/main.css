@@ -134,7 +134,7 @@
 html {
   font-size: var(--font-size-base);
   scroll-behavior: smooth;
-  scroll-padding-top: 6.5rem; /* clears the sticky .site-header */
+  scroll-padding-top: 1rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -296,11 +296,6 @@ pre code {
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
   padding: 1.5rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  background-color: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
 }
 
 .site-title {
@@ -961,17 +956,6 @@ a.tag:focus-visible {
     width: 100%;
     justify-content: space-between;
     gap: 0.25rem;
-  }
-}
-
-/* A pinned header would cover too much of a phone screen */
-@media (max-width: 540px), (max-height: 540px) {
-  html {
-    scroll-padding-top: 1rem;
-  }
-
-  .site-header {
-    position: static;
   }
 }
 
