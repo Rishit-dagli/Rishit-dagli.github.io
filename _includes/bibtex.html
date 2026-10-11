@@ -10,21 +10,29 @@
 {% assign clean_title = post_title | remove: "**" | remove: "*" %}
 {% assign author_last = post_author | split: " " | last %}
 {% assign citation_key = author_last | downcase | append: year | append: clean_title | split: " " | first | downcase %}
+{% assign lb = "{" %}
+{% assign rb = "}" %}
+{% assign author_first = post_author | remove: author_last | strip %}
+{% assign author_inverted = author_last %}
+{% if author_first != "" %}{% assign author_inverted = author_last | append: ", " | append: author_first %}{% endif %}
+{% assign title_end = clean_title | slice: -1 %}
+{% assign title_period = "." %}
+{% if title_end == "?" or title_end == "!" or title_end == "." %}{% assign title_period = "" %}{% endif %}
 
 <h2 id="citation">Citation</h2>
 
 <p>Please cite this work as:</p>
 
-<pre tabindex="0"><code>{{ post_author }}. "{{ clean_title }}". Rishit Dagli's Blog ({{ month_name }} {{ year }}). {{ post_url }}</code></pre>
+<pre tabindex="0"><code>{{ author_inverted }}. “{{ clean_title }}{{ title_period }}” {{ post_date | date: "%B %-d, %Y" }}. {{ post_url }}.</code></pre>
 
 <p>Or use the BibTex citation:</p>
 
-<pre tabindex="0"><code id="citationCode">@article{ {{ citation_key }},
-  title = { {{ clean_title }} },
-  author = { {{ post_author }} },
+<pre tabindex="0"><code id="citationCode">@article{{ lb }}{{ citation_key }},
+  title = {{ lb }}{{ clean_title }}{{ rb }},
+  author = {{ lb }}{{ post_author }}{{ rb }},
   journal = {rishit-dagli.github.io},
-  year = { {{ year }} },
-  month = { {{ month_name }} },
+  year = {{ lb }}{{ year }}{{ rb }},
+  month = {{ lb }}{{ month_name }}{{ rb }},
   url = "{{ post_url }}"
 }</code></pre>
 
